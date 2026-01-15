@@ -1,0 +1,51 @@
+---
+import "../styles/tailwind.css";
+import "@phcdevworks/spectre-ui/base.css";
+import "@phcdevworks/spectre-ui/components.css";
+import "@phcdevworks/spectre-ui/utilities.css";
+
+import Header from "./components/Header.astro";
+import Footer from "./components/Footer.astro";
+
+const {
+  title = "PHCDevworks Documentation",
+  description = "PHCDevworks is a developer-first software studio specializing in cross-platform design systems, high-performance WordPress products, and modern UI tooling.",
+} = Astro.props;
+
+const year = new Date().getFullYear();
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <header class="bg-gray-50 dark:bg-gray-800">
+    <Header />
+  </header>
+  <body
+    class="min-h-screen flex flex-col bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 overflow-x-hidden leading-normal"
+  >
+    <main class="flex-1">
+      <slot />
+    </main>
+    <footer class="bg-white dark:bg-gray-900">
+      <Footer />
+    </footer>
+  </body>
+
+
+</html>
