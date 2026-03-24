@@ -1,43 +1,57 @@
-# Astro Starter Kit: Minimal
+# docs-phcdevworks-com
 
-```sh
-npm create astro@latest -- --template minimal
+[![GitHub issues](https://img.shields.io/github/issues/phcdevworks/docs-phcdevworks-com)](https://github.com/phcdevworks/docs-phcdevworks-com/issues) [![GitHub pulls](https://img.shields.io/github/issues-pr/phcdevworks/docs-phcdevworks-com)](https://github.com/phcdevworks/docs-phcdevworks-com/pulls) [![License](https://img.shields.io/github/license/phcdevworks/docs-phcdevworks-com)](LICENSE)
+
+The official documentation portal for the PHCDevworks ecosystem. It provides comprehensive guides, API references, and documentation for the Spectre suite of tools.
+
+
+
+🤝 **[Contributing Guide](CONTRIBUTING.md)** | 📝 **[Changelog](CHANGELOG.md)** | 🛡️ **[Security Policy](SECURITY.md)**
+
+## Overview
+
+`docs-phcdevworks-com` is the documentation hub for the Coast AI and Spectre project ecosystems. It is built with Astro and provides a centralized location for searching and reading documentation across all repositories.
+
+## Usage
+
+### 1. Prerequisites
+- Node.js (Latest LTS recommended)
+- Git
+
+### 2. Setup
+```bash
+git clone https://github.com/phcdevworks/docs-phcdevworks-com.git
+cd docs-phcdevworks-com
+npm install
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### 3. Execution
+1. Launch the documentation server:
+   ```bash
+   npm run dev
+   ```
 
-## 🚀 Project Structure
+## Project Structure
 
-Inside of your Astro project, you'll see the following folders and files:
+| Path            | Responsibility                                      |
+| --------------- | --------------------------------------------------- |
+| `src/pages/`    | Main documentation pages and routes                 |
+| `src/components/` | Shared UI components for the documentation site   |
+| `public/`      | Static assets and documentation source files         |
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## Part of the PHCDevworks Suite
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- **[Spectre Tokens](https://github.com/phcdevworks/spectre-tokens)** - Design token foundation
+- **[Spectre UI](https://github.com/phcdevworks/spectre-ui)** - Core styling layer
+- **[Spectre UI Astro](https://github.com/phcdevworks/spectre-ui-astro)** - Astro adapter
+- **[Spectre Docs](https://github.com/phcdevworks/docs-phcdevworks-com)** - Documentation portal (this project)
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Contributing
 
-Any static assets, like images, can be placed in the `public/` directory.
+We welcome contributions from the community. Please review our **[CONTRIBUTING.md](CONTRIBUTING.md)** for details on our workflow and standards.
 
-## 🧞 Commands
+## License
 
-All commands are run from the root of the project, from a terminal:
+MIT © PHCDevworks — See **[LICENSE](LICENSE)** for details.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
