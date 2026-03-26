@@ -1,0 +1,211 @@
+---
+// docs-phcdevworks-com/src/layouts/DocsLayout.astro
+import "@phcdevworks/spectre-ui/index.css"
+import { ClientRouter } from "astro:transitions"
+import { SpCard, SpBadge, SpIconBox } from "@phcdevworks/spectre-ui-astro"
+
+interface Props {
+  title: string
+  description?: string
+  frontmatter?: any // Support for MDX frontmatter
+}
+
+const { title, description, frontmatter } = Astro.props
+
+const metaTitle = frontmatter?.title || title
+const metaDesc = frontmatter?.description || description || "PHCDevworks documentation portal."
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{metaTitle} | PHCDevworks Docs</title>
+    <meta name="description" content={metaDesc} />
+    <ClientRouter />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="sp-docs-theme">
+    <div class="sp-docs-shell">
+      <header class="sp-docs-header">
+        <div class="sp-header-inner">
+          <div class="sp-logo">
+            <SpIconBox variant="primary" size="sm">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
+                <path d="M8 7h6"></path>
+                <path d="M8 11h8"></path>
+                <path d="M8 15h6"></path>
+              </svg>
+            </SpIconBox>
+            <span class="sp-logo-text">Docs</span>
+          </div>
+          <div class="sp-header-meta">
+            <SpBadge variant="success" size="sm">v1.2.0</SpBadge>
+          </div>
+        </div>
+      </header>
+      
+      <div class="sp-docs-main">
+        <aside class="sp-docs-sidebar">
+          <nav>
+            <div class="sp-sidebar-group">
+              <h3>Getting Started</h3>
+              <ul>
+                <li><a href="/">Introduction</a></li>
+                <li><a href="/installation">Installation</a></li>
+              </ul>
+            </div>
+            <div class="sp-sidebar-group">
+              <h3>Ecosystem</h3>
+              <ul>
+                <li><a href="/spectre-ui">Spectre UI</a></li>
+                <li><a href="/spectre-tokens">Spectre Tokens</a></li>
+              </ul>
+            </div>
+          </nav>
+        </aside>
+
+        <main class="sp-docs-content">
+          <article class="sp-prose">
+            <h1>{metaTitle}</h1>
+            <slot />
+          </article>
+        </main>
+      </div>
+    </div>
+
+    <style is:global>
+      :root {
+        --sp-font-family: "Outfit", sans-serif;
+        --sp-font-family-body: "Inter", sans-serif;
+        --sp-sidebar-width: 280px;
+        --sp-header-height: 64px;
+        --sp-accent: #4f46e5;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--sp-font-family-body);
+        background-color: #f8fafc;
+        color: #1e293b;
+      }
+
+      .sp-docs-shell {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .sp-docs-header {
+        height: var(--sp-header-height);
+        background: white;
+        border-bottom: 1px solid #e2e8f0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        padding: 0 2rem;
+      }
+
+      .sp-header-inner {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .sp-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .sp-logo-text {
+        font-family: var(--sp-font-family);
+        font-weight: 700;
+        font-size: 1.25rem;
+        letter-spacing: -0.02em;
+      }
+
+      .sp-docs-main {
+        display: grid;
+        grid-template-columns: var(--sp-sidebar-width) 1fr;
+        flex: 1;
+      }
+
+      .sp-docs-sidebar {
+        border-right: 1px solid #e2e8f0;
+        background: white;
+        padding: 2rem;
+        overflow-y: auto;
+        height: calc(100vh - var(--sp-header-height));
+        position: sticky;
+        top: var(--sp-header-height);
+      }
+
+      .sp-sidebar-group h3 {
+        font-family: var(--sp-font-family);
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #64748b;
+        margin: 1.5rem 0 0.75rem;
+      }
+
+      .sp-sidebar-group ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .sp-sidebar-group li a {
+        display: block;
+        padding: 0.5rem 0;
+        color: #475569;
+        text-decoration: none;
+        font-size: 0.9375rem;
+        transition: color 0.1s;
+      }
+
+      .sp-sidebar-group li a:hover {
+        color: var(--sp-accent);
+      }
+
+      .sp-docs-content {
+        padding: 3rem 4rem;
+        max-width: 960px;
+      }
+
+      .sp-prose h1 {
+        font-size: 2.25rem;
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        margin-bottom: 2rem;
+      }
+
+      .sp-prose p {
+        margin-bottom: 1.5rem;
+        font-size: 1.0625rem;
+        line-height: 1.75;
+      }
+    </style>
+  </body>
+</html>

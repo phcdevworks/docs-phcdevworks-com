@@ -1,16 +1,56 @@
 ---
+import DocsLayout from "../layouts/DocsLayout.astro"
+import { SpCard, SpButton } from "@phcdevworks/spectre-ui-astro"
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
-  </head>
-  <body>
-    <h1>Astro</h1>
-  </body>
-</html>
+<DocsLayout title="Welcome to the Arsenal">
+  <p class="lead">
+    This is the central documentation hub for PHCDevworks. Here you will find 
+    comprehensive guides and technical specifications for our 8-Layer Arsenal.
+  </p>
+
+  <div class="grid">
+    <SpCard variant="outline">
+      <h3>Quick Start</h3>
+      <p>Get up and running with the Spectre ecosystem in under 5 minutes.</p>
+      <SpButton variant="secondary" size="sm" class="mt-4">Read Guide</SpButton>
+    </SpCard>
+
+    <SpCard variant="outline">
+      <h3>API Reference</h3>
+      <p>Detailed documentation for every Spectre component and token.</p>
+      <SpButton variant="secondary" size="sm" class="mt-4">Explore Reference</SpButton>
+    </SpCard>
+  </div>
+
+  <h2>About the Arsenal</h2>
+  <p>
+    The Spectre Arsenal is a strictly tiered design system hierarchy designed for 
+    maximum scalability and zero duplication. From the DNA (Layer 1) to the 
+    Consciousness (Layer 8), every layer has a non-negotiable mission.
+  </p>
+
+  <style>
+    .lead {
+      font-size: 1.25rem;
+      color: #475569;
+      margin-bottom: 3rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .grid h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .mt-4 {
+      margin-top: 1rem;
+    }
+  </style>
+</DocsLayout>
