@@ -7,6 +7,9 @@ practical.
 
 ## Unreleased
 
+- Expanded Codex operating guidance for production readiness, validation,
+  release preparation, README structure, package metadata, and config
+  consistency.
 - Strengthened Codex release, changelog, production-stabilization, and config
   cleanup guidance.
 - Added repository-level Copilot support guidance and tightened cross-agent

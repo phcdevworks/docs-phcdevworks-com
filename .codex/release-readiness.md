@@ -9,6 +9,7 @@ Codex uses this checklist before a release, deploy, or production handoff for
 - [ ] Confirm Spectre and PHCDevworks naming is consistent.
 - [ ] Confirm changed repository docs match current scripts and tooling.
 - [ ] Confirm changelog or release-note updates cover release-relevant changes.
+- [ ] Confirm `package.json` metadata and scripts match repository docs.
 - [ ] Check changed Markdown and MDX for broken internal links.
 - [ ] Run `npm run build` when practical.
 - [ ] Review `astro.config.mjs` and `wrangler.jsonc` if deployment behavior
@@ -20,6 +21,7 @@ Codex uses this checklist before a release, deploy, or production handoff for
 
 - `README.md` describes current setup, scripts, and repository scope.
 - `CONTRIBUTING.md` reflects the actual local workflow.
+- README structure is consistent with the docs-site flow in `CODEX.md`.
 - `SECURITY.md` gives private reporting guidance.
 - `AGENTS.md`, `CLAUDE.md`, `CODEX.md`, `COPILOT.md`, `JULES.md`, and
   `.github/copilot-instructions.md` agree on agent roles and responsibilities.
@@ -27,6 +29,7 @@ Codex uses this checklist before a release, deploy, or production handoff for
 
 ## Build And Deploy Checks
 
+- Use `npm run check` when the repository defines it.
 - `npm run build` completes successfully.
 - `npm run preview` remains available for Cloudflare preview when needed.
 - `npm run deploy` still builds before deployment.
@@ -40,6 +43,7 @@ Codex uses this checklist before a release, deploy, or production handoff for
 - Personal theme, font, extension, and UI preferences are not introduced.
 - Build, preview, deploy, TypeScript, ESLint, and Wrangler settings stay
   reflected in repository docs when contributor workflow changes.
+- Duplicate config files are not introduced.
 
 ## Handoff Notes
 
