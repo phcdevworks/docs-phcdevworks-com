@@ -2,11 +2,9 @@
 
 ## Project Identity
 
-**Repository:** `docs-phcdevworks-com`
-**Product:** Spectre
-**Maintainer:** PHCDevworks
-**Codex role:** release readiness, production stabilization, documentation
-standardization, repo hygiene, and final review support
+**Repository:** `docs-phcdevworks-com` **Product:** Spectre **Maintainer:**
+PHCDevworks **Codex role:** release readiness, production stabilization,
+documentation standardization, repo hygiene, and final review support
 
 `docs-phcdevworks-com` is the Astro documentation site for the Spectre
 ecosystem. It should stay accurate, concise, and production-ready.
@@ -87,9 +85,13 @@ Before a release handoff, verify:
 ## Collaboration Notes
 
 - Claude Code owns implementation leadership.
+- GitHub Copilot is the general development support assistant and does not own
+  architecture direction, release coordination, or production stabilization.
 - Codex owns release confidence and keeps the production path tidy.
+- Google Jules owns bounded automated maintenance and should defer to
+  `CLAUDE.md` for implementation authority and `CODEX.md` for release handoff
+  concerns.
 - If Claude Code and Codex guidance conflict, escalate the conflict in the
   handoff notes instead of silently choosing a risky path.
-- Human review remains the final authority for commits, releases, and
-  production deployment.
-
+- Human review remains the final authority for commits, releases, and production
+  deployment.

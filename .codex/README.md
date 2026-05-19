@@ -14,6 +14,7 @@ repo hygiene, and final review support.
 
 ## Related Root Files
 
+- `CLAUDE.md` - Claude Code implementation guide.
 - `CODEX.md` - Codex operating guide.
+- `JULES.md` - Jules automated maintenance guide.
 - `AGENTS.md` - shared agent guide for the repository.
-

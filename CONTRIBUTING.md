@@ -28,3 +28,13 @@ Thanks for contributing to `docs-phcdevworks-com`.
 - Do not introduce retired branding or outdated ownership language.
 - Keep project settings cohesive with the Spectre website repository when the
   workflow is shared.
+
+## AI Guidance Files
+
+- `AGENTS.md` defines shared multi-agent boundaries for this repository.
+- `CLAUDE.md` is the lead implementation guide.
+- `CODEX.md` covers release readiness, production stabilization, and repo
+  hygiene review.
+- `.github/copilot-instructions.md` keeps GitHub Copilot focused on support work
+  inside the IDE.
+- `JULES.md` defines automated micro-maintenance boundaries.
