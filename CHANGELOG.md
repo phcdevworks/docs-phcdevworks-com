@@ -8,5 +8,7 @@ practical.
 
 ## Unreleased
 
+- Added Codex release-readiness and change-watch documentation for AI-assisted
+  production handoffs.
 - Standardized repository documentation and project-level workspace settings for
   Spectre.
