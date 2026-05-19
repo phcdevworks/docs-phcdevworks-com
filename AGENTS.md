@@ -19,11 +19,10 @@ documentation-first projects.
 | OpenAI Codex   | Release readiness, production stabilization, documentation standardization, repo hygiene, and final review support                | `CODEX.md`                        |
 | Google Jules   | Automated maintenance agent for small fixes, dependency updates, repo hygiene tasks, and micro-updates                            | `JULES.md`                        |
 
-Claude Code takes the lead on implementation. GitHub Copilot supports daily
-developer productivity in the IDE. Codex keeps changes production ready, checks
-drift, standardizes documentation and configuration, and records release-watch
-notes when needed. Jules handles bounded automated maintenance without owning
-architecture, releases, or documentation governance.
+Claude Code leads implementation. Copilot supports daily developer productivity
+in the IDE. Codex keeps changes production-ready and records release-watch notes.
+Jules handles bounded automated maintenance without owning architecture, releases,
+or documentation governance.
 
 ## Agent Boundaries
 
@@ -35,46 +34,30 @@ architecture, releases, or documentation governance.
   repository AI governance, or automated maintenance workflows.
 - Google Jules owns automated micro-maintenance only.
 
+When instructions appear to conflict, agent-specific guides take precedence over
+this file for their own scope. Use this file for shared coordination policy.
+
 ## Working Principles
 
 - Keep naming consistent with Spectre and PHCDevworks.
 - Prefer small, explicit changes over broad rewrites.
 - Treat documentation accuracy as a product requirement.
-- Keep repository-level configuration aligned with the website repository where
-  it makes sense to share conventions.
-
-## Content Standards
-
-- Write concise, direct Markdown and MDX.
 - Keep contributor-facing docs synchronized with actual scripts and tooling.
-- Avoid references to retired branding or unrelated organizations.
-- Do not introduce project-specific conventions here unless they are documented
-  in the repository docs.
-
-## Configuration Standards
-
-- Preserve project-level settings only.
-- Favor shared editor behavior over personal theme, font, or UI preferences.
-- Keep line endings, indentation, and save behavior aligned with
-  `.editorconfig`, `.gitattributes`, and the local workspace settings.
+- Escalate unclear production risk instead of burying it in a cleanup diff.
 
 ## Verification
 
-- Run `npm run build` after documentation or config changes when practical.
-- Check for broken internal links in repository Markdown before finishing.
+`npm run build` is the standard validation gate for documentation and
+configuration changes. Run it before any handoff when practical.
 
-## Release Readiness
+## For Full Operating Context
 
-- Use `.codex/release-readiness.md` before production handoff.
-- Use `.codex/change-watch.md` for active branch or release-candidate notes.
-- Keep `CHANGELOG.md` updated for release-relevant documentation and
-  configuration changes.
-- Escalate unclear production risks instead of burying them in broad cleanup.
+See the agent-specific guide for each role:
 
-## Automated Maintenance
-
-- Jules must read `AGENTS.md` and `JULES.md` before starting work.
-- Jules should keep each task atomic and avoid unrelated documentation rewrites.
-- Jules may run `npm run build` as the standard validation gate.
-- Jules must stop and report blockers when validation fails outside the task
-  scope.
+- [CLAUDE.md](CLAUDE.md) — implementation authority, project structure, content
+  standards, and workflow
+- [CODEX.md](CODEX.md) — release readiness checklist and documentation
+  standardization
+- [JULES.md](JULES.md) — maintenance task scope and commit authority
+- [.github/copilot-instructions.md](.github/copilot-instructions.md) — Copilot
+  scope and repository conventions

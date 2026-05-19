@@ -54,11 +54,11 @@ npm run dev
 
 ## Project Structure
 
-| Path | Responsibility |
-| --- | --- |
-| `src/pages/` | Route-level pages for the documentation experience |
-| `src/components/` | Shared presentation and content helpers |
-| `public/` | Static assets served as-is |
+| Path           | Responsibility                                  |
+| -------------- | ----------------------------------------------- |
+| `src/pages/`   | Route-level pages for the documentation experience |
+| `src/layouts/` | Page layout components                          |
+| `public/`      | Static assets served as-is                      |
 
 ## Spectre Repositories
 
