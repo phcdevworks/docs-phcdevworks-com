@@ -35,6 +35,7 @@ Thanks for contributing to `docs-phcdevworks-com`.
 - `CLAUDE.md` is the lead implementation guide.
 - `CODEX.md` covers release readiness, production stabilization, and repo
   hygiene review.
+- `COPILOT.md` defines repository-level Copilot support boundaries.
 - `.github/copilot-instructions.md` keeps GitHub Copilot focused on support work
   inside the IDE.
 - `JULES.md` defines automated micro-maintenance boundaries.

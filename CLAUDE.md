@@ -2,8 +2,10 @@
 
 ## Project Identity
 
-**Repository:** `docs-phcdevworks-com` **Product:** Spectre **Maintainer:**
-PHCDevworks **Primary AI developer:** Claude Code
+**Repository:** `docs-phcdevworks-com`
+**Product:** Spectre
+**Maintainer:** PHCDevworks
+**Primary AI developer:** Claude Code
 
 `docs-phcdevworks-com` is the Astro documentation site for the Spectre
 ecosystem. It owns the public documentation experience, repository docs, and
@@ -20,8 +22,8 @@ projects.
 | Agent          | Role                                                                                                         | Guide                             |
 | -------------- | ------------------------------------------------------------------------------------------------------------ | --------------------------------- |
 | Claude Code    | Lead implementation agent for primary edits, project direction, and review-ready changes                     | `CLAUDE.md`                       |
-| GitHub Copilot | General development support for inline suggestions, TypeScript help, API hints, and small refactors          | `.github/copilot-instructions.md` |
-| OpenAI Codex   | Release readiness, production stabilization, documentation standardization, repo hygiene, and final review support | `CODEX.md`                        |
+| GitHub Copilot | General development support for inline suggestions, TypeScript help, API hints, and small refactors          | `COPILOT.md` and `.github/copilot-instructions.md` |
+| OpenAI Codex   | Documentation, releases, production stabilization, repo hygiene, and config standardization | `CODEX.md`                        |
 | Google Jules   | Automated maintenance agent for small fixes, dependency updates, and micro-updates                           | `JULES.md`                        |
 
 Claude Code leads implementation. GitHub Copilot supports day-to-day coding

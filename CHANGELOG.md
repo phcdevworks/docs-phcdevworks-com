@@ -7,6 +7,10 @@ practical.
 
 ## Unreleased
 
+- Strengthened Codex release, changelog, production-stabilization, and config
+  cleanup guidance.
+- Added repository-level Copilot support guidance and tightened cross-agent
+  coordination references.
 - Standardized GitHub Copilot role guidance and added repository-level Copilot
   instructions aligned with Claude Code, Codex, and Jules boundaries.
 - Added Claude Code and Google Jules agent configuration for coordinated

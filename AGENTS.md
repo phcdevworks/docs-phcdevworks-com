@@ -15,8 +15,8 @@ documentation-first projects.
 | Agent          | Role                                                                                                                              | Guide                             |
 | -------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
 | Claude Code    | Lead implementation agent for primary edits and project direction                                                                 | `CLAUDE.md`                       |
-| GitHub Copilot | General development support for inline suggestions, small code edits, tests, TypeScript help, API hints, and refactor suggestions | `.github/copilot-instructions.md` |
-| OpenAI Codex   | Release readiness, production stabilization, documentation standardization, repo hygiene, and final review support                | `CODEX.md`                        |
+| GitHub Copilot | General development support for inline suggestions, small code edits, tests, TypeScript help, API hints, and refactor suggestions | `COPILOT.md` and `.github/copilot-instructions.md` |
+| OpenAI Codex   | Documentation, releases, production stabilization, repo hygiene, and config standardization                                       | `CODEX.md`                        |
 | Google Jules   | Automated maintenance agent for small fixes, dependency updates, repo hygiene tasks, and micro-updates                            | `JULES.md`                        |
 
 Claude Code leads implementation. Copilot supports daily developer productivity
@@ -27,12 +27,13 @@ or documentation governance.
 ## Agent Boundaries
 
 - Claude Code owns lead implementation and project direction.
-- OpenAI Codex owns release readiness, production stabilization, documentation
-  standardization, and repo hygiene.
+- OpenAI Codex owns documentation standards, release preparation, production
+  stabilization, repo hygiene review, and config standardization.
 - GitHub Copilot is a support assistant and does not own implementation
   direction, architecture, releases, production stabilization ownership,
   repository AI governance, or automated maintenance workflows.
-- Google Jules owns automated micro-maintenance only.
+- Google Jules owns automated micro-maintenance only, including small fixes,
+  dependency updates, and tightly scoped hygiene tasks.
 
 When instructions appear to conflict, agent-specific guides take precedence over
 this file for their own scope. Use this file for shared coordination policy.
@@ -58,6 +59,7 @@ See the agent-specific guide for each role:
   standards, and workflow
 - [CODEX.md](CODEX.md) — release readiness checklist and documentation
   standardization
+- [COPILOT.md](COPILOT.md) — Copilot support boundaries and practical guardrails
 - [JULES.md](JULES.md) — maintenance task scope and commit authority
 - [.github/copilot-instructions.md](.github/copilot-instructions.md) — Copilot
-  scope and repository conventions
+  IDE-facing scope and repository conventions

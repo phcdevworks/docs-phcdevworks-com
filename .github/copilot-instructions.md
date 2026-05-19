@@ -27,8 +27,9 @@ Copilot does not own:
 ## Team Boundaries
 
 - Claude Code is the lead developer and primary implementation owner (`CLAUDE.md`).
-- OpenAI Codex owns documentation standardization, release readiness, production stabilization, repo hygiene, and final review support (`CODEX.md`).
+- OpenAI Codex owns documentation, releases, production stabilization, repo hygiene, and config standardization (`CODEX.md`).
 - Google Jules handles automated maintenance for small fixes, dependency updates, and micro-updates (`JULES.md`).
+- Repository-level Copilot boundaries live in `COPILOT.md`.
 - Use `AGENTS.md` as the shared policy source when guidance overlaps.
 
 ## Repository Conventions

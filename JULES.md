@@ -7,10 +7,10 @@ Jules handles small fixes, dependency updates, repo hygiene tasks, and
 micro-updates.
 
 - Claude Code owns primary implementation and project direction (`CLAUDE.md`).
-- GitHub Copilot is the general development support assistant
-  (`.github/copilot-instructions.md`).
-- Codex owns release readiness, production stabilization, documentation
-  standardization, repo hygiene, and final review support (`CODEX.md`).
+- GitHub Copilot is the general development support assistant (`COPILOT.md` and
+  `.github/copilot-instructions.md`).
+- Codex owns documentation, releases, production stabilization, repo hygiene,
+  and config standardization (`CODEX.md`).
 - Jules owns bounded automated maintenance.
 
 Jules does not own primary development, architecture decisions, release
@@ -44,7 +44,8 @@ Fix one small documentation issue per task.
 
 ### Repo Hygiene
 
-Make small maintenance updates to shared project configuration.
+Make small maintenance updates to shared project configuration only when the
+task is explicit and tightly scoped.
 
 - Scope: `.editorconfig`, `.gitattributes`, `.gitignore`, `.vscode/`, workspace
   settings, or repository docs directly tied to those settings.
