@@ -66,21 +66,36 @@ npm run dev
 
 ## Available Scripts
 
-- `npm run dev` starts the local Astro development server.
-- `npm run build` creates the production build.
-- `npm run preview` builds the project and starts the Cloudflare preview.
-- `npm run generate-types` refreshes Wrangler type output.
-- `npm run deploy` builds and deploys the site.
+| Script | What it does |
+| --- | --- |
+| `npm run dev` | Start the local Astro development server |
+| `npm run build` | Create the production build |
+| `npm run check` | Full validation gate — same as `npm run build` |
+| `npm run preview` | Build and start a local Cloudflare Workers preview |
+| `npm run generate-types` | Refresh Wrangler type output |
+| `npm run deploy` | Build and deploy to Cloudflare |
 
 ## Validation
 
-Run the production build before handoff when practical:
-
 ```bash
-npm run build
+npm run check
 ```
 
-This repository does not currently define `npm run check`.
+`npm run check` runs the full production build. Use it before any handoff.
+`npm run preview` builds and starts a local Cloudflare Workers preview — use
+this only when you need to verify Cloudflare runtime behavior specifically.
+
+## Troubleshooting
+
+**Build fails with missing module errors** — run `npm install` first; `dist/`
+is not committed and must be rebuilt locally.
+
+**`npm run preview` or `npm run deploy` fails** — these require Wrangler
+authentication. Run `wrangler login` and confirm you have Cloudflare access for
+this project before using them.
+
+**`npm run generate-types` produces nothing** — run `npm run build` first;
+Wrangler type generation requires a compiled output to inspect.
 
 ## Project Structure
 

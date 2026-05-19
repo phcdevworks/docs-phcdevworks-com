@@ -1,14 +1,32 @@
 {
   "name": "docs-phcdevworks-com",
+  "description": "Official documentation site for the Spectre design system by PHCDevworks",
   "private": true,
   "type": "module",
   "version": "0.0.1",
+  "license": "MIT",
   "engines": {
     "node": ">=22.12.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phcdevworks/docs-phcdevworks-com.git"
+  },
+  "bugs": {
+    "url": "https://github.com/phcdevworks/docs-phcdevworks-com/issues"
+  },
+  "keywords": [
+    "spectre",
+    "phcdevworks",
+    "astro",
+    "documentation",
+    "design-system",
+    "cloudflare"
+  ],
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "check": "npm run build",
     "preview": "npm run build && wrangler dev",
     "astro": "astro",
     "generate-types": "wrangler types",

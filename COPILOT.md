@@ -69,8 +69,8 @@ stabilization, repo-wide AI governance, or automated maintenance workflows.
 
 - Use `npm run build` as the standard validation gate for meaningful docs,
   Astro, or configuration changes.
-- Run narrower checks only when they are explicitly available in
-  `package.json` or the IDE.
+- Run narrower checks only when they are explicitly available in `package.json`
+  or the IDE.
 
 If validation fails:
 
@@ -86,5 +86,5 @@ If validation fails:
 
 ## Source Of Detailed Guidance
 
-Primary Copilot guidance lives in `.github/copilot-instructions.md`.
-Shared repo boundaries live in `AGENTS.md`.
+Primary Copilot guidance lives in `.github/copilot-instructions.md`. Shared repo
+boundaries live in `AGENTS.md`.

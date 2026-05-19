@@ -11,9 +11,18 @@ Thanks for contributing to `docs-phcdevworks-com`.
 
 ## Local Workflow
 
-1. Install dependencies with `npm install`.
-2. Start the local server with `npm run dev`.
-3. Build before handing off with `npm run build`.
+1. Install dependencies: `npm install`
+2. Start the dev server: `npm run dev`
+3. Validate before handoff: `npm run check`
+
+## Troubleshooting
+
+- **Build errors after pulling** — run `npm install` to sync dependencies before
+  building; `node_modules/` and `dist/` are not committed.
+- **`preview` or `deploy` fails** — requires Wrangler authentication; run
+  `wrangler login` and confirm Cloudflare project access.
+- **TypeScript errors in `.astro` files** — confirm your editor uses the Astro
+  VS Code extension. TypeScript is checked during `astro build`.
 
 ## Pull Request Expectations
 

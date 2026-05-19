@@ -7,7 +7,7 @@ import { SpCard, SpBadge, SpIconBox } from "@phcdevworks/spectre-ui-astro"
 interface Props {
   title: string
   description?: string
-  frontmatter?: any // Support for MDX frontmatter
+  frontmatter?: Record<string, unknown>
 }
 
 const { title, description, frontmatter } = Astro.props
@@ -56,7 +56,7 @@ const metaDesc = frontmatter?.description || description || "PHCDevworks documen
             <span class="sp-logo-text">Docs</span>
           </div>
           <div class="sp-header-meta">
-            <SpBadge variant="success" size="sm">v1.2.0</SpBadge>
+            <SpBadge variant="neutral" size="sm">Early Access</SpBadge>
           </div>
         </div>
       </header>
@@ -68,14 +68,14 @@ const metaDesc = frontmatter?.description || description || "PHCDevworks documen
               <h3>Getting Started</h3>
               <ul>
                 <li><a href="/">Introduction</a></li>
-                <li><a href="/installation">Installation</a></li>
               </ul>
             </div>
             <div class="sp-sidebar-group">
               <h3>Ecosystem</h3>
               <ul>
-                <li><a href="/spectre-ui">Spectre UI</a></li>
-                <li><a href="/spectre-tokens">Spectre Tokens</a></li>
+                <li><a href="https://github.com/phcdevworks/spectre-tokens" rel="noopener noreferrer">Spectre Tokens</a></li>
+                <li><a href="https://github.com/phcdevworks/spectre-ui" rel="noopener noreferrer">Spectre UI</a></li>
+                <li><a href="https://github.com/phcdevworks/spectre-ui-astro" rel="noopener noreferrer">Spectre UI Astro</a></li>
               </ul>
             </div>
           </nav>

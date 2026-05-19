@@ -4,6 +4,9 @@
 
 GitHub Copilot is the general development support assistant for this repository.
 
+Before making suggestions, read `AGENTS.md`, `CLAUDE.md`, `CODEX.md`, and
+`package.json`.
+
 Copilot supports:
 
 - inline code completion
@@ -40,6 +43,8 @@ Copilot does not own:
 - Keep docs and scripts aligned with `package.json` commands.
 - Preserve shared project settings in `.editorconfig`, `.gitattributes`, and `.vscode/settings.json`.
 - Avoid personal editor preferences, broad rewrites, and unrelated churn.
+- Follow existing code patterns and package boundaries.
+- Use Spectre tokens or Spectre UI recipes where relevant instead of local visual primitives.
 
 ## Code And Build Expectations
 
@@ -48,6 +53,7 @@ Copilot does not own:
 - Use `_` prefix for intentionally unused parameters.
 - Keep formatting consistent with existing repo style (2 spaces, LF line endings).
 - Run `npm run build` for meaningful documentation or configuration changes when practical.
+- Update docs and tests when public behavior changes.
 
 ## Scope Reminders
 
