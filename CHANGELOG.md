@@ -7,6 +7,8 @@ practical.
 
 ## Unreleased
 
+- Standardized README structure with docs-site scope, validation, automation
+  boundaries, and release-note references.
 - Expanded Codex operating guidance for production readiness, validation,
   release preparation, README structure, package metadata, and config
   consistency.
