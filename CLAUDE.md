@@ -14,21 +14,21 @@ project-level configuration for the docs site.
 This file is the primary working guide for Claude Code in this repository. Read
 `AGENTS.md` first, then use this file for implementation direction.
 
-## Multi-Agent Team
+## Team
 
-This repository uses a compact Spectre AI factory model for documentation-heavy
-projects.
+| Role           | Agent          | Authority                                                                                                   | Guide                                              |
+| -------------- | -------------- | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| Human owner    | Bradley Potts  | Final authority — all commits, merges, tags, and production releases                                        | —                                                  |
+| Lead developer | Claude Code    | Primary implementation, architecture, refactor, debugging, and project direction                             | `CLAUDE.md`                                        |
+| Release safety | OpenAI Codex   | Backs up Claude Code — release readiness, production stabilization, documentation, changelog, and repo hygiene | `CODEX.md`                                       |
+| Strategy       | ChatGPT        | Strategy, coordination, and external review — does not own implementation or releases                        | —                                                  |
+| Dev support    | GitHub Copilot | General development support — inline suggestions, TypeScript, API hints, and small refactors                 | `COPILOT.md` and `.github/copilot-instructions.md` |
+| Maintenance    | Google Jules   | Bounded automated maintenance — small fixes, dependency updates, and micro-updates                           | `JULES.md`                                         |
 
-| Agent          | Role                                                                                                         | Guide                             |
-| -------------- | ------------------------------------------------------------------------------------------------------------ | --------------------------------- |
-| Claude Code    | Lead implementation agent for primary edits, project direction, and review-ready changes                     | `CLAUDE.md`                       |
-| GitHub Copilot | General development support for inline suggestions, TypeScript help, API hints, and small refactors          | `COPILOT.md` and `.github/copilot-instructions.md` |
-| OpenAI Codex   | Documentation, releases, production stabilization, repo hygiene, and config standardization | `CODEX.md`                        |
-| Google Jules   | Automated maintenance agent for small fixes, dependency updates, and micro-updates                           | `JULES.md`                        |
-
-Claude Code leads implementation. GitHub Copilot supports day-to-day coding
-productivity. Codex keeps release confidence high. Jules handles bounded
-automated maintenance only.
+Claude Code leads all implementation. Codex backstops release safety, production
+readiness, validation, and documentation hygiene. Bradley Potts has final
+authority for every commit, merge, tag, and production release — no AI agent
+commits or releases without his review.
 
 ## Project Structure
 
@@ -103,21 +103,27 @@ This repository does not own:
 
 ## Handoff Expectations
 
-Before handing work to Codex, Jules, or a human reviewer:
+Before handing work to Codex or Bradley:
 
 - summarize what changed
 - run `npm run build` when practical
 - call out broken links, skipped checks, or unresolved risks
 - update `CHANGELOG.md` for release-relevant documentation or configuration
   changes
-- keep any release-candidate tracking in `.codex/change-watch.md` if Codex is
+- keep any release-candidate tracking in `.codex/change-watch.md` when Codex is
   involved
+
+Handoff chain: Claude Code → Codex review → Bradley Potts commits.
 
 ## Coordination Rules
 
-- Codex feedback should be treated as release and production-readiness review.
-- Jules output should stay small, automated, and easy to accept or revert.
+- Codex is the release gate — production changes pass through Codex review
+  before reaching Bradley.
+- Bradley Potts has final authority for all commits, merges, tags, and
+  production deployments.
+- ChatGPT provides strategy and external review; it does not implement or
+  release.
+- Jules output must stay small, automated, and easy to accept or revert.
 - If agent guidance conflicts, prefer `AGENTS.md` for shared policy and this
-  file for Claude Code implementation direction.
-- Escalate unclear production risk to the human owner instead of hiding it in a
-  cleanup diff.
+  file for implementation direction.
+- Escalate unclear production risk to Bradley instead of hiding it in a diff.

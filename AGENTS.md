@@ -12,28 +12,35 @@
 This repository follows the Spectre AI factory model for text-heavy,
 documentation-first projects.
 
-| Agent          | Role                                                                                                                              | Guide                             |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
-| Claude Code    | Lead implementation agent for primary edits and project direction                                                                 | `CLAUDE.md`                       |
-| GitHub Copilot | General development support for inline suggestions, small code edits, tests, TypeScript help, API hints, and refactor suggestions | `COPILOT.md` and `.github/copilot-instructions.md` |
-| OpenAI Codex   | Documentation, releases, production stabilization, repo hygiene, and config standardization                                       | `CODEX.md`                        |
-| Google Jules   | Automated maintenance agent for small fixes, dependency updates, repo hygiene tasks, and micro-updates                            | `JULES.md`                        |
+| Role           | Agent          | Authority                                                                                                   | Guide                                              |
+| -------------- | -------------- | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| Human owner    | Bradley Potts  | Final authority — all commits, merges, tags, and production releases                                        | —                                                  |
+| Lead developer | Claude Code    | Primary implementation, architecture, refactor, debugging, and project direction                             | `CLAUDE.md`                                        |
+| Release safety | OpenAI Codex   | Release readiness, production stabilization, documentation, changelog, and repo hygiene                      | `CODEX.md`                                         |
+| Strategy       | ChatGPT        | Strategy, coordination, and external review — does not own implementation or releases                        | —                                                  |
+| Dev support    | GitHub Copilot | General development support — inline suggestions, small code edits, TypeScript, API hints, and refactors    | `COPILOT.md` and `.github/copilot-instructions.md` |
+| Maintenance    | Google Jules   | Bounded automated maintenance — small fixes, dependency updates, repo hygiene, and micro-updates             | `JULES.md`                                         |
 
-Claude Code leads implementation. Copilot supports daily developer productivity
-in the IDE. Codex keeps changes production-ready and records release-watch notes.
-Jules handles bounded automated maintenance without owning architecture, releases,
-or documentation governance.
+Claude Code leads implementation. Codex backstops release safety and production
+readiness. Bradley Potts has final authority for every commit, merge, tag, and
+production release. No AI agent commits, pushes, or releases without Bradley's
+review.
 
 ## Agent Boundaries
 
-- Claude Code owns lead implementation and project direction.
-- OpenAI Codex owns documentation standards, release preparation, production
-  stabilization, repo hygiene review, and config standardization.
-- GitHub Copilot is a support assistant and does not own implementation
-  direction, architecture, releases, production stabilization ownership,
-  repository AI governance, or automated maintenance workflows.
-- Google Jules owns automated micro-maintenance only, including small fixes,
-  dependency updates, and tightly scoped hygiene tasks.
+- **Bradley Potts** holds final authority for all commits, merges, tags, and
+  production deployments. No AI agent may commit, push, or release.
+- **Claude Code** owns lead implementation and project direction.
+- **OpenAI Codex** owns release readiness, production stabilization,
+  documentation standardization, repo hygiene, and config standardization. Codex
+  does not override Claude Code's implementation decisions.
+- **ChatGPT** provides strategy guidance and external review. ChatGPT does not
+  own implementation, releases, governance, or autonomous execution.
+- **GitHub Copilot** is a development support assistant and does not own
+  implementation direction, architecture, releases, production stabilization,
+  repository governance, or automated maintenance.
+- **Google Jules** owns automated micro-maintenance only. Jules does not own
+  architecture, releases, documentation governance, or implementation decisions.
 
 When instructions appear to conflict, agent-specific guides take precedence over
 this file for their own scope. Use this file for shared coordination policy.

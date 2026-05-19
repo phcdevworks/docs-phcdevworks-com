@@ -28,7 +28,8 @@ governance.
    dependency maintenance task.
 7. Do not reset, discard, or absorb working-tree changes made by another agent
    or human.
-8. Commit and push only when all requested validation passes cleanly.
+8. Do not commit, push, tag, publish, or release; Bradley Potts is the final
+   authority for all repository write actions.
 9. If validation fails and cannot be resolved safely within scope, stop and
    report the blocker instead of committing a broken state.
 
@@ -70,12 +71,10 @@ make it necessary.
 
 ## Commit Authority
 
-Jules may commit and push autonomously only when the task is explicitly assigned
-to Jules and validation passes cleanly.
-
 Jules must not:
 
 - force-push or rewrite history
+- commit, push, tag, publish, or release
 - commit unrelated working-tree changes
 - commit a state with failing validation
 - make release, deploy, or architecture decisions without human approval
