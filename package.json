@@ -30,14 +30,15 @@
     "preview": "npm run build && wrangler dev",
     "astro": "astro",
     "generate-types": "wrangler types",
-    "deploy": "npm run build && wrangler deploy"
+    "deploy": "npm run build && wrangler deploy",
+    "release:propose": "node scripts/propose-version.js"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^13.5.2",
-    "@phcdevworks/spectre-ui-astro": "^2.3.0",
-    "astro": "^6.3.5"
+    "@astrojs/cloudflare": "^13.5.4",
+    "@phcdevworks/spectre-ui-astro": "^2.4.0",
+    "astro": "^6.3.7"
   },
   "devDependencies": {
-    "wrangler": "^4.93.0"
+    "wrangler": "^4.94.0"
   }
 }
