@@ -58,6 +58,25 @@ this file for their own scope. Use this file for shared coordination policy.
 `npm run build` is the standard validation gate for documentation and
 configuration changes. Run it before any handoff when practical.
 
+## Pull Request Creation
+
+Every agent that opens a PR must populate every section of the repo's PR
+template (`.github/pull_request_template.md`):
+
+- **Summary** — one or two bullets describing what changed and why.
+- **Type of Change** — check every box that applies.
+- **Package Boundary Check** — confirm the change stays within docs-site scope.
+- **Public API / Behavior Impact** — confirm whether public behavior changed.
+- **Validation** — record the command run and its result.
+- **Documentation Updated** — confirm which docs were updated or note why none
+  were needed.
+- **Release Impact** — flag any release-relevant changes.
+- **Team Review** — indicate whether Codex review, Claude Code notes, or
+  Bradley decision is needed.
+
+Never submit a PR with an empty body or only the template headings left
+unfilled.
+
 ## For Full Operating Context
 
 See the agent-specific guide for each role:

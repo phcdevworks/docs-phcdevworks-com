@@ -9,8 +9,8 @@ PHCDevworks. It centralizes implementation guides, reference material, and
 supporting documentation for the Spectre ecosystem.
 
 **Repository docs:** [CONTRIBUTING.md](CONTRIBUTING.md) |
-[CHANGELOG.md](CHANGELOG.md) | [SECURITY.md](SECURITY.md) |
-[LICENSE](LICENSE)
+[CHANGELOG.md](CHANGELOG.md) | [ROADMAP.md](ROADMAP.md) |
+[SECURITY.md](SECURITY.md) | [LICENSE](LICENSE)
 
 ## Overview
 

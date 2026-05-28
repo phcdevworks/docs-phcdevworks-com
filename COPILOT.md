@@ -10,17 +10,6 @@ small refactors, tests, and documentation synchronization. Copilot does not own
 implementation direction, architecture, release coordination, production
 stabilization, repo-wide AI governance, or automated maintenance workflows.
 
-## Team Position
-
-| Role           | Agent          | Authority                                            |
-| -------------- | -------------- | ---------------------------------------------------- |
-| Human owner    | Bradley Potts  | Final authority — commits, merges, tags, releases    |
-| Lead developer | Claude Code    | Primary implementation and project direction         |
-| Release safety | OpenAI Codex   | Release readiness, production stabilization, hygiene |
-| Strategy       | ChatGPT        | Strategy and external review                         |
-| Dev support    | GitHub Copilot | General development support — this file              |
-| Maintenance    | Google Jules   | Bounded automated maintenance                        |
-
 ## Authority Boundaries
 
 - Bradley Potts holds final authority for all commits, merges, tags, and

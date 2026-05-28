@@ -34,11 +34,11 @@
     "release:propose": "node scripts/propose-version.js"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^13.5.4",
+    "@astrojs/cloudflare": "^13.5.5",
     "@phcdevworks/spectre-ui-astro": "^2.4.0",
-    "astro": "^6.3.7"
+    "astro": "^6.3.8"
   },
   "devDependencies": {
-    "wrangler": "^4.94.0"
+    "wrangler": "^4.95.0"
   }
 }

@@ -195,12 +195,7 @@ Preferred command across Spectre repositories:
 npm run check
 ```
 
-This repository does not currently define `npm run check`. Until it does,
-Codex uses the available production-readiness gate:
-
-```bash
-npm run build
-```
+This repository defines `npm run check` as an alias for `npm run build`.
 
 Use these commands only when their scope is relevant:
 
@@ -269,13 +264,7 @@ Run this when documentation may have drifted:
 
 ## Agent Boundaries
 
-| Agent | Role | Authority file |
-| --- | --- | --- |
-| Claude Code | Lead developer responsible for primary implementation | `CLAUDE.md` |
-| OpenAI Codex | Documentation, releases, production stabilization, repo hygiene, and config standardization | `CODEX.md` |
-| GitHub Copilot | General development assistance | `COPILOT.md` and `.github/copilot-instructions.md` |
-| Google Jules | Automated maintenance for small fixes, dependency updates, and micro-updates | `JULES.md` |
-
+Agent roster, authority map, and conflict-resolution policy live in `AGENTS.md`.
 Resolve conflicts by referencing `AGENTS.md` for shared coordination and
 `CLAUDE.md` for implementation authority. Codex never overrides Claude Code's
 implementation decisions. Codex never expands Jules beyond bounded maintenance

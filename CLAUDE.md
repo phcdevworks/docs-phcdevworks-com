@@ -12,23 +12,8 @@ ecosystem. It owns the public documentation experience, repository docs, and
 project-level configuration for the docs site.
 
 This file is the primary working guide for Claude Code in this repository. Read
-`AGENTS.md` first, then use this file for implementation direction.
-
-## Team
-
-| Role           | Agent          | Authority                                                                                                   | Guide                                              |
-| -------------- | -------------- | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| Human owner    | Bradley Potts  | Final authority — all commits, merges, tags, and production releases                                        | —                                                  |
-| Lead developer | Claude Code    | Primary implementation, architecture, refactor, debugging, and project direction                             | `CLAUDE.md`                                        |
-| Release safety | OpenAI Codex   | Backs up Claude Code — release readiness, production stabilization, documentation, changelog, and repo hygiene | `CODEX.md`                                       |
-| Strategy       | ChatGPT        | Strategy, coordination, and external review — does not own implementation or releases                        | —                                                  |
-| Dev support    | GitHub Copilot | General development support — inline suggestions, TypeScript, API hints, and small refactors                 | `COPILOT.md` and `.github/copilot-instructions.md` |
-| Maintenance    | Google Jules   | Bounded automated maintenance — small fixes, dependency updates, and micro-updates                           | `JULES.md`                                         |
-
-Claude Code leads all implementation. Codex backstops release safety, production
-readiness, validation, and documentation hygiene. Bradley Potts has final
-authority for every commit, merge, tag, and production release — no AI agent
-commits or releases without his review.
+`AGENTS.md` first for the shared agent roster, authority map, and coordination
+policy, then use this file for implementation direction.
 
 ## Project Structure
 
