@@ -195,14 +195,17 @@ Preferred command across Spectre repositories:
 npm run check
 ```
 
-This repository defines `npm run check` as an alias for `npm run build`.
+`npm run check` runs `npm run build` then `npm run typecheck` (`astro check`).
+Both gates must pass before handoff.
 
 Use these commands only when their scope is relevant:
 
 ```bash
+npm run typecheck
 npm run preview
 npm run deploy
 npm run generate-types
+npm run screenshot
 ```
 
 When a validation gate fails, Codex must:

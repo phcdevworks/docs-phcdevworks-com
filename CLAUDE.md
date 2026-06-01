@@ -36,9 +36,9 @@ npm run dev
 npm run build
 ```
 
-Use `npm run build` as the standard validation gate before handoff when
-practical. Use `npm run preview` only when Cloudflare runtime behavior needs to
-be checked.
+Use `npm run check` as the standard validation gate before handoff — it runs
+the production build and `astro check` typecheck together. Use `npm run preview`
+only when Cloudflare runtime behavior needs to be checked.
 
 ## Working Rules
 

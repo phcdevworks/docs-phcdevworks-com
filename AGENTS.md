@@ -55,8 +55,8 @@ this file for their own scope. Use this file for shared coordination policy.
 
 ## Verification
 
-`npm run build` is the standard validation gate for documentation and
-configuration changes. Run it before any handoff when practical.
+`npm run check` is the standard validation gate — it runs `npm run build` then
+`npm run typecheck`. Run it before any handoff when practical.
 
 ## Pull Request Creation
 

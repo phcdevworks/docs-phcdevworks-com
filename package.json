@@ -26,19 +26,24 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "check": "npm run build",
+    "check": "npm run build && npm run typecheck",
     "preview": "npm run build && wrangler dev",
     "astro": "astro",
+    "typecheck": "astro check",
     "generate-types": "wrangler types",
     "deploy": "npm run build && wrangler deploy",
-    "release:propose": "node scripts/propose-version.js"
+    "release:propose": "node scripts/propose-version.js",
+    "screenshot": "LD_LIBRARY_PATH=/tmp/chromium-libs/usr/lib/x86_64-linux-gnu node scripts/screenshot.js"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^13.5.5",
+    "@astrojs/cloudflare": "^13.6.0",
     "@phcdevworks/spectre-ui-astro": "^2.4.0",
-    "astro": "^6.3.8"
+    "astro": "^6.4.2"
   },
   "devDependencies": {
-    "wrangler": "^4.95.0"
+    "@astrojs/check": "^0.9.9",
+    "playwright": "^1.60.0",
+    "typescript-eslint": "^8.60.0",
+    "wrangler": "^4.96.0"
   }
 }

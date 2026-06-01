@@ -2,7 +2,7 @@
 // docs-phcdevworks-com/src/layouts/DocsLayout.astro
 import "@phcdevworks/spectre-ui/index.css"
 import { ClientRouter } from "astro:transitions"
-import { SpCard, SpBadge, SpIconBox } from "@phcdevworks/spectre-ui-astro"
+import { SpBadge, SpIconBox } from "@phcdevworks/spectre-ui-astro"
 
 interface Props {
   title: string
@@ -12,8 +12,8 @@ interface Props {
 
 const { title, description, frontmatter } = Astro.props
 
-const metaTitle = frontmatter?.title || title
-const metaDesc = frontmatter?.description || description || "PHCDevworks documentation portal."
+const metaTitle = typeof frontmatter?.title === 'string' ? frontmatter.title : title
+const metaDesc = typeof frontmatter?.description === 'string' ? frontmatter.description : (description ?? "PHCDevworks documentation portal.")
 ---
 
 <!doctype html>
