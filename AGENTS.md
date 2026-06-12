@@ -1,5 +1,14 @@
 # Spectre Docs Agent Guide
 
+## Repository Snapshot
+
+| Field | Value |
+| --- | --- |
+| Project team | `project-web` |
+| Repository role | Spectre documentation site |
+| Package/artifact | `docs-phcdevworks-com` |
+| Validation gate | `npm run check` |
+
 ## Project Identity
 
 - Repository: `docs-phcdevworks-com`
@@ -7,24 +16,38 @@
 - Maintainer: PHCDevworks
 - Scope: documentation site, repository docs, and project-level configuration
 
+## Mission
+
+Maintain the official documentation site for the Spectre design system.
+
+This repository's scope is narrower and explicitly Spectre-focused:
+implementation guides, reference material, and contributor docs for the
+Spectre ecosystem. It does not own company-wide positioning — that belongs to
+`www-phcdevworks-com`.
+
 ## AI Operating Model
 
 This repository follows the Spectre AI factory model for text-heavy,
 documentation-first projects.
 
-| Role           | Agent          | Authority                                                                                                   | Guide                                              |
-| -------------- | -------------- | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| Human owner    | Bradley Potts  | Final authority — all commits, merges, tags, and production releases                                        | —                                                  |
-| Lead developer | Claude Code    | Primary implementation, architecture, refactor, debugging, and project direction                             | `CLAUDE.md`                                        |
-| Release safety | OpenAI Codex   | Release readiness, production stabilization, documentation, changelog, and repo hygiene                      | `CODEX.md`                                         |
-| Strategy       | ChatGPT        | Strategy, coordination, and external review — does not own implementation or releases                        | —                                                  |
-| Dev support    | GitHub Copilot | General development support — inline suggestions, small code edits, TypeScript, API hints, and refactors    | `COPILOT.md` and `.github/copilot-instructions.md` |
-| Maintenance    | Google Jules   | Bounded automated maintenance — small fixes, dependency updates, repo hygiene, and micro-updates             | `JULES.md`                                         |
+| Role | Agent | Authority | Guide |
+| --- | --- | --- | --- |
+| Human owner | Bradley Potts | Final authority — all commits, merges, tags, and production releases | — |
+| Lead developer | Claude Code | Primary implementation, architecture, refactor, debugging, and project direction | `CLAUDE.md` |
+| Release safety | OpenAI Codex | Release readiness, production stabilization, documentation, changelog, and repo hygiene | `CODEX.md` |
+| Strategy | ChatGPT | Strategy, coordination, and external review — does not own implementation or releases | — |
+| Dev support | GitHub Copilot | General development support — inline suggestions, small code edits, TypeScript, API hints, and refactors | `COPILOT.md` and `.github/copilot-instructions.md` |
+| Maintenance | Google Jules | Bounded automated maintenance — small fixes, dependency updates, repo hygiene, and micro-updates | `JULES.md` |
 
 Claude Code leads implementation. Codex backstops release safety and production
-readiness. Bradley Potts has final authority for every commit, merge, tag, and
-production release. No AI agent commits, pushes, or releases without Bradley's
-review.
+readiness. ChatGPT provides strategy and coordination support only. Copilot
+supports in-editor development tasks without ownership authority. Jules handles
+bounded automated maintenance only and must not take over primary development,
+architecture decisions, or release ownership.
+
+**Bradley Potts** holds final authority for every commit, merge, tag,
+publishing, and production release. No AI agent commits, pushes, or releases
+without Bradley's review.
 
 ## Agent Boundaries
 
@@ -52,6 +75,17 @@ this file for their own scope. Use this file for shared coordination policy.
 - Treat documentation accuracy as a product requirement.
 - Keep contributor-facing docs synchronized with actual scripts and tooling.
 - Escalate unclear production risk instead of burying it in a cleanup diff.
+- Keep shared project rules in `AGENTS.md`; keep agent-specific workflow details
+  in the matching agent file.
+- Update related agent docs together when scripts, validation gates, or
+  ownership boundaries change.
+
+## Standard Handoff
+
+Every AI-prepared change should report files changed, validation performed,
+public behavior or contract impact, and unresolved risks. Do not edit generated
+outputs directly. Do not update [CHANGELOG.md](CHANGELOG.md) unless the change
+is release-relevant.
 
 ## Verification
 

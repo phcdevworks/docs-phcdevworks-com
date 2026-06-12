@@ -1,5 +1,37 @@
 # Spectre Docs
 
+## Repository Snapshot
+
+| Field | Value |
+| --- | --- |
+| Project team | `project-web` |
+| Repository role | Spectre documentation site |
+| Package/artifact | `docs-phcdevworks-com` |
+| Current version/status | 0.0.1 |
+
+## Standard Workflow
+
+1. Read [AGENTS.md](AGENTS.md), then the agent-specific guide for the task.
+2. Check [TODO.md](TODO.md) and [ROADMAP.md](ROADMAP.md) for current scope.
+3. Make the smallest repo-local change that satisfies the task.
+4. Run `npm run check` when validation is required or practical.
+5. Update docs and [CHANGELOG.md](CHANGELOG.md) only when behavior, public
+   contracts, or release-relevant metadata changed.
+
+## Documentation Map
+
+| Guide | Path |
+| --- | --- |
+| Agent rules | [AGENTS.md](AGENTS.md) |
+| Claude Code | [CLAUDE.md](CLAUDE.md) |
+| Codex | [CODEX.md](CODEX.md) |
+| Copilot | [COPILOT.md](COPILOT.md) |
+| Jules | [JULES.md](JULES.md) |
+| Roadmap | [ROADMAP.md](ROADMAP.md) |
+| Todo | [TODO.md](TODO.md) |
+| Changelog | [CHANGELOG.md](CHANGELOG.md) |
+| Security | [SECURITY.md](SECURITY.md) |
+
 [![GitHub issues](https://img.shields.io/github/issues/phcdevworks/docs-phcdevworks-com)](https://github.com/phcdevworks/docs-phcdevworks-com/issues)
 [![GitHub pulls](https://img.shields.io/github/issues-pr/phcdevworks/docs-phcdevworks-com)](https://github.com/phcdevworks/docs-phcdevworks-com/pulls)
 [![License](https://img.shields.io/github/license/phcdevworks/docs-phcdevworks-com)](LICENSE)
@@ -10,7 +42,9 @@ supporting documentation for the Spectre ecosystem.
 
 **Repository docs:** [CONTRIBUTING.md](CONTRIBUTING.md) |
 [CHANGELOG.md](CHANGELOG.md) | [ROADMAP.md](ROADMAP.md) |
-[SECURITY.md](SECURITY.md) | [LICENSE](LICENSE)
+[SECURITY.md](SECURITY.md) | [AGENTS.md](AGENTS.md) | [CLAUDE.md](CLAUDE.md) |
+[CODEX.md](CODEX.md) | [JULES.md](JULES.md) | [COPILOT.md](COPILOT.md) |
+[LICENSE](LICENSE)
 
 ## Overview
 
@@ -70,7 +104,8 @@ npm run dev
 | --- | --- |
 | `npm run dev` | Start the local Astro development server |
 | `npm run build` | Create the production build |
-| `npm run check` | Full validation gate — same as `npm run build` |
+| `npm run typecheck` | Run the Astro TypeScript checker (`astro check`) |
+| `npm run check` | Full validation gate — runs `npm run build` then `npm run typecheck` |
 | `npm run preview` | Build and start a local Cloudflare Workers preview |
 | `npm run generate-types` | Refresh Wrangler type output |
 | `npm run deploy` | Build and deploy to Cloudflare |
@@ -81,9 +116,10 @@ npm run dev
 npm run check
 ```
 
-`npm run check` runs the full production build. Use it before any handoff.
-`npm run preview` builds and starts a local Cloudflare Workers preview — use
-this only when you need to verify Cloudflare runtime behavior specifically.
+`npm run check` runs the production build then the Astro typecheck. Use it
+before any handoff. `npm run preview` builds and starts a local Cloudflare
+Workers preview — use this only when you need to verify Cloudflare runtime
+behavior specifically.
 
 ## Troubleshooting
 
@@ -99,11 +135,11 @@ Wrangler type generation requires a compiled output to inspect.
 
 ## Project Structure
 
-| Path           | Responsibility                                  |
-| -------------- | ----------------------------------------------- |
-| `src/pages/`   | Route-level pages for the documentation experience |
-| `src/layouts/` | Page layout components                          |
-| `public/`      | Static assets served as-is                      |
+| Path | Responsibility |
+| --- | --- |
+| `src/pages/` | Route-level pages for the documentation experience |
+| `src/layouts/` | Page layout components |
+| `public/` | Static assets served as-is |
 
 ## AI And Automation Boundaries
 

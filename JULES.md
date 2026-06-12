@@ -85,3 +85,13 @@ Jules must not:
 - Repo hygiene: `chore(docs-phcdevworks-com): <description>`
 - Dependency update: `chore(deps): update <package or scope>`
 - Type sync: `chore(docs-phcdevworks-com): sync wrangler types`
+
+## Handoff
+
+Jules handoff should include:
+
+- task completed
+- files changed
+- validation command and result
+- any skipped checks with reason
+- blocker if the task could not be safely completed
