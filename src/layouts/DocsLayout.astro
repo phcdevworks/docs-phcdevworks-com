@@ -6,10 +6,8 @@ import {
   SpNav,
   SpBadge,
   SpIconBox,
-  SpTag,
-  getNavLinksClasses,
-  getNavLinkClasses,
 } from "@phcdevworks/spectre-ui-astro"
+import { getNavLinksClasses, getNavLinkClasses } from "@phcdevworks/spectre-ui"
 
 interface Props {
   title: string
@@ -57,7 +55,6 @@ const packages = [
 
   <body>
 
-    <!-- ── Top nav ── -->
     <SpNav bordered sticky fullWidth aria-label="Site navigation">
       <div class={navLinks}>
         <a href="/" class="docs-brand" aria-label="PHCDevworks Docs home">
@@ -68,10 +65,7 @@ const packages = [
           </SpIconBox>
           <span class="docs-brand-text">Spectre Docs</span>
         </a>
-
-        <div class="docs-nav-links">
-          <a href="/design" class={active('/design') ? navLinkActive : navLink}>Design System</a>
-        </div>
+        <a href="/design" class={active('/design') ? navLinkActive : navLink}>Design System</a>
       </div>
 
       <div class="docs-nav-end">
@@ -79,19 +73,14 @@ const packages = [
       </div>
     </SpNav>
 
-    <!-- ── Body ── -->
     <div class="docs-layout">
 
-      <!-- ── Sidebar ── -->
       <aside class="docs-sidebar" aria-label="Documentation navigation">
 
         <div class="docs-sidebar-section">
           <span class="docs-sidebar-heading">Getting Started</span>
           <nav>
             <a href="/" class:list={["docs-nav-item", { "docs-nav-item--active": active('/') }]}>
-              <SpIconBox variant="primary" size="sm">
-                <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm.75 4a.75.75 0 0 0-1.5 0v3.25H4a.75.75 0 0 0 0 1.5h4.75V5Z"/></svg>
-              </SpIconBox>
               Introduction
             </a>
           </nav>
@@ -101,16 +90,13 @@ const packages = [
           <span class="docs-sidebar-heading">Design System</span>
           <nav>
             <a href="/design" class:list={["docs-nav-item", { "docs-nav-item--active": active('/design') }]}>
-              <SpIconBox variant="primary" size="sm">
-                <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M2 3h12v2H2zm0 4h12v2H2zm0 4h8v2H2z"/></svg>
-              </SpIconBox>
               Overview
             </a>
 
             {packages.map(pkg => (
               <div class="docs-nav-group">
                 <a href={pkg.href} class:list={["docs-nav-item", { "docs-nav-item--active": active(pkg.href) }]}>
-                  <SpTag variant={pkg.variant} size="sm">{pkg.label}</SpTag>
+                  <SpBadge variant={pkg.variant} size="sm">{pkg.label}</SpBadge>
                 </a>
                 <a href={pkg.ref} class:list={["docs-nav-subitem", { "docs-nav-item--active": active(pkg.ref) }]}>
                   Reference
@@ -122,7 +108,6 @@ const packages = [
 
       </aside>
 
-      <!-- ── Content ── -->
       <main class="docs-content">
         <div class="docs-prose">
           <h1 class="docs-page-title">{metaTitle}</h1>
@@ -137,7 +122,7 @@ const packages = [
 
     <style is:global>
       :root {
-        --docs-sidebar-w: 272px;
+        --docs-sidebar-w: 240px;
         --docs-font-display: "Outfit", sans-serif;
         --docs-font-body: "Inter", sans-serif;
       }
@@ -152,7 +137,7 @@ const packages = [
         -webkit-font-smoothing: antialiased;
       }
 
-      /* ── Header customisation on top of SpNav ── */
+      /* ── Top nav brand ── */
       .docs-brand {
         display: flex;
         align-items: center;
@@ -168,40 +153,34 @@ const packages = [
 
       .docs-brand-text { white-space: nowrap; }
 
-      .docs-nav-links {
-        display: flex;
-        align-items: center;
-        gap: 0.25rem;
-      }
-
       .docs-nav-end {
         margin-left: auto;
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        padding-right: 1rem;
+        padding-right: 0.5rem;
       }
 
       /* ── Layout ── */
       .docs-layout {
         display: grid;
         grid-template-columns: var(--docs-sidebar-w) 1fr;
-        min-height: calc(100vh - 60px);
+        min-height: calc(100vh - 57px);
       }
 
       /* ── Sidebar ── */
       .docs-sidebar {
         border-right: 1px solid var(--sp-surface-alternate);
         background: var(--sp-surface-page);
-        padding: 1.25rem 0.75rem;
+        padding: 1.5rem 0.875rem;
         position: sticky;
-        top: 60px;
-        height: calc(100vh - 60px);
+        top: 57px;
+        height: calc(100vh - 57px);
         overflow-y: auto;
       }
 
       .docs-sidebar-section {
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.75rem;
       }
 
       .docs-sidebar-heading {
@@ -210,24 +189,25 @@ const packages = [
         font-size: 0.6875rem;
         font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.09em;
         color: var(--sp-text-on-page-muted);
         padding: 0 0.5rem;
-        margin-bottom: 0.375rem;
+        margin-bottom: 0.5rem;
       }
 
       .docs-nav-item {
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        padding: 0.375rem 0.5rem;
+        padding: 0.3125rem 0.5rem;
         border-radius: 0.375rem;
         font-size: 0.875rem;
         font-weight: 500;
         color: var(--sp-text-on-page-muted);
         text-decoration: none;
         transition: background 0.1s, color 0.1s;
-        margin-bottom: 0.125rem;
+        margin-bottom: 0.0625rem;
+        white-space: nowrap;
       }
 
       .docs-nav-item:hover {
@@ -247,18 +227,20 @@ const packages = [
 
       .docs-nav-subitem {
         display: block;
-        padding: 0.25rem 0.5rem 0.25rem 2.25rem;
+        padding: 0.25rem 0.5rem 0.25rem 2rem;
         border-radius: 0.25rem;
         font-size: 0.8125rem;
         color: var(--sp-text-on-page-muted);
         text-decoration: none;
         transition: color 0.1s;
-        margin-bottom: 0.125rem;
+        margin-bottom: 0.0625rem;
       }
 
       .docs-nav-subitem:hover,
       .docs-nav-subitem.docs-nav-item--active {
         color: var(--sp-text-on-page-default);
+        background: var(--sp-surface-alternate);
+        border-radius: 0.25rem;
       }
 
       /* ── Content area ── */
