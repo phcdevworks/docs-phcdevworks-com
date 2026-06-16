@@ -14,6 +14,13 @@ const { title, description, frontmatter } = Astro.props
 
 const metaTitle = typeof frontmatter?.title === 'string' ? frontmatter.title : title
 const metaDesc = typeof frontmatter?.description === 'string' ? frontmatter.description : (description ?? "PHCDevworks documentation portal.")
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/'
+
+function isActive(href: string): boolean {
+  const path = href.replace(/\/$/, '') || '/'
+  return currentPath === path
+}
 ---
 
 <!doctype html>
@@ -37,7 +44,7 @@ const metaDesc = typeof frontmatter?.description === 'string' ? frontmatter.desc
     <div class="sp-docs-shell">
       <header class="sp-docs-header">
         <div class="sp-header-inner">
-          <div class="sp-logo">
+          <a href="/" class="sp-logo">
             <SpIconBox variant="primary" size="sm">
               <svg
                 viewBox="0 0 24 24"
@@ -54,7 +61,7 @@ const metaDesc = typeof frontmatter?.description === 'string' ? frontmatter.desc
               </svg>
             </SpIconBox>
             <span class="sp-logo-text">Docs</span>
-          </div>
+          </a>
           <div class="sp-header-meta">
             <SpBadge variant="neutral" size="sm">Early Access</SpBadge>
           </div>
@@ -67,18 +74,43 @@ const metaDesc = typeof frontmatter?.description === 'string' ? frontmatter.desc
             <div class="sp-sidebar-group">
               <h3>Getting Started</h3>
               <ul>
-                <li><a href="/">Introduction</a></li>
+                <li><a href="/" class:list={[{ active: isActive('/') }]}>Introduction</a></li>
               </ul>
             </div>
             <div class="sp-sidebar-group">
               <h3>Design System</h3>
               <ul>
-                <li><a href="/design">Overview</a></li>
-                <li><a href="/design/tokens">Spectre Tokens</a></li>
-                <li><a href="/design/ui">Spectre UI</a></li>
-                <li><a href="/design/ui-astro">Spectre UI Astro</a></li>
-                <li><a href="/design/components">Spectre Components</a></li>
-                <li><a href="/design/base">Spectre Base</a></li>
+                <li><a href="/design" class:list={[{ active: isActive('/design') }]}>Overview</a></li>
+
+                <li class="sp-nav-parent"><a href="/design/tokens" class:list={[{ active: isActive('/design/tokens') }]}>Spectre Tokens</a>
+                  <ul class="sp-nav-sub">
+                    <li><a href="/design/tokens-reference" class:list={[{ active: isActive('/design/tokens-reference') }]}>Reference</a></li>
+                  </ul>
+                </li>
+
+                <li class="sp-nav-parent"><a href="/design/ui" class:list={[{ active: isActive('/design/ui') }]}>Spectre UI</a>
+                  <ul class="sp-nav-sub">
+                    <li><a href="/design/ui-reference" class:list={[{ active: isActive('/design/ui-reference') }]}>Reference</a></li>
+                  </ul>
+                </li>
+
+                <li class="sp-nav-parent"><a href="/design/ui-astro" class:list={[{ active: isActive('/design/ui-astro') }]}>Spectre UI Astro</a>
+                  <ul class="sp-nav-sub">
+                    <li><a href="/design/ui-astro-reference" class:list={[{ active: isActive('/design/ui-astro-reference') }]}>Component Reference</a></li>
+                  </ul>
+                </li>
+
+                <li class="sp-nav-parent"><a href="/design/components" class:list={[{ active: isActive('/design/components') }]}>Spectre Components</a>
+                  <ul class="sp-nav-sub">
+                    <li><a href="/design/components-reference" class:list={[{ active: isActive('/design/components-reference') }]}>Reference</a></li>
+                  </ul>
+                </li>
+
+                <li class="sp-nav-parent"><a href="/design/base" class:list={[{ active: isActive('/design/base') }]}>Spectre Base</a>
+                  <ul class="sp-nav-sub">
+                    <li><a href="/design/base-reference" class:list={[{ active: isActive('/design/base-reference') }]}>Reference</a></li>
+                  </ul>
+                </li>
               </ul>
             </div>
           </nav>
@@ -138,6 +170,8 @@ const metaDesc = typeof frontmatter?.description === 'string' ? frontmatter.desc
         display: flex;
         align-items: center;
         gap: 0.75rem;
+        text-decoration: none;
+        color: inherit;
       }
 
       .sp-logo-text {
@@ -188,8 +222,35 @@ const metaDesc = typeof frontmatter?.description === 'string' ? frontmatter.desc
         transition: color 0.1s;
       }
 
-      .sp-sidebar-group li a:hover {
+      .sp-sidebar-group li a:hover,
+      .sp-sidebar-group li a.active {
         color: var(--sp-accent);
+      }
+
+      .sp-sidebar-group li a.active {
+        font-weight: 600;
+      }
+
+      .sp-nav-parent > a {
+        font-weight: 500;
+      }
+
+      .sp-nav-sub {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 0.25rem 0.75rem;
+        border-left: 2px solid #e2e8f0;
+      }
+
+      .sp-nav-sub li a {
+        font-size: 0.875rem !important;
+        padding: 0.25rem 0 0.25rem 0.75rem !important;
+        color: #94a3b8 !important;
+      }
+
+      .sp-nav-sub li a:hover,
+      .sp-nav-sub li a.active {
+        color: var(--sp-accent) !important;
       }
 
       .sp-docs-content {

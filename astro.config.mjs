@@ -1,9 +1,14 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, sessionDrivers } from 'astro/config';
 
 import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
-  adapter: cloudflare()
+  adapter: cloudflare(),
+  // Prevent the Cloudflare adapter from auto-provisioning a SESSION KV namespace.
+  // This is a static docs site — sessions are not used.
+  session: {
+    driver: sessionDrivers.memory(),
+  },
 });
