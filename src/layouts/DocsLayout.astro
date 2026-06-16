@@ -51,6 +51,38 @@ const packages = [
 
   <body>
 
+    <style is:global>
+      :root {
+        --site-brand: #EE005A;
+        --site-navy: #012641;
+
+        --sp-surface-page: #050f1c;
+        --sp-surface-card: #0a1b2e;
+        --sp-surface-input: #0a1b2e;
+        --sp-surface-overlay: rgba(0, 0, 0, 0.75);
+
+        --sp-text-on-page-default: #d4e4f5;
+        --sp-text-on-page-muted: #7896b4;
+        --sp-text-on-page-subtle: #4d6e8a;
+        --sp-text-on-page-meta: #4d6e8a;
+        --sp-text-on-surface-default: #d4e4f5;
+        --sp-text-on-surface-muted: #7896b4;
+        --sp-text-on-surface-subtle: #4d6e8a;
+
+        --sp-component-card-text: #d4e4f5;
+        --sp-component-card-text-muted: #7896b4;
+        --sp-component-card-border: rgba(255, 255, 255, 0.09);
+
+        --sp-button-text-default: #d4e4f5;
+        --sp-button-ghost-text: #d4e4f5;
+
+        --sp-color-neutral-200: rgba(255, 255, 255, 0.09);
+
+        --site-border: rgba(255, 255, 255, 0.09);
+        --site-border-strong: rgba(255, 255, 255, 0.16);
+      }
+    </style>
+
     <SpNav bordered sticky fullWidth aria-label="Site navigation">
       <div class={navLinks}>
         <a href="/" class="docs-brand" aria-label="PHCDevworks Docs home">

@@ -1,0 +1,163 @@
+---
+import "@phcdevworks/spectre-tokens/index.css"
+import "@phcdevworks/spectre-ui/index.css"
+import { ClientRouter } from "astro:transitions"
+import { SpNav, SpBadge, SpIconBox } from "@phcdevworks/spectre-ui-astro"
+import { getNavLinksClasses, getNavLinkClasses } from "@phcdevworks/spectre-ui"
+
+interface Props {
+  title: string
+  description?: string
+}
+
+const { title, description } = Astro.props
+
+const metaDesc = description ?? "PHCDevworks documentation portal."
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/'
+const active = (href: string) => (href.replace(/\/$/, '') || '/') === path
+
+const navLinks = getNavLinksClasses()
+const navLink = getNavLinkClasses()
+const navLinkActive = getNavLinkClasses({ active: true })
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} | PHCDevworks Docs</title>
+    <meta name="description" content={metaDesc} />
+    <ClientRouter />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+  </head>
+
+  <body>
+
+    <style is:global>
+      :root {
+        --site-brand: #EE005A;
+        --site-navy: #012641;
+
+        --sp-surface-page: #050f1c;
+        --sp-surface-card: #0a1b2e;
+        --sp-surface-input: #0a1b2e;
+        --sp-surface-overlay: rgba(0, 0, 0, 0.75);
+
+        --sp-text-on-page-default: #d4e4f5;
+        --sp-text-on-page-muted: #7896b4;
+        --sp-text-on-page-subtle: #4d6e8a;
+        --sp-text-on-page-meta: #4d6e8a;
+        --sp-text-on-surface-default: #d4e4f5;
+        --sp-text-on-surface-muted: #7896b4;
+        --sp-text-on-surface-subtle: #4d6e8a;
+
+        --sp-component-card-text: #d4e4f5;
+        --sp-component-card-text-muted: #7896b4;
+        --sp-component-card-border: rgba(255, 255, 255, 0.09);
+
+        --sp-button-text-default: #d4e4f5;
+        --sp-button-ghost-text: #d4e4f5;
+
+        --sp-color-neutral-200: rgba(255, 255, 255, 0.09);
+
+        --site-border: rgba(255, 255, 255, 0.09);
+        --site-border-strong: rgba(255, 255, 255, 0.16);
+      }
+    </style>
+
+    <SpNav bordered sticky fullWidth aria-label="Site navigation">
+      <div class={navLinks}>
+        <a href="/" class="docs-brand" aria-label="PHCDevworks Docs home">
+          <SpIconBox variant="primary" size="sm" pill>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path d="M4 18V4a2 2 0 0 1 2-2h9l3 3v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Zm7-11V2.5L17.5 9H11Z"/>
+            </svg>
+          </SpIconBox>
+          <span class="docs-brand-text">Spectre Docs</span>
+        </a>
+        <a href="/design" class={active('/design') ? navLinkActive : navLink}>Design System</a>
+      </div>
+      <div class="docs-nav-end">
+        <SpBadge variant="neutral" size="sm">Early Access</SpBadge>
+      </div>
+    </SpNav>
+
+    <main class="home-content">
+      <h1 class="home-page-title">{title}</h1>
+      {metaDesc && metaDesc !== "PHCDevworks documentation portal." && (
+        <p class="home-page-lead">{metaDesc}</p>
+      )}
+      <slot />
+    </main>
+
+    <style is:global>
+      :root {
+        --docs-font-display: "Outfit", sans-serif;
+        --docs-font-body: "Inter", sans-serif;
+        --docs-nav-height: 57px;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: var(--docs-font-body);
+        background: var(--sp-surface-page);
+        color: var(--sp-text-on-page-default);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .docs-brand {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+        color: var(--sp-text-on-page-default);
+        font-family: var(--docs-font-display);
+        font-weight: 700;
+        font-size: 1rem;
+        letter-spacing: -0.02em;
+        margin-right: 1.5rem;
+      }
+      .docs-brand-text { white-space: nowrap; }
+
+      .docs-nav-end {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        padding-right: 0.5rem;
+      }
+
+      .home-content {
+        padding: 2.5rem 3.5rem 5rem;
+        min-height: calc(100vh - var(--docs-nav-height));
+      }
+
+      .home-page-title {
+        font-family: var(--docs-font-display);
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        color: var(--sp-text-on-page-default);
+        margin: 0 0 0.5rem;
+        line-height: 1.15;
+      }
+
+      .home-page-lead {
+        font-size: 1rem;
+        color: var(--sp-text-on-page-muted);
+        line-height: 1.7;
+        margin: 0 0 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--sp-surface-alternate);
+      }
+    </style>
+
+  </body>
+</html>

@@ -1,9 +1,9 @@
 ---
-import DocsLayout from "../layouts/DocsLayout.astro"
+import HomeLayout from "../layouts/HomeLayout.astro"
 import { SpCard, SpButton, SpBadge, SpIconBox, SpAlert } from "@phcdevworks/spectre-ui-astro"
 ---
 
-<DocsLayout title="Spectre Documentation" description="The official reference for the Spectre design system — tokens, UI, Astro components, web components, and the WordPress theme shell.">
+<HomeLayout title="Spectre Documentation" description="The official reference for the Spectre design system — tokens, UI, Astro components, web components, and the WordPress theme shell.">
 
   <SpAlert variant="info" size="sm">
     Early Access — documentation is actively expanding. All five packages are covered.
@@ -113,7 +113,7 @@ import { SpCard, SpButton, SpBadge, SpIconBox, SpAlert } from "@phcdevworks/spec
   <style>
     .pkg-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
       margin-top: 1.5rem;
     }
@@ -162,4 +162,4 @@ import { SpCard, SpButton, SpBadge, SpIconBox, SpAlert } from "@phcdevworks/spec
     }
   </style>
 
-</DocsLayout>
+</HomeLayout>
