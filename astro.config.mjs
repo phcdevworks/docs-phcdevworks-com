@@ -9,6 +9,6 @@ export default defineConfig({
   // Prevent the Cloudflare adapter from auto-provisioning a SESSION KV namespace.
   // This is a static docs site — sessions are not used.
   session: {
-    driver: sessionDrivers.memory(),
+    driver: sessionDrivers.lruCache(),
   },
 });

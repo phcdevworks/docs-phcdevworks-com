@@ -1,8 +1,15 @@
 ---
-// docs-phcdevworks-com/src/layouts/DocsLayout.astro
+import "@phcdevworks/spectre-tokens/index.css"
 import "@phcdevworks/spectre-ui/index.css"
 import { ClientRouter } from "astro:transitions"
-import { SpBadge, SpIconBox } from "@phcdevworks/spectre-ui-astro"
+import {
+  SpNav,
+  SpBadge,
+  SpIconBox,
+  SpTag,
+  getNavLinksClasses,
+  getNavLinkClasses,
+} from "@phcdevworks/spectre-ui-astro"
 
 interface Props {
   title: string
@@ -13,14 +20,24 @@ interface Props {
 const { title, description, frontmatter } = Astro.props
 
 const metaTitle = typeof frontmatter?.title === 'string' ? frontmatter.title : title
-const metaDesc = typeof frontmatter?.description === 'string' ? frontmatter.description : (description ?? "PHCDevworks documentation portal.")
+const metaDesc = typeof frontmatter?.description === 'string'
+  ? frontmatter.description
+  : (description ?? "PHCDevworks documentation portal.")
 
-const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/'
+const path = Astro.url.pathname.replace(/\/$/, '') || '/'
+const active = (href: string) => (href.replace(/\/$/, '') || '/') === path
 
-function isActive(href: string): boolean {
-  const path = href.replace(/\/$/, '') || '/'
-  return currentPath === path
-}
+const navLinks = getNavLinksClasses()
+const navLink = getNavLinkClasses()
+const navLinkActive = getNavLinkClasses({ active: true })
+
+const packages = [
+  { href: '/design/tokens',     ref: '/design/tokens-reference',     label: 'Tokens',     variant: 'primary'  },
+  { href: '/design/ui',         ref: '/design/ui-reference',         label: 'UI',         variant: 'success'  },
+  { href: '/design/ui-astro',   ref: '/design/ui-astro-reference',   label: 'UI Astro',   variant: 'warning'  },
+  { href: '/design/components', ref: '/design/components-reference', label: 'Components', variant: 'danger'   },
+  { href: '/design/base',       ref: '/design/base-reference',       label: 'Base',       variant: 'info'     },
+] as const
 ---
 
 <!doctype html>
@@ -35,319 +52,376 @@ function isActive(href: string): boolean {
     <ClientRouter />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Inter:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
   </head>
-  <body class="sp-docs-theme">
-    <div class="sp-docs-shell">
-      <header class="sp-docs-header">
-        <div class="sp-header-inner">
-          <a href="/" class="sp-logo">
-            <SpIconBox variant="primary" size="sm">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
-                <path d="M8 7h6"></path>
-                <path d="M8 11h8"></path>
-                <path d="M8 15h6"></path>
-              </svg>
-            </SpIconBox>
-            <span class="sp-logo-text">Docs</span>
-          </a>
-          <div class="sp-header-meta">
-            <SpBadge variant="neutral" size="sm">Early Access</SpBadge>
-          </div>
+
+  <body>
+
+    <!-- ── Top nav ── -->
+    <SpNav bordered sticky fullWidth aria-label="Site navigation">
+      <div class={navLinks}>
+        <a href="/" class="docs-brand" aria-label="PHCDevworks Docs home">
+          <SpIconBox variant="primary" size="sm" pill>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path d="M4 18V4a2 2 0 0 1 2-2h9l3 3v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Zm7-11V2.5L17.5 9H11Z"/>
+            </svg>
+          </SpIconBox>
+          <span class="docs-brand-text">Spectre Docs</span>
+        </a>
+
+        <div class="docs-nav-links">
+          <a href="/design" class={active('/design') ? navLinkActive : navLink}>Design System</a>
         </div>
-      </header>
-      
-      <div class="sp-docs-main">
-        <aside class="sp-docs-sidebar">
-          <nav>
-            <div class="sp-sidebar-group">
-              <h3>Getting Started</h3>
-              <ul>
-                <li><a href="/" class:list={[{ active: isActive('/') }]}>Introduction</a></li>
-              </ul>
-            </div>
-            <div class="sp-sidebar-group">
-              <h3>Design System</h3>
-              <ul>
-                <li><a href="/design" class:list={[{ active: isActive('/design') }]}>Overview</a></li>
-
-                <li class="sp-nav-parent"><a href="/design/tokens" class:list={[{ active: isActive('/design/tokens') }]}>Spectre Tokens</a>
-                  <ul class="sp-nav-sub">
-                    <li><a href="/design/tokens-reference" class:list={[{ active: isActive('/design/tokens-reference') }]}>Reference</a></li>
-                  </ul>
-                </li>
-
-                <li class="sp-nav-parent"><a href="/design/ui" class:list={[{ active: isActive('/design/ui') }]}>Spectre UI</a>
-                  <ul class="sp-nav-sub">
-                    <li><a href="/design/ui-reference" class:list={[{ active: isActive('/design/ui-reference') }]}>Reference</a></li>
-                  </ul>
-                </li>
-
-                <li class="sp-nav-parent"><a href="/design/ui-astro" class:list={[{ active: isActive('/design/ui-astro') }]}>Spectre UI Astro</a>
-                  <ul class="sp-nav-sub">
-                    <li><a href="/design/ui-astro-reference" class:list={[{ active: isActive('/design/ui-astro-reference') }]}>Component Reference</a></li>
-                  </ul>
-                </li>
-
-                <li class="sp-nav-parent"><a href="/design/components" class:list={[{ active: isActive('/design/components') }]}>Spectre Components</a>
-                  <ul class="sp-nav-sub">
-                    <li><a href="/design/components-reference" class:list={[{ active: isActive('/design/components-reference') }]}>Reference</a></li>
-                  </ul>
-                </li>
-
-                <li class="sp-nav-parent"><a href="/design/base" class:list={[{ active: isActive('/design/base') }]}>Spectre Base</a>
-                  <ul class="sp-nav-sub">
-                    <li><a href="/design/base-reference" class:list={[{ active: isActive('/design/base-reference') }]}>Reference</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </aside>
-
-        <main class="sp-docs-content">
-          <article class="sp-prose">
-            <h1>{metaTitle}</h1>
-            <slot />
-          </article>
-        </main>
       </div>
+
+      <div class="docs-nav-end">
+        <SpBadge variant="neutral" size="sm">Early Access</SpBadge>
+      </div>
+    </SpNav>
+
+    <!-- ── Body ── -->
+    <div class="docs-layout">
+
+      <!-- ── Sidebar ── -->
+      <aside class="docs-sidebar" aria-label="Documentation navigation">
+
+        <div class="docs-sidebar-section">
+          <span class="docs-sidebar-heading">Getting Started</span>
+          <nav>
+            <a href="/" class:list={["docs-nav-item", { "docs-nav-item--active": active('/') }]}>
+              <SpIconBox variant="primary" size="sm">
+                <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm.75 4a.75.75 0 0 0-1.5 0v3.25H4a.75.75 0 0 0 0 1.5h4.75V5Z"/></svg>
+              </SpIconBox>
+              Introduction
+            </a>
+          </nav>
+        </div>
+
+        <div class="docs-sidebar-section">
+          <span class="docs-sidebar-heading">Design System</span>
+          <nav>
+            <a href="/design" class:list={["docs-nav-item", { "docs-nav-item--active": active('/design') }]}>
+              <SpIconBox variant="primary" size="sm">
+                <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M2 3h12v2H2zm0 4h12v2H2zm0 4h8v2H2z"/></svg>
+              </SpIconBox>
+              Overview
+            </a>
+
+            {packages.map(pkg => (
+              <div class="docs-nav-group">
+                <a href={pkg.href} class:list={["docs-nav-item", { "docs-nav-item--active": active(pkg.href) }]}>
+                  <SpTag variant={pkg.variant} size="sm">{pkg.label}</SpTag>
+                </a>
+                <a href={pkg.ref} class:list={["docs-nav-subitem", { "docs-nav-item--active": active(pkg.ref) }]}>
+                  Reference
+                </a>
+              </div>
+            ))}
+          </nav>
+        </div>
+
+      </aside>
+
+      <!-- ── Content ── -->
+      <main class="docs-content">
+        <div class="docs-prose">
+          <h1 class="docs-page-title">{metaTitle}</h1>
+          {metaDesc && metaDesc !== "PHCDevworks documentation portal." && (
+            <p class="docs-page-lead">{metaDesc}</p>
+          )}
+          <slot />
+        </div>
+      </main>
+
     </div>
 
     <style is:global>
       :root {
-        --sp-font-family: "Outfit", sans-serif;
-        --sp-font-family-body: "Inter", sans-serif;
-        --sp-sidebar-width: 280px;
-        --sp-header-height: 64px;
-        --sp-accent: #4f46e5;
+        --docs-sidebar-w: 272px;
+        --docs-font-display: "Outfit", sans-serif;
+        --docs-font-body: "Inter", sans-serif;
       }
+
+      *, *::before, *::after { box-sizing: border-box; }
 
       body {
         margin: 0;
-        font-family: var(--sp-font-family-body);
-        background-color: #f8fafc;
-        color: #1e293b;
+        font-family: var(--docs-font-body);
+        background: var(--sp-surface-page);
+        color: var(--sp-text-on-page-default);
+        -webkit-font-smoothing: antialiased;
       }
 
-      .sp-docs-shell {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-      }
-
-      .sp-docs-header {
-        height: var(--sp-header-height);
-        background: white;
-        border-bottom: 1px solid #e2e8f0;
-        position: sticky;
-        top: 0;
-        z-index: 100;
+      /* ── Header customisation on top of SpNav ── */
+      .docs-brand {
         display: flex;
         align-items: center;
-        padding: 0 2rem;
-      }
-
-      .sp-header-inner {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .sp-logo {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
+        gap: 0.5rem;
         text-decoration: none;
-        color: inherit;
-      }
-
-      .sp-logo-text {
-        font-family: var(--sp-font-family);
+        color: var(--sp-text-on-page-default);
+        font-family: var(--docs-font-display);
         font-weight: 700;
-        font-size: 1.25rem;
+        font-size: 1rem;
         letter-spacing: -0.02em;
+        margin-right: 1.5rem;
       }
 
-      .sp-docs-main {
+      .docs-brand-text { white-space: nowrap; }
+
+      .docs-nav-links {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .docs-nav-end {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding-right: 1rem;
+      }
+
+      /* ── Layout ── */
+      .docs-layout {
         display: grid;
-        grid-template-columns: var(--sp-sidebar-width) 1fr;
-        flex: 1;
+        grid-template-columns: var(--docs-sidebar-w) 1fr;
+        min-height: calc(100vh - 60px);
       }
 
-      .sp-docs-sidebar {
-        border-right: 1px solid #e2e8f0;
-        background: white;
-        padding: 2rem;
-        overflow-y: auto;
-        height: calc(100vh - var(--sp-header-height));
+      /* ── Sidebar ── */
+      .docs-sidebar {
+        border-right: 1px solid var(--sp-surface-alternate);
+        background: var(--sp-surface-page);
+        padding: 1.25rem 0.75rem;
         position: sticky;
-        top: var(--sp-header-height);
+        top: 60px;
+        height: calc(100vh - 60px);
+        overflow-y: auto;
       }
 
-      .sp-sidebar-group h3 {
-        font-family: var(--sp-font-family);
-        font-size: 0.875rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: #64748b;
-        margin: 1.5rem 0 0.75rem;
-      }
-
-      .sp-sidebar-group ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-
-      .sp-sidebar-group li a {
-        display: block;
-        padding: 0.5rem 0;
-        color: #475569;
-        text-decoration: none;
-        font-size: 0.9375rem;
-        transition: color 0.1s;
-      }
-
-      .sp-sidebar-group li a:hover,
-      .sp-sidebar-group li a.active {
-        color: var(--sp-accent);
-      }
-
-      .sp-sidebar-group li a.active {
-        font-weight: 600;
-      }
-
-      .sp-nav-parent > a {
-        font-weight: 500;
-      }
-
-      .sp-nav-sub {
-        list-style: none;
-        padding: 0;
-        margin: 0 0 0.25rem 0.75rem;
-        border-left: 2px solid #e2e8f0;
-      }
-
-      .sp-nav-sub li a {
-        font-size: 0.875rem !important;
-        padding: 0.25rem 0 0.25rem 0.75rem !important;
-        color: #94a3b8 !important;
-      }
-
-      .sp-nav-sub li a:hover,
-      .sp-nav-sub li a.active {
-        color: var(--sp-accent) !important;
-      }
-
-      .sp-docs-content {
-        padding: 3rem 4rem;
-        max-width: 960px;
-      }
-
-      .sp-prose h1 {
-        font-size: 2.25rem;
-        font-weight: 800;
-        letter-spacing: -0.025em;
-        margin-bottom: 2rem;
-      }
-
-      .sp-prose p {
+      .docs-sidebar-section {
         margin-bottom: 1.5rem;
-        font-size: 1.0625rem;
-        line-height: 1.75;
       }
 
-      .sp-prose h2 {
-        font-family: var(--sp-font-family);
-        font-size: var(--sp-font-2xl-size);
+      .docs-sidebar-heading {
+        display: block;
+        font-family: var(--docs-font-display);
+        font-size: 0.6875rem;
         font-weight: 700;
-        letter-spacing: -0.02em;
-        margin: var(--sp-space-48) 0 var(--sp-space-16);
-      }
-
-      .sp-prose h3 {
-        font-family: var(--sp-font-family);
-        font-size: var(--sp-font-xl-size);
-        font-weight: 600;
-        margin: var(--sp-space-32) 0 var(--sp-space-12);
-      }
-
-      .sp-prose ul,
-      .sp-prose ol {
-        margin: 0 0 1.5rem;
-        padding-left: 1.5rem;
-        line-height: 1.75;
-      }
-
-      .sp-prose li {
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--sp-text-on-page-muted);
+        padding: 0 0.5rem;
         margin-bottom: 0.375rem;
       }
 
-      .sp-prose a {
-        color: var(--sp-accent);
+      .docs-nav-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.375rem 0.5rem;
+        border-radius: 0.375rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--sp-text-on-page-muted);
+        text-decoration: none;
+        transition: background 0.1s, color 0.1s;
+        margin-bottom: 0.125rem;
       }
 
-      .sp-prose code {
-        font-family: var(--sp-font-family-mono);
-        font-size: 0.875em;
+      .docs-nav-item:hover {
         background: var(--sp-surface-alternate);
-        padding: 0.125rem 0.375rem;
+        color: var(--sp-text-on-page-default);
+      }
+
+      .docs-nav-item--active {
+        background: var(--sp-surface-alternate);
+        color: var(--sp-text-on-page-default);
+        font-weight: 600;
+      }
+
+      .docs-nav-group {
+        margin-bottom: 0.125rem;
+      }
+
+      .docs-nav-subitem {
+        display: block;
+        padding: 0.25rem 0.5rem 0.25rem 2.25rem;
         border-radius: 0.25rem;
+        font-size: 0.8125rem;
+        color: var(--sp-text-on-page-muted);
+        text-decoration: none;
+        transition: color 0.1s;
+        margin-bottom: 0.125rem;
       }
 
-      .sp-prose pre {
+      .docs-nav-subitem:hover,
+      .docs-nav-subitem.docs-nav-item--active {
+        color: var(--sp-text-on-page-default);
+      }
+
+      /* ── Content area ── */
+      .docs-content {
+        padding: 2.5rem 3.5rem 5rem;
+        min-width: 0;
+      }
+
+      .docs-prose {
+        max-width: 860px;
+      }
+
+      .docs-page-title {
+        font-family: var(--docs-font-display);
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        color: var(--sp-text-on-page-default);
+        margin: 0 0 0.5rem;
+        line-height: 1.15;
+      }
+
+      .docs-page-lead {
+        font-size: 1rem;
+        color: var(--sp-text-on-page-muted);
+        line-height: 1.7;
+        margin: 0 0 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--sp-surface-alternate);
+      }
+
+      /* ── Prose content rendered from Markdown ── */
+      .docs-prose p {
+        font-size: 0.9375rem;
+        line-height: 1.8;
+        color: var(--sp-text-on-page-muted);
+        margin: 0 0 1.25rem;
+      }
+
+      .docs-prose h2 {
+        font-family: var(--docs-font-display);
+        font-size: 1.375rem;
+        font-weight: 700;
+        letter-spacing: -0.015em;
+        color: var(--sp-text-on-page-default);
+        margin: 2.5rem 0 0.75rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--sp-surface-alternate);
+      }
+
+      .docs-prose h2:first-of-type {
+        border-top: none;
+        padding-top: 0;
+      }
+
+      .docs-prose h3 {
+        font-family: var(--docs-font-display);
+        font-size: 1.0625rem;
+        font-weight: 600;
+        color: var(--sp-text-on-page-default);
+        margin: 1.75rem 0 0.5rem;
+      }
+
+      .docs-prose ul,
+      .docs-prose ol {
+        font-size: 0.9375rem;
+        line-height: 1.8;
+        color: var(--sp-text-on-page-muted);
+        margin: 0 0 1.25rem;
+        padding-left: 1.5rem;
+      }
+
+      .docs-prose li { margin-bottom: 0.25rem; }
+
+      .docs-prose a {
+        color: var(--sp-button-primary-bg);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+
+      .docs-prose strong {
+        font-weight: 600;
+        color: var(--sp-text-on-page-default);
+      }
+
+      .docs-prose code {
+        font-family: ui-monospace, "Cascadia Code", "Fira Code", monospace;
+        font-size: 0.8125em;
         background: var(--sp-surface-alternate);
-        padding: var(--sp-space-16);
-        border-radius: 0.5rem;
+        color: var(--sp-text-on-page-default);
+        padding: 0.15em 0.4em;
+        border-radius: 0.3rem;
+        border: 1px solid var(--sp-surface-alternate);
+      }
+
+      .docs-prose pre {
+        background: var(--sp-surface-alternate);
+        padding: 1.25rem 1.5rem;
+        border-radius: 0.625rem;
         overflow-x: auto;
-        margin-bottom: 1.5rem;
+        margin: 0 0 1.5rem;
+        font-size: 0.875rem;
+        line-height: 1.7;
       }
 
-      .sp-prose pre code {
+      .docs-prose pre code {
         background: none;
+        border: none;
         padding: 0;
+        font-size: inherit;
       }
 
-      .sp-prose table {
+      .docs-prose table {
         width: 100%;
         border-collapse: collapse;
-        margin-bottom: 1.5rem;
-        font-size: 0.9375rem;
-      }
-
-      .sp-prose th,
-      .sp-prose td {
-        text-align: left;
-        padding: 0.5rem var(--sp-space-12);
-        border-bottom: var(--sp-border-width-base) solid var(--sp-surface-alternate);
-      }
-
-      .sp-prose th {
-        font-family: var(--sp-font-family);
-        font-weight: 600;
-        color: var(--sp-text-on-page-muted);
-      }
-
-      .sp-prose blockquote {
         margin: 0 0 1.5rem;
-        padding-left: var(--sp-space-16);
-        border-left: var(--sp-border-width-thick) solid var(--sp-surface-alternate);
+        font-size: 0.875rem;
+        border: 1px solid var(--sp-surface-alternate);
+        border-radius: 0.5rem;
+        overflow: hidden;
+      }
+
+      .docs-prose thead {
+        background: var(--sp-surface-alternate);
+      }
+
+      .docs-prose th {
+        font-family: var(--docs-font-display);
+        font-weight: 600;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
         color: var(--sp-text-on-page-muted);
+        padding: 0.625rem 1rem;
+        text-align: left;
+        border-bottom: 1px solid var(--sp-surface-alternate);
+      }
+
+      .docs-prose td {
+        padding: 0.625rem 1rem;
+        color: var(--sp-text-on-page-muted);
+        border-bottom: 1px solid var(--sp-surface-alternate);
+        vertical-align: top;
+      }
+
+      .docs-prose tr:last-child td { border-bottom: none; }
+
+      .docs-prose blockquote {
+        margin: 0 0 1.5rem;
+        padding: 1rem 1.25rem;
+        border-left: 3px solid var(--sp-button-primary-bg);
+        background: var(--sp-surface-alternate);
+        border-radius: 0 0.375rem 0.375rem 0;
+        color: var(--sp-text-on-page-muted);
+        font-style: italic;
+      }
+
+      .docs-prose hr {
+        border: none;
+        border-top: 1px solid var(--sp-surface-alternate);
+        margin: 2rem 0;
       }
     </style>
+
   </body>
 </html>
