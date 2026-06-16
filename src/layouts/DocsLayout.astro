@@ -71,11 +71,14 @@ const metaDesc = typeof frontmatter?.description === 'string' ? frontmatter.desc
               </ul>
             </div>
             <div class="sp-sidebar-group">
-              <h3>Ecosystem</h3>
+              <h3>Design System</h3>
               <ul>
-                <li><a href="https://github.com/phcdevworks/spectre-tokens" rel="noopener noreferrer">Spectre Tokens</a></li>
-                <li><a href="https://github.com/phcdevworks/spectre-ui" rel="noopener noreferrer">Spectre UI</a></li>
-                <li><a href="https://github.com/phcdevworks/spectre-ui-astro" rel="noopener noreferrer">Spectre UI Astro</a></li>
+                <li><a href="/design">Overview</a></li>
+                <li><a href="/design/tokens">Spectre Tokens</a></li>
+                <li><a href="/design/ui">Spectre UI</a></li>
+                <li><a href="/design/ui-astro">Spectre UI Astro</a></li>
+                <li><a href="/design/components">Spectre Components</a></li>
+                <li><a href="/design/base">Spectre Base</a></li>
               </ul>
             </div>
           </nav>
@@ -205,6 +208,84 @@ const metaDesc = typeof frontmatter?.description === 'string' ? frontmatter.desc
         margin-bottom: 1.5rem;
         font-size: 1.0625rem;
         line-height: 1.75;
+      }
+
+      .sp-prose h2 {
+        font-family: var(--sp-font-family);
+        font-size: var(--sp-font-2xl-size);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin: var(--sp-space-48) 0 var(--sp-space-16);
+      }
+
+      .sp-prose h3 {
+        font-family: var(--sp-font-family);
+        font-size: var(--sp-font-xl-size);
+        font-weight: 600;
+        margin: var(--sp-space-32) 0 var(--sp-space-12);
+      }
+
+      .sp-prose ul,
+      .sp-prose ol {
+        margin: 0 0 1.5rem;
+        padding-left: 1.5rem;
+        line-height: 1.75;
+      }
+
+      .sp-prose li {
+        margin-bottom: 0.375rem;
+      }
+
+      .sp-prose a {
+        color: var(--sp-accent);
+      }
+
+      .sp-prose code {
+        font-family: var(--sp-font-family-mono);
+        font-size: 0.875em;
+        background: var(--sp-surface-alternate);
+        padding: 0.125rem 0.375rem;
+        border-radius: 0.25rem;
+      }
+
+      .sp-prose pre {
+        background: var(--sp-surface-alternate);
+        padding: var(--sp-space-16);
+        border-radius: 0.5rem;
+        overflow-x: auto;
+        margin-bottom: 1.5rem;
+      }
+
+      .sp-prose pre code {
+        background: none;
+        padding: 0;
+      }
+
+      .sp-prose table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 1.5rem;
+        font-size: 0.9375rem;
+      }
+
+      .sp-prose th,
+      .sp-prose td {
+        text-align: left;
+        padding: 0.5rem var(--sp-space-12);
+        border-bottom: var(--sp-border-width-base) solid var(--sp-surface-alternate);
+      }
+
+      .sp-prose th {
+        font-family: var(--sp-font-family);
+        font-weight: 600;
+        color: var(--sp-text-on-page-muted);
+      }
+
+      .sp-prose blockquote {
+        margin: 0 0 1.5rem;
+        padding-left: var(--sp-space-16);
+        border-left: var(--sp-border-width-thick) solid var(--sp-surface-alternate);
+        color: var(--sp-text-on-page-muted);
       }
     </style>
   </body>
