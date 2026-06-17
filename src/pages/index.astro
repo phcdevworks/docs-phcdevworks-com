@@ -1,6 +1,6 @@
 ---
 import DocsLayout from "../layouts/DocsLayout.astro"
-import { SpCard, SpButton, SpBadge, SpIconBox, SpAlert } from "@phcdevworks/spectre-ui-astro"
+import { SpCard, SpButton, SpBadge, SpAlert } from "@phcdevworks/spectre-ui-astro"
 ---
 
 <DocsLayout
@@ -18,16 +18,13 @@ import { SpCard, SpButton, SpBadge, SpIconBox, SpAlert } from "@phcdevworks/spec
     <SpCard variant="elevated" padded fullHeight>
       <div class="pkg-card">
         <div class="pkg-card-top">
-          <SpIconBox variant="primary" size="md" pill>
-            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><circle cx="10" cy="10" r="6"/></svg>
-          </SpIconBox>
           <SpBadge variant="primary" size="sm">v2.9.0</SpBadge>
         </div>
         <h3 class="pkg-title">Spectre Tokens</h3>
         <p class="pkg-desc">Design-token contract — colors, spacing, typography, and semantic roles as CSS variables, JS/TS exports, and a Tailwind preset.</p>
         <div class="pkg-actions">
           <SpButton variant="primary" size="sm" as="a" href="/design/tokens">Overview</SpButton>
-          <SpButton variant="ghost" size="sm" as="a" href="/design/tokens-reference">Reference</SpButton>
+          <SpButton variant="secondary" size="sm" as="a" href="/design/tokens-reference">Reference</SpButton>
         </div>
       </div>
     </SpCard>
@@ -35,16 +32,13 @@ import { SpCard, SpButton, SpBadge, SpIconBox, SpAlert } from "@phcdevworks/spec
     <SpCard variant="elevated" padded fullHeight>
       <div class="pkg-card">
         <div class="pkg-card-top">
-          <SpIconBox variant="success" size="md" pill>
-            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="14" height="14" rx="3"/></svg>
-          </SpIconBox>
-          <SpBadge variant="success" size="sm">v1.9.0</SpBadge>
+          <SpBadge variant="primary" size="sm">v1.9.0</SpBadge>
         </div>
         <h3 class="pkg-title">Spectre UI</h3>
         <p class="pkg-desc">Precompiled CSS bundles, Tailwind helpers, and type-safe class recipes for 17 UI patterns — buttons, cards, inputs, badges, and more.</p>
         <div class="pkg-actions">
           <SpButton variant="primary" size="sm" as="a" href="/design/ui">Overview</SpButton>
-          <SpButton variant="ghost" size="sm" as="a" href="/design/ui-reference">Reference</SpButton>
+          <SpButton variant="secondary" size="sm" as="a" href="/design/ui-reference">Reference</SpButton>
         </div>
       </div>
     </SpCard>
@@ -52,16 +46,13 @@ import { SpCard, SpButton, SpBadge, SpIconBox, SpAlert } from "@phcdevworks/spec
     <SpCard variant="elevated" padded fullHeight>
       <div class="pkg-card">
         <div class="pkg-card-top">
-          <SpIconBox variant="warning" size="md" pill>
-            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><polygon points="10,2 18,16 2,16"/></svg>
-          </SpIconBox>
-          <SpBadge variant="warning" size="sm">v2.7.0</SpBadge>
+          <SpBadge variant="primary" size="sm">v2.7.0</SpBadge>
         </div>
         <h3 class="pkg-title">Spectre UI Astro</h3>
         <p class="pkg-desc">17 SSR-safe Astro components with typed props, named slots, and polymorphic rendering. SpButton, SpCard, SpInput, SpModal, SpNav, and more.</p>
         <div class="pkg-actions">
           <SpButton variant="primary" size="sm" as="a" href="/design/ui-astro">Overview</SpButton>
-          <SpButton variant="ghost" size="sm" as="a" href="/design/ui-astro-reference">Components</SpButton>
+          <SpButton variant="secondary" size="sm" as="a" href="/design/ui-astro-reference">Components</SpButton>
         </div>
       </div>
     </SpCard>
@@ -69,16 +60,13 @@ import { SpCard, SpButton, SpBadge, SpIconBox, SpAlert } from "@phcdevworks/spec
     <SpCard variant="elevated" padded fullHeight>
       <div class="pkg-card">
         <div class="pkg-card-top">
-          <SpIconBox variant="danger" size="md" pill>
-            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 2l2.5 5 5.5.8-4 3.9.9 5.5L10 15l-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/></svg>
-          </SpIconBox>
-          <SpBadge variant="danger" size="sm">v1.5.0</SpBadge>
+          <SpBadge variant="primary" size="sm">v1.5.0</SpBadge>
         </div>
         <h3 class="pkg-title">Spectre Components</h3>
         <p class="pkg-desc">18 Lit custom elements — light-DOM, ARIA-forwarding, framework-agnostic. Works in React, Vue, Astro, and plain HTML.</p>
         <div class="pkg-actions">
           <SpButton variant="primary" size="sm" as="a" href="/design/components">Overview</SpButton>
-          <SpButton variant="ghost" size="sm" as="a" href="/design/components-reference">Reference</SpButton>
+          <SpButton variant="secondary" size="sm" as="a" href="/design/components-reference">Reference</SpButton>
         </div>
       </div>
     </SpCard>
@@ -86,29 +74,21 @@ import { SpCard, SpButton, SpBadge, SpIconBox, SpAlert } from "@phcdevworks/spec
     <SpCard variant="elevated" padded fullHeight>
       <div class="pkg-card">
         <div class="pkg-card-top">
-          <SpIconBox variant="info" size="md" pill>
-            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 2l8 14H2z"/></svg>
-          </SpIconBox>
-          <SpBadge variant="info" size="sm">v1.0.0</SpBadge>
+          <SpBadge variant="primary" size="sm">v1.0.0</SpBadge>
         </div>
         <h3 class="pkg-title">Spectre Base</h3>
         <p class="pkg-desc">WordPress theme shell with a Vite + TypeScript build pipeline. Delivers tokens, UI, and web components to WordPress sites.</p>
         <div class="pkg-actions">
           <SpButton variant="primary" size="sm" as="a" href="/design/base">Overview</SpButton>
-          <SpButton variant="ghost" size="sm" as="a" href="/design/base-reference">Reference</SpButton>
+          <SpButton variant="secondary" size="sm" as="a" href="/design/base-reference">Reference</SpButton>
         </div>
       </div>
     </SpCard>
 
     <SpCard variant="outline" padded interactive as="a" href="/design" aria-label="Design system overview">
       <div class="pkg-card pkg-card--overview">
-        <SpIconBox variant="primary" size="lg">
-          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 10h12M10 4l6 6-6 6"/></svg>
-        </SpIconBox>
-        <div>
-          <h3 class="pkg-title">Design System Overview</h3>
-          <p class="pkg-desc">How the five layers fit together — architecture diagram, dependency chain, and where to start.</p>
-        </div>
+        <h3 class="pkg-title">Design System Overview</h3>
+        <p class="pkg-desc">How the five layers fit together — architecture diagram, dependency chain, and where to start.</p>
       </div>
     </SpCard>
 
@@ -129,16 +109,9 @@ import { SpCard, SpButton, SpBadge, SpIconBox, SpAlert } from "@phcdevworks/spec
       height: 100%;
     }
 
-    .pkg-card--overview {
-      flex-direction: row;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-
     .pkg-card-top {
       display: flex;
       align-items: center;
-      justify-content: space-between;
     }
 
     .pkg-title {
