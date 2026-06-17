@@ -1,6 +1,11 @@
 ---
-import DocsLayout from "../layouts/DocsLayout.astro"
-import { SpCard, SpButton, SpBadge, SpAlert } from "@phcdevworks/spectre-ui-astro"
+import {
+  SpAlert,
+  SpBadge,
+  SpButton,
+  SpCard
+} from '@phcdevworks/spectre-ui-astro'
+import DocsLayout from '../layouts/DocsLayout.astro'
 ---
 
 <DocsLayout
@@ -8,23 +13,32 @@ import { SpCard, SpButton, SpBadge, SpAlert } from "@phcdevworks/spectre-ui-astr
   description="The official reference for the Spectre design system — tokens, UI, Astro components, web components, and the WordPress theme shell."
   fullWidth
 >
-
   <SpAlert variant="info" size="sm">
-    Early Access — documentation is actively expanding. All five packages are covered.
+    Early Access — documentation is actively expanding. All five packages are
+    covered.
   </SpAlert>
 
   <div class="pkg-grid">
-
     <SpCard variant="elevated" padded fullHeight>
       <div class="pkg-card">
         <div class="pkg-card-top">
           <SpBadge variant="primary" size="sm">v2.9.0</SpBadge>
         </div>
         <h3 class="pkg-title">Spectre Tokens</h3>
-        <p class="pkg-desc">Design-token contract — colors, spacing, typography, and semantic roles as CSS variables, JS/TS exports, and a Tailwind preset.</p>
+        <p class="pkg-desc">
+          Design-token contract — colors, spacing, typography, and semantic
+          roles as CSS variables, JS/TS exports, and a Tailwind preset.
+        </p>
         <div class="pkg-actions">
-          <SpButton variant="primary" size="sm" as="a" href="/design/tokens">Overview</SpButton>
-          <SpButton variant="secondary" size="sm" as="a" href="/design/tokens-reference">Reference</SpButton>
+          <SpButton variant="primary" size="sm" as="a" href="/design/tokens"
+            >Overview</SpButton
+          >
+          <SpButton
+            variant="secondary"
+            size="sm"
+            as="a"
+            href="/design/tokens-reference">Reference</SpButton
+          >
         </div>
       </div>
     </SpCard>
@@ -35,10 +49,20 @@ import { SpCard, SpButton, SpBadge, SpAlert } from "@phcdevworks/spectre-ui-astr
           <SpBadge variant="primary" size="sm">v1.9.0</SpBadge>
         </div>
         <h3 class="pkg-title">Spectre UI</h3>
-        <p class="pkg-desc">Precompiled CSS bundles, Tailwind helpers, and type-safe class recipes for 17 UI patterns — buttons, cards, inputs, badges, and more.</p>
+        <p class="pkg-desc">
+          Precompiled CSS bundles, Tailwind helpers, and type-safe class recipes
+          for 17 UI patterns — buttons, cards, inputs, badges, and more.
+        </p>
         <div class="pkg-actions">
-          <SpButton variant="primary" size="sm" as="a" href="/design/ui">Overview</SpButton>
-          <SpButton variant="secondary" size="sm" as="a" href="/design/ui-reference">Reference</SpButton>
+          <SpButton variant="primary" size="sm" as="a" href="/design/ui"
+            >Overview</SpButton
+          >
+          <SpButton
+            variant="secondary"
+            size="sm"
+            as="a"
+            href="/design/ui-reference">Reference</SpButton
+          >
         </div>
       </div>
     </SpCard>
@@ -49,10 +73,21 @@ import { SpCard, SpButton, SpBadge, SpAlert } from "@phcdevworks/spectre-ui-astr
           <SpBadge variant="primary" size="sm">v2.7.0</SpBadge>
         </div>
         <h3 class="pkg-title">Spectre UI Astro</h3>
-        <p class="pkg-desc">17 SSR-safe Astro components with typed props, named slots, and polymorphic rendering. SpButton, SpCard, SpInput, SpModal, SpNav, and more.</p>
+        <p class="pkg-desc">
+          17 SSR-safe Astro components with typed props, named slots, and
+          polymorphic rendering. SpButton, SpCard, SpInput, SpModal, SpNav, and
+          more.
+        </p>
         <div class="pkg-actions">
-          <SpButton variant="primary" size="sm" as="a" href="/design/ui-astro">Overview</SpButton>
-          <SpButton variant="secondary" size="sm" as="a" href="/design/ui-astro-reference">Components</SpButton>
+          <SpButton variant="primary" size="sm" as="a" href="/design/ui-astro"
+            >Overview</SpButton
+          >
+          <SpButton
+            variant="secondary"
+            size="sm"
+            as="a"
+            href="/design/ui-astro-reference">Components</SpButton
+          >
         </div>
       </div>
     </SpCard>
@@ -63,10 +98,20 @@ import { SpCard, SpButton, SpBadge, SpAlert } from "@phcdevworks/spectre-ui-astr
           <SpBadge variant="primary" size="sm">v1.5.0</SpBadge>
         </div>
         <h3 class="pkg-title">Spectre Components</h3>
-        <p class="pkg-desc">18 Lit custom elements — light-DOM, ARIA-forwarding, framework-agnostic. Works in React, Vue, Astro, and plain HTML.</p>
+        <p class="pkg-desc">
+          18 Lit custom elements — light-DOM, ARIA-forwarding,
+          framework-agnostic. Works in React, Vue, Astro, and plain HTML.
+        </p>
         <div class="pkg-actions">
-          <SpButton variant="primary" size="sm" as="a" href="/design/components">Overview</SpButton>
-          <SpButton variant="secondary" size="sm" as="a" href="/design/components-reference">Reference</SpButton>
+          <SpButton variant="primary" size="sm" as="a" href="/design/components"
+            >Overview</SpButton
+          >
+          <SpButton
+            variant="secondary"
+            size="sm"
+            as="a"
+            href="/design/components-reference">Reference</SpButton
+          >
         </div>
       </div>
     </SpCard>
@@ -77,66 +122,39 @@ import { SpCard, SpButton, SpBadge, SpAlert } from "@phcdevworks/spectre-ui-astr
           <SpBadge variant="primary" size="sm">v1.0.0</SpBadge>
         </div>
         <h3 class="pkg-title">Spectre Base</h3>
-        <p class="pkg-desc">WordPress theme shell with a Vite + TypeScript build pipeline. Delivers tokens, UI, and web components to WordPress sites.</p>
+        <p class="pkg-desc">
+          WordPress theme shell with a Vite + TypeScript build pipeline.
+          Delivers tokens, UI, and web components to WordPress sites.
+        </p>
         <div class="pkg-actions">
-          <SpButton variant="primary" size="sm" as="a" href="/design/base">Overview</SpButton>
-          <SpButton variant="secondary" size="sm" as="a" href="/design/base-reference">Reference</SpButton>
+          <SpButton variant="primary" size="sm" as="a" href="/design/base"
+            >Overview</SpButton
+          >
+          <SpButton
+            variant="secondary"
+            size="sm"
+            as="a"
+            href="/design/base-reference">Reference</SpButton
+          >
         </div>
       </div>
     </SpCard>
 
-    <SpCard variant="outline" padded interactive as="a" href="/design" aria-label="Design system overview">
+    <SpCard
+      variant="outline"
+      padded
+      interactive
+      as="a"
+      href="/design"
+      aria-label="Design system overview"
+    >
       <div class="pkg-card pkg-card--overview">
         <h3 class="pkg-title">Design System Overview</h3>
-        <p class="pkg-desc">How the five layers fit together — architecture diagram, dependency chain, and where to start.</p>
+        <p class="pkg-desc">
+          How the five layers fit together — architecture diagram, dependency
+          chain, and where to start.
+        </p>
       </div>
     </SpCard>
-
   </div>
-
-  <style>
-    .pkg-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .pkg-card {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      height: 100%;
-    }
-
-    .pkg-card-top {
-      display: flex;
-      align-items: center;
-    }
-
-    .pkg-title {
-      font-family: var(--docs-font-display);
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--sp-text-on-surface-default);
-      margin: 0;
-      letter-spacing: -0.01em;
-    }
-
-    .pkg-desc {
-      font-size: 0.875rem;
-      color: var(--sp-text-on-surface-muted);
-      line-height: 1.65;
-      margin: 0;
-      flex: 1;
-    }
-
-    .pkg-actions {
-      display: flex;
-      gap: 0.5rem;
-      margin-top: auto;
-      padding-top: 0.25rem;
-    }
-  </style>
-
 </DocsLayout>

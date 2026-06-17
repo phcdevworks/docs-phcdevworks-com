@@ -1,9 +1,9 @@
 ---
-import "@phcdevworks/spectre-tokens/index.css"
-import "@phcdevworks/spectre-ui/index.css"
-import { ClientRouter } from "astro:transitions"
-import { SpNav, SpBadge, SpIconBox } from "@phcdevworks/spectre-ui-astro"
-import { getNavLinksClasses, getNavLinkClasses } from "@phcdevworks/spectre-ui"
+import '@phcdevworks/spectre-tokens/index.css'
+import '@phcdevworks/spectre-ui/index.css'
+import { ClientRouter } from 'astro:transitions'
+import { SpNav, SpBadge, SpIconBox } from '@phcdevworks/spectre-ui-astro'
+import { getNavLinksClasses, getNavLinkClasses } from '@phcdevworks/spectre-ui'
 
 interface Props {
   title: string
@@ -14,10 +14,12 @@ interface Props {
 
 const { title, description, frontmatter, fullWidth = false } = Astro.props
 
-const metaTitle = typeof frontmatter?.title === 'string' ? frontmatter.title : title
-const metaDesc = typeof frontmatter?.description === 'string'
-  ? frontmatter.description
-  : (description ?? "PHCDevworks documentation portal.")
+const metaTitle =
+  typeof frontmatter?.title === 'string' ? frontmatter.title : title
+const metaDesc =
+  typeof frontmatter?.description === 'string'
+    ? frontmatter.description
+    : (description ?? 'PHCDevworks documentation portal.')
 
 const path = Astro.url.pathname.replace(/\/$/, '') || '/'
 const active = (href: string) => (href.replace(/\/$/, '') || '/') === path
@@ -27,11 +29,19 @@ const navLink = getNavLinkClasses()
 const navLinkActive = getNavLinkClasses({ active: true })
 
 const packages = [
-  { href: '/design/tokens',     ref: '/design/tokens-reference',     label: 'Tokens'     },
-  { href: '/design/ui',         ref: '/design/ui-reference',         label: 'UI'         },
-  { href: '/design/ui-astro',   ref: '/design/ui-astro-reference',   label: 'UI Astro'   },
-  { href: '/design/components', ref: '/design/components-reference', label: 'Components' },
-  { href: '/design/base',       ref: '/design/base-reference',       label: 'Base'       },
+  { href: '/design/tokens', ref: '/design/tokens-reference', label: 'Tokens' },
+  { href: '/design/ui', ref: '/design/ui-reference', label: 'UI' },
+  {
+    href: '/design/ui-astro',
+    ref: '/design/ui-astro-reference',
+    label: 'UI Astro'
+  },
+  {
+    href: '/design/components',
+    ref: '/design/components-reference',
+    label: 'Components'
+  },
+  { href: '/design/base', ref: '/design/base-reference', label: 'Base' }
 ] as const
 ---
 
@@ -45,33 +55,47 @@ const packages = [
     <title>{metaTitle} | PHCDevworks Docs</title>
     <meta name="description" content={metaDesc} />
     <script is:inline>
-      (function() {
-        var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        document.documentElement.setAttribute('data-spectre-theme', dark ? 'dark' : 'light');
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
-          document.documentElement.setAttribute('data-spectre-theme', e.matches ? 'dark' : 'light');
-        });
-      })();
+      ;(function () {
+        var dark = window.matchMedia('(prefers-color-scheme: dark)').matches
+        document.documentElement.setAttribute(
+          'data-spectre-theme',
+          dark ? 'dark' : 'light'
+        )
+        window
+          .matchMedia('(prefers-color-scheme: dark)')
+          .addEventListener('change', function (e) {
+            document.documentElement.setAttribute(
+              'data-spectre-theme',
+              e.matches ? 'dark' : 'light'
+            )
+          })
+      })()
     </script>
     <ClientRouter />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
-
     <SpNav bordered sticky fullWidth aria-label="Site navigation">
       <div class={navLinks}>
         <a href="/" class="docs-brand" aria-label="PHCDevworks Docs home">
           <SpIconBox variant="primary" size="sm" pill>
             <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path d="M4 18V4a2 2 0 0 1 2-2h9l3 3v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Zm7-11V2.5L17.5 9H11Z"/>
+              <path
+                d="M4 18V4a2 2 0 0 1 2-2h9l3 3v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Zm7-11V2.5L17.5 9H11Z"
+              ></path>
             </svg>
           </SpIconBox>
           <span class="docs-brand-text">Spectre Docs</span>
         </a>
-        <a href="/design" class={active('/design') ? navLinkActive : navLink}>Design System</a>
+        <a href="/design" class={active('/design') ? navLinkActive : navLink}
+          >Design System</a
+        >
       </div>
       <div class="docs-nav-end">
         <SpBadge variant="neutral" size="sm">Early Access</SpBadge>
@@ -79,12 +103,17 @@ const packages = [
     </SpNav>
 
     <div class="docs-layout">
-
       <aside class="docs-sidebar" aria-label="Documentation navigation">
         <div class="docs-sidebar-section">
           <span class="docs-sidebar-heading">Getting Started</span>
           <nav>
-            <a href="/" class:list={["docs-nav-item", { "docs-nav-item--active": active('/') }]}>
+            <a
+              href="/"
+              class:list={[
+                'docs-nav-item',
+                { 'docs-nav-item--active': active('/') }
+              ]}
+            >
               Introduction
             </a>
           </nav>
@@ -93,305 +122,54 @@ const packages = [
         <div class="docs-sidebar-section">
           <span class="docs-sidebar-heading">Design System</span>
           <nav>
-            <a href="/design" class:list={["docs-nav-item", { "docs-nav-item--active": active('/design') }]}>
+            <a
+              href="/design"
+              class:list={[
+                'docs-nav-item',
+                { 'docs-nav-item--active': active('/design') }
+              ]}
+            >
               Overview
             </a>
-            {packages.map(pkg => (
-              <div class="docs-nav-group">
-                <a href={pkg.href} class:list={["docs-nav-item", { "docs-nav-item--active": active(pkg.href) }]}>
-                  {pkg.label}
-                </a>
-                <a href={pkg.ref} class:list={["docs-nav-subitem", { "docs-nav-subitem--active": active(pkg.ref) }]}>
-                  Reference
-                </a>
-              </div>
-            ))}
+            {
+              packages.map((pkg) => (
+                <div class="docs-nav-group">
+                  <a
+                    href={pkg.href}
+                    class:list={[
+                      'docs-nav-item',
+                      { 'docs-nav-item--active': active(pkg.href) }
+                    ]}
+                  >
+                    {pkg.label}
+                  </a>
+                  <a
+                    href={pkg.ref}
+                    class:list={[
+                      'docs-nav-subitem',
+                      { 'docs-nav-subitem--active': active(pkg.ref) }
+                    ]}
+                  >
+                    Reference
+                  </a>
+                </div>
+              ))
+            }
           </nav>
         </div>
       </aside>
 
       <main class="docs-content">
-        <div class:list={["docs-prose", { "docs-prose--full": fullWidth }]}>
+        <div class:list={['docs-prose', { 'docs-prose--full': fullWidth }]}>
           <h1 class="docs-page-title">{metaTitle}</h1>
-          {metaDesc && metaDesc !== "PHCDevworks documentation portal." && (
-            <p class="docs-page-lead">{metaDesc}</p>
-          )}
+          {
+            metaDesc && metaDesc !== 'PHCDevworks documentation portal.' && (
+              <p class="docs-page-lead">{metaDesc}</p>
+            )
+          }
           <slot />
         </div>
       </main>
-
     </div>
-
-    <style is:global>
-      :root {
-        --docs-sidebar-w: 220px;
-        --docs-font-display: "Outfit", sans-serif;
-        --docs-font-body: "Inter", sans-serif;
-        --docs-nav-height: 57px;
-      }
-
-      *, *::before, *::after { box-sizing: border-box; }
-
-      body {
-        margin: 0;
-        font-family: var(--docs-font-body);
-        background: var(--sp-surface-page);
-        color: var(--sp-text-on-page-default);
-        -webkit-font-smoothing: antialiased;
-      }
-
-      .docs-brand {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        text-decoration: none;
-        color: var(--sp-text-on-page-default);
-        font-family: var(--docs-font-display);
-        font-weight: 700;
-        font-size: 1rem;
-        letter-spacing: -0.02em;
-        margin-right: 1.5rem;
-      }
-      .docs-brand-text { white-space: nowrap; }
-
-      .docs-nav-end {
-        margin-left: auto;
-        display: flex;
-        align-items: center;
-        padding-right: 0.5rem;
-      }
-
-      /* Layout */
-      .docs-layout {
-        display: grid;
-        grid-template-columns: var(--docs-sidebar-w) 1fr;
-        min-height: calc(100vh - var(--docs-nav-height));
-      }
-
-      /* Sidebar */
-      .docs-sidebar {
-        background: var(--sp-surface-page);
-        border-right: 1px solid var(--sp-color-neutral-200);
-        padding: 1.5rem 0;
-        position: sticky;
-        top: var(--docs-nav-height);
-        height: calc(100vh - var(--docs-nav-height));
-        overflow-y: auto;
-      }
-
-      .docs-sidebar-section {
-        margin-bottom: 2rem;
-        padding: 0 1rem;
-      }
-
-      .docs-sidebar-heading {
-        display: block;
-        font-family: var(--docs-font-display);
-        font-size: 0.625rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: var(--sp-text-on-page-muted);
-        margin-bottom: 0.375rem;
-        padding: 0 0.375rem;
-      }
-
-      .docs-nav-item {
-        display: block;
-        padding: 0.3125rem 0.375rem;
-        border-radius: 0.3125rem;
-        font-size: 0.875rem;
-        font-weight: 400;
-        color: var(--sp-text-on-page-muted);
-        text-decoration: none;
-        transition: background 0.1s, color 0.1s;
-        margin-bottom: 0.0625rem;
-      }
-      .docs-nav-item:hover {
-        background: var(--sp-surface-alternate);
-        color: var(--sp-text-on-page-default);
-      }
-      .docs-nav-item--active {
-        background: var(--sp-surface-alternate);
-        color: var(--sp-text-on-page-default);
-        font-weight: 600;
-      }
-
-      .docs-nav-group {
-        margin-bottom: 0.0625rem;
-      }
-
-      .docs-nav-subitem {
-        display: block;
-        padding: 0.25rem 0.375rem 0.25rem 1rem;
-        border-radius: 0.3125rem;
-        font-size: 0.8125rem;
-        font-weight: 400;
-        color: var(--sp-text-on-page-muted);
-        text-decoration: none;
-        transition: background 0.1s, color 0.1s;
-        margin-bottom: 0.0625rem;
-      }
-      .docs-nav-subitem:hover,
-      .docs-nav-subitem--active {
-        background: var(--sp-surface-alternate);
-        color: var(--sp-text-on-page-default);
-      }
-
-      /* Content */
-      .docs-content {
-        padding: 2.5rem 3.5rem 5rem;
-        min-width: 0;
-      }
-
-      .docs-prose {
-        max-width: 860px;
-      }
-      .docs-prose--full {
-        max-width: none;
-      }
-
-      .docs-page-title {
-        font-family: var(--docs-font-display);
-        font-size: 2rem;
-        font-weight: 800;
-        letter-spacing: -0.025em;
-        color: var(--sp-text-on-page-default);
-        margin: 0 0 0.5rem;
-        line-height: 1.15;
-      }
-
-      .docs-page-lead {
-        font-size: 1rem;
-        color: var(--sp-text-on-page-muted);
-        line-height: 1.7;
-        margin: 0 0 2rem;
-        padding-bottom: 1.5rem;
-        border-bottom: 1px solid var(--sp-color-neutral-200);
-      }
-
-      .docs-prose p {
-        font-size: 0.9375rem;
-        line-height: 1.8;
-        color: var(--sp-text-on-page-muted);
-        margin: 0 0 1.25rem;
-      }
-
-      .docs-prose h2 {
-        font-family: var(--docs-font-display);
-        font-size: 1.375rem;
-        font-weight: 700;
-        letter-spacing: -0.015em;
-        color: var(--sp-text-on-page-default);
-        margin: 2.5rem 0 0.75rem;
-        padding-top: 2rem;
-        border-top: 1px solid var(--sp-color-neutral-200);
-      }
-      .docs-prose h2:first-of-type {
-        border-top: none;
-        padding-top: 0;
-      }
-
-      .docs-prose h3 {
-        font-family: var(--docs-font-display);
-        font-size: 1.0625rem;
-        font-weight: 600;
-        color: var(--sp-text-on-page-default);
-        margin: 1.75rem 0 0.5rem;
-      }
-
-      .docs-prose ul,
-      .docs-prose ol {
-        font-size: 0.9375rem;
-        line-height: 1.8;
-        color: var(--sp-text-on-page-muted);
-        margin: 0 0 1.25rem;
-        padding-left: 1.5rem;
-      }
-      .docs-prose li { margin-bottom: 0.25rem; }
-
-      .docs-prose a {
-        color: var(--sp-text-on-page-brand);
-        text-decoration: underline;
-        text-underline-offset: 2px;
-      }
-
-      .docs-prose strong {
-        font-weight: 600;
-        color: var(--sp-text-on-page-default);
-      }
-
-      .docs-prose code {
-        font-family: ui-monospace, "Cascadia Code", "Fira Code", monospace;
-        font-size: 0.8125em;
-        background: var(--sp-surface-alternate);
-        color: var(--sp-text-on-page-default);
-        padding: 0.15em 0.4em;
-        border-radius: 0.3rem;
-        border: 1px solid var(--sp-color-neutral-200);
-      }
-
-      .docs-prose pre {
-        background: var(--sp-surface-alternate);
-        padding: 1.25rem 1.5rem;
-        border-radius: 0.625rem;
-        overflow-x: auto;
-        margin: 0 0 1.5rem;
-        font-size: 0.875rem;
-        line-height: 1.7;
-      }
-      .docs-prose pre code {
-        background: none;
-        border: none;
-        padding: 0;
-        font-size: inherit;
-      }
-
-      .docs-prose table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 0 0 1.5rem;
-        font-size: 0.875rem;
-        border: 1px solid var(--sp-color-neutral-200);
-        border-radius: 0.5rem;
-        overflow: hidden;
-      }
-      .docs-prose thead { background: var(--sp-surface-alternate); }
-      .docs-prose th {
-        font-family: var(--docs-font-display);
-        font-weight: 600;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-        color: var(--sp-text-on-page-muted);
-        padding: 0.625rem 1rem;
-        text-align: left;
-        border-bottom: 1px solid var(--sp-color-neutral-200);
-      }
-      .docs-prose td {
-        padding: 0.625rem 1rem;
-        color: var(--sp-text-on-page-muted);
-        border-bottom: 1px solid var(--sp-color-neutral-200);
-        vertical-align: top;
-      }
-      .docs-prose tr:last-child td { border-bottom: none; }
-
-      .docs-prose blockquote {
-        margin: 0 0 1.5rem;
-        padding: 1rem 1.25rem;
-        border-left: 3px solid var(--sp-text-on-page-brand);
-        background: var(--sp-surface-alternate);
-        border-radius: 0 0.375rem 0.375rem 0;
-        color: var(--sp-text-on-page-muted);
-        font-style: italic;
-      }
-
-      .docs-prose hr {
-        border: none;
-        border-top: 1px solid var(--sp-color-neutral-200);
-        margin: 2rem 0;
-      }
-    </style>
-
   </body>
 </html>
