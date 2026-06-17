@@ -16,10 +16,9 @@ interface Props {
   title: string
   description?: string
   frontmatter?: Record<string, unknown>
-  fullWidth?: boolean
 }
 
-const { title, description, frontmatter, fullWidth = false } = Astro.props
+const { title, description, frontmatter } = Astro.props
 
 const metaTitle =
   typeof frontmatter?.title === 'string' ? frontmatter.title : title
@@ -34,6 +33,10 @@ const active = (href: string) => (href.replace(/\/$/, '') || '/') === path
 const navLinks = getNavLinksClasses()
 const navLink = getNavLinkClasses()
 const navLinkActive = getNavLinkClasses({ active: true })
+const sidebarLink = getNavLinkClasses()
+const sidebarLinkActive = getNavLinkClasses({ active: true })
+const sidebarSublink = `${getNavLinkClasses()} pl-4 text-sm`
+const sidebarSublinkActive = `${getNavLinkClasses({ active: true })} pl-4 text-sm`
 
 const packages = [
   { href: '/design/tokens', ref: '/design/tokens-reference', label: 'Tokens' },
@@ -90,7 +93,7 @@ const packages = [
   <body>
     <SpNav bordered sticky fullWidth aria-label="Site navigation">
       <div class={navLinks}>
-        <a href="/" class="docs-brand" aria-label="PHCDevworks Docs home">
+        <a href="/" aria-label="PHCDevworks Docs home">
           <SpIconBox variant="primary" size="sm" pill>
             <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path
@@ -98,88 +101,68 @@ const packages = [
               ></path>
             </svg>
           </SpIconBox>
-          <span class="docs-brand-text">Spectre Docs</span>
+          <span>Spectre Docs</span>
         </a>
         <a href="/design" class={active('/design') ? navLinkActive : navLink}
           >Design System</a
         >
       </div>
-      <div class="docs-nav-end">
+      <div>
         <SpBadge variant="neutral" size="sm">Early Access</SpBadge>
       </div>
     </SpNav>
 
     <SpContainer as="div">
       <SpStack direction="horizontal" as="div">
-        <SpStack
-          as="aside"
-          aria-label="Documentation navigation"
-          class="docs-sidebar"
-        >
+        <SpStack as="aside" aria-label="Documentation navigation">
           <SpStack as="div">
-            <span class="docs-sidebar-heading">Getting Started</span>
+            <span>Getting Started</span>
             <nav>
-              <a
-                href="/"
-                class:list={[
-                  'docs-nav-item',
-                  { 'docs-nav-item--active': active('/') }
-                ]}
-              >
+              <a href="/" class={active('/') ? sidebarLinkActive : sidebarLink}>
                 Introduction
               </a>
             </nav>
           </SpStack>
 
           <SpStack as="div">
-            <span class="docs-sidebar-heading">Design System</span>
+            <span>Design System</span>
             <nav>
               <a
                 href="/design"
-                class:list={[
-                  'docs-nav-item',
-                  { 'docs-nav-item--active': active('/design') }
-                ]}
+                class={active('/design') ? sidebarLinkActive : sidebarLink}
               >
                 Overview
               </a>
               {
                 packages.map((pkg) => (
-                  <div class="docs-nav-group">
+                  <SpStack as="div">
                     <a
                       href={pkg.href}
-                      class:list={[
-                        'docs-nav-item',
-                        { 'docs-nav-item--active': active(pkg.href) }
-                      ]}
+                      class={active(pkg.href) ? sidebarLinkActive : sidebarLink}
                     >
                       {pkg.label}
                     </a>
                     <a
                       href={pkg.ref}
-                      class:list={[
-                        'docs-nav-subitem',
-                        { 'docs-nav-subitem--active': active(pkg.ref) }
-                      ]}
+                      class={
+                        active(pkg.ref) ? sidebarSublinkActive : sidebarSublink
+                      }
                     >
                       Reference
                     </a>
-                  </div>
+                  </SpStack>
                 ))
               }
             </nav>
           </SpStack>
         </SpStack>
 
-        <SpSection as="main" class="docs-content">
-          <SpStack
-            as="div"
-            class:list={['docs-prose', { 'docs-prose--full': fullWidth }]}
-          >
-            <h1 class="docs-page-title">{metaTitle}</h1>
+        <SpSection as="main">
+          <SpStack as="div">
+            <h1>{metaTitle}</h1>
             {
               metaDesc && metaDesc !== 'PHCDevworks documentation portal.' && (
-                <p class="docs-page-lead">{metaDesc}</p>
+                <p>{metaDesc}</p>
               )
             }
             <slot />
