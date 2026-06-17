@@ -2,7 +2,14 @@
 import '@phcdevworks/spectre-tokens/index.css'
 import '@phcdevworks/spectre-ui/index.css'
 import { ClientRouter } from 'astro:transitions'
-import { SpNav, SpBadge, SpIconBox } from '@phcdevworks/spectre-ui-astro'
+import {
+  SpNav,
+  SpBadge,
+  SpIconBox,
+  SpContainer,
+  SpStack,
+  SpSection
+} from '@phcdevworks/spectre-ui-astro'
 import { getNavLinksClasses, getNavLinkClasses } from '@phcdevworks/spectre-ui'
 
 interface Props {
@@ -102,74 +109,83 @@ const packages = [
       </div>
     </SpNav>
 
-    <div class="docs-layout">
-      <aside class="docs-sidebar" aria-label="Documentation navigation">
-        <div class="docs-sidebar-section">
-          <span class="docs-sidebar-heading">Getting Started</span>
-          <nav>
-            <a
-              href="/"
-              class:list={[
-                'docs-nav-item',
-                { 'docs-nav-item--active': active('/') }
-              ]}
-            >
-              Introduction
-            </a>
-          </nav>
-        </div>
+    <SpContainer as="div">
+      <SpStack direction="horizontal" as="div">
+        <SpStack
+          as="aside"
+          aria-label="Documentation navigation"
+          class="docs-sidebar"
+        >
+          <SpStack as="div">
+            <span class="docs-sidebar-heading">Getting Started</span>
+            <nav>
+              <a
+                href="/"
+                class:list={[
+                  'docs-nav-item',
+                  { 'docs-nav-item--active': active('/') }
+                ]}
+              >
+                Introduction
+              </a>
+            </nav>
+          </SpStack>
 
-        <div class="docs-sidebar-section">
-          <span class="docs-sidebar-heading">Design System</span>
-          <nav>
-            <a
-              href="/design"
-              class:list={[
-                'docs-nav-item',
-                { 'docs-nav-item--active': active('/design') }
-              ]}
-            >
-              Overview
-            </a>
+          <SpStack as="div">
+            <span class="docs-sidebar-heading">Design System</span>
+            <nav>
+              <a
+                href="/design"
+                class:list={[
+                  'docs-nav-item',
+                  { 'docs-nav-item--active': active('/design') }
+                ]}
+              >
+                Overview
+              </a>
+              {
+                packages.map((pkg) => (
+                  <div class="docs-nav-group">
+                    <a
+                      href={pkg.href}
+                      class:list={[
+                        'docs-nav-item',
+                        { 'docs-nav-item--active': active(pkg.href) }
+                      ]}
+                    >
+                      {pkg.label}
+                    </a>
+                    <a
+                      href={pkg.ref}
+                      class:list={[
+                        'docs-nav-subitem',
+                        { 'docs-nav-subitem--active': active(pkg.ref) }
+                      ]}
+                    >
+                      Reference
+                    </a>
+                  </div>
+                ))
+              }
+            </nav>
+          </SpStack>
+        </SpStack>
+
+        <SpSection as="main" class="docs-content">
+          <SpStack
+            as="div"
+            class:list={['docs-prose', { 'docs-prose--full': fullWidth }]}
+          >
+            <h1 class="docs-page-title">{metaTitle}</h1>
             {
-              packages.map((pkg) => (
-                <div class="docs-nav-group">
-                  <a
-                    href={pkg.href}
-                    class:list={[
-                      'docs-nav-item',
-                      { 'docs-nav-item--active': active(pkg.href) }
-                    ]}
-                  >
-                    {pkg.label}
-                  </a>
-                  <a
-                    href={pkg.ref}
-                    class:list={[
-                      'docs-nav-subitem',
-                      { 'docs-nav-subitem--active': active(pkg.ref) }
-                    ]}
-                  >
-                    Reference
-                  </a>
-                </div>
-              ))
+              metaDesc && metaDesc !== 'PHCDevworks documentation portal.' && (
+                <p class="docs-page-lead">{metaDesc}</p>
+              )
             }
-          </nav>
-        </div>
-      </aside>
-
-      <main class="docs-content">
-        <div class:list={['docs-prose', { 'docs-prose--full': fullWidth }]}>
-          <h1 class="docs-page-title">{metaTitle}</h1>
-          {
-            metaDesc && metaDesc !== 'PHCDevworks documentation portal.' && (
-              <p class="docs-page-lead">{metaDesc}</p>
-            )
-          }
-          <slot />
-        </div>
-      </main>
-    </div>
+            <slot />
+          </SpStack>
+        </SpSection>
+      </SpStack>
+    </SpContainer>
   </body>
 </html>
