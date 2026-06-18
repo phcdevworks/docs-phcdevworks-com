@@ -4,6 +4,7 @@ import {
   SpBadge,
   SpButton,
   SpCard,
+  SpGrid,
   SpStack
 } from '@phcdevworks/spectre-ui-astro'
 import DocsLayout from '../layouts/DocsLayout.astro'
@@ -66,7 +67,7 @@ const packages = [
     covered.
   </SpAlert>
 
-  <SpStack as="div">
+  <SpGrid columns={3} gap="md" as="div">
     {
       packages.map((pkg) => (
         <SpCard variant="elevated" padded fullHeight>
@@ -107,5 +108,5 @@ const packages = [
         </p>
       </SpStack>
     </SpCard>
-  </SpStack>
+  </SpGrid>
 </DocsLayout>

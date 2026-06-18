@@ -38,20 +38,20 @@
   "dependencies": {
     "@astrojs/cloudflare": "^13.7.0",
     "@phcdevworks/spectre-tokens": "^3.0.0",
-    "@phcdevworks/spectre-ui": "^2.1.0",
-    "@phcdevworks/spectre-ui-astro": "^2.8.0",
-    "astro": "^6.4.7"
+    "@phcdevworks/spectre-ui": "^2.2.0",
+    "@phcdevworks/spectre-ui-astro": "^2.9.0",
+    "astro": "^6.4.8"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
     "playwright": "^1.61.0",
     "typescript-eslint": "^8.61.1",
-    "wrangler": "^4.101.0"
+    "wrangler": "^4.102.0"
   },
   "allowScripts": {
     "esbuild@0.27.7": true,
-    "esbuild@0.27.3": true,
     "sharp@0.34.5": true,
-    "workerd@1.20260616.1": true
+    "esbuild@0.28.1": true,
+    "workerd@1.20260617.1": true
   }
 }
