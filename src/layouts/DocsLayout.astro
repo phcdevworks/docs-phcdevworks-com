@@ -4,6 +4,7 @@ import '@phcdevworks/spectre-ui/index.css'
 import { ClientRouter } from 'astro:transitions'
 import {
   SpNav,
+  SpSidebar,
   SpBadge,
   SpIconBox,
   SpContainer,
@@ -114,7 +115,7 @@ const packages = [
 
     <SpContainer as="div">
       <SpStack direction="horizontal" as="div">
-        <SpStack as="aside" aria-label="Documentation navigation">
+        <SpSidebar bordered aria-label="Documentation navigation">
           <SpStack as="div">
             <span>Getting Started</span>
             <nav>
@@ -155,7 +156,7 @@ const packages = [
               }
             </nav>
           </SpStack>
-        </SpStack>
+        </SpSidebar>
 
         <SpSection as="main">
           <SpStack as="div">
