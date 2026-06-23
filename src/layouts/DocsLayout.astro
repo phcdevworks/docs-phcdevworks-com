@@ -95,14 +95,16 @@ const packages = [
     <SpNav bordered sticky fullWidth aria-label="Site navigation">
       <div class={navLinks}>
         <a href="/" aria-label="PHCDevworks Docs home">
-          <SpIconBox variant="primary" size="sm" pill>
-            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path
-                d="M4 18V4a2 2 0 0 1 2-2h9l3 3v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Zm7-11V2.5L17.5 9H11Z"
-              ></path>
-            </svg>
-          </SpIconBox>
-          <span>Spectre Docs</span>
+          <SpStack direction="horizontal" as="div">
+            <SpIconBox variant="primary" size="sm" pill>
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M4 18V4a2 2 0 0 1 2-2h9l3 3v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Zm7-11V2.5L17.5 9H11Z"
+                ></path>
+              </svg>
+            </SpIconBox>
+            <span>Spectre Docs</span>
+          </SpStack>
         </a>
         <a href="/design" class={active('/design') ? navLinkActive : navLink}
           >Design System</a
@@ -113,51 +115,51 @@ const packages = [
       </div>
     </SpNav>
 
-    <SpContainer as="div">
-      <SpStack direction="horizontal" as="div">
-        <SpSidebar bordered aria-label="Documentation navigation">
-          <SpStack as="div">
-            <span>Getting Started</span>
-            <nav>
-              <a href="/" class={active('/') ? sidebarLinkActive : sidebarLink}>
-                Introduction
-              </a>
-            </nav>
-          </SpStack>
+    <SpStack direction="horizontal" as="div">
+      <SpSidebar bordered aria-label="Documentation navigation">
+        <SpStack as="div">
+          <span>Getting Started</span>
+          <nav>
+            <a href="/" class={active('/') ? sidebarLinkActive : sidebarLink}>
+              Introduction
+            </a>
+          </nav>
+        </SpStack>
 
-          <SpStack as="div">
-            <span>Design System</span>
-            <nav>
-              <a
-                href="/design"
-                class={active('/design') ? sidebarLinkActive : sidebarLink}
-              >
-                Overview
-              </a>
-              {
-                packages.map((pkg) => (
-                  <SpStack as="div">
-                    <a
-                      href={pkg.href}
-                      class={active(pkg.href) ? sidebarLinkActive : sidebarLink}
-                    >
-                      {pkg.label}
-                    </a>
-                    <a
-                      href={pkg.ref}
-                      class={
-                        active(pkg.ref) ? sidebarSublinkActive : sidebarSublink
-                      }
-                    >
-                      Reference
-                    </a>
-                  </SpStack>
-                ))
-              }
-            </nav>
-          </SpStack>
-        </SpSidebar>
+        <SpStack as="div">
+          <span>Design System</span>
+          <nav>
+            <a
+              href="/design"
+              class={active('/design') ? sidebarLinkActive : sidebarLink}
+            >
+              Overview
+            </a>
+            {
+              packages.map((pkg) => (
+                <SpStack as="div">
+                  <a
+                    href={pkg.href}
+                    class={active(pkg.href) ? sidebarLinkActive : sidebarLink}
+                  >
+                    {pkg.label}
+                  </a>
+                  <a
+                    href={pkg.ref}
+                    class={
+                      active(pkg.ref) ? sidebarSublinkActive : sidebarSublink
+                    }
+                  >
+                    Reference
+                  </a>
+                </SpStack>
+              ))
+            }
+          </nav>
+        </SpStack>
+      </SpSidebar>
 
+      <SpContainer as="div">
         <SpSection as="main">
           <SpStack as="div">
             <h1>{metaTitle}</h1>
@@ -169,7 +171,7 @@ const packages = [
             <slot />
           </SpStack>
         </SpSection>
-      </SpStack>
-    </SpContainer>
+      </SpContainer>
+    </SpStack>
   </body>
 </html>
