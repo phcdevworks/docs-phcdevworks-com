@@ -10,7 +10,11 @@ import {
   SpStack,
   SpSection
 } from '@phcdevworks/spectre-ui-astro'
-import { getNavLinksClasses, getNavLinkClasses } from '@phcdevworks/spectre-ui'
+import {
+  getNavLinksClasses,
+  getNavLinkClasses,
+  getSidebarLinkClasses
+} from '@phcdevworks/spectre-ui'
 
 interface Props {
   title: string
@@ -33,10 +37,10 @@ const active = (href: string) => (href.replace(/\/$/, '') || '/') === path
 const navLinks = getNavLinksClasses()
 const navLink = getNavLinkClasses()
 const navLinkActive = getNavLinkClasses({ active: true })
-const sidebarLink = getNavLinkClasses()
-const sidebarLinkActive = getNavLinkClasses({ active: true })
-const sidebarSublink = `${getNavLinkClasses()} pl-4 text-sm`
-const sidebarSublinkActive = `${getNavLinkClasses({ active: true })} pl-4 text-sm`
+const sidebarLink = getSidebarLinkClasses()
+const sidebarLinkActive = getSidebarLinkClasses({ active: true })
+const sidebarSublink = getSidebarLinkClasses()
+const sidebarSublinkActive = getSidebarLinkClasses({ active: true })
 
 const packages = [
   { href: '/design/tokens', ref: '/design/tokens-reference', label: 'Tokens' },
@@ -111,51 +115,55 @@ const packages = [
       </div>
     </SpNav>
 
-    <SpStack direction="horizontal" as="div">
-      <SpSidebar bordered aria-label="Documentation navigation">
-        <SpStack as="div">
-          <span>Getting Started</span>
-          <nav>
-            <a href="/" class={active('/') ? sidebarLinkActive : sidebarLink}>
-              Introduction
-            </a>
-          </nav>
-        </SpStack>
+    <SpStack direction="horizontal" align="stretch" as="div">
+      <SpStack basis="sidebar" as="div">
+        <SpSidebar bordered aria-label="Documentation navigation">
+          <SpStack as="div">
+            <span>Getting Started</span>
+            <nav>
+              <a href="/" class={active('/') ? sidebarLinkActive : sidebarLink}>
+                Introduction
+              </a>
+            </nav>
+          </SpStack>
 
-        <SpStack as="div">
-          <span>Design System</span>
-          <nav>
-            <a
-              href="/design"
-              class={active('/design') ? sidebarLinkActive : sidebarLink}
-            >
-              Overview
-            </a>
-            {
-              packages.map((pkg) => (
-                <SpStack as="div">
-                  <a
-                    href={pkg.href}
-                    class={active(pkg.href) ? sidebarLinkActive : sidebarLink}
-                  >
-                    {pkg.label}
-                  </a>
-                  <a
-                    href={pkg.ref}
-                    class={
-                      active(pkg.ref) ? sidebarSublinkActive : sidebarSublink
-                    }
-                  >
-                    Reference
-                  </a>
-                </SpStack>
-              ))
-            }
-          </nav>
-        </SpStack>
-      </SpSidebar>
+          <SpStack as="div">
+            <span>Design System</span>
+            <nav>
+              <a
+                href="/design"
+                class={active('/design') ? sidebarLinkActive : sidebarLink}
+              >
+                Overview
+              </a>
+              {
+                packages.map((pkg) => (
+                  <SpStack as="div">
+                    <a
+                      href={pkg.href}
+                      class={
+                        active(pkg.href) ? sidebarLinkActive : sidebarLink
+                      }
+                    >
+                      {pkg.label}
+                    </a>
+                    <a
+                      href={pkg.ref}
+                      class={
+                        active(pkg.ref) ? sidebarSublinkActive : sidebarSublink
+                      }
+                    >
+                      Reference
+                    </a>
+                  </SpStack>
+                ))
+              }
+            </nav>
+          </SpStack>
+        </SpSidebar>
+      </SpStack>
 
-      <SpContainer as="div">
+      <SpContainer as="div" maxWidth="prose">
         <SpSection as="main">
           <SpStack as="div">
             <h1>{metaTitle}</h1>
