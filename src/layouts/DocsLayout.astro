@@ -39,8 +39,6 @@ const navLink = getNavLinkClasses()
 const navLinkActive = getNavLinkClasses({ active: true })
 const sidebarLink = getSidebarLinkClasses()
 const sidebarLinkActive = getSidebarLinkClasses({ active: true })
-const sidebarSublink = getSidebarLinkClasses()
-const sidebarSublinkActive = getSidebarLinkClasses({ active: true })
 
 const packages = [
   { href: '/design/tokens', ref: '/design/tokens-reference', label: 'Tokens' },
@@ -136,8 +134,14 @@ const packages = [
               >
                 Overview
               </a>
-              {
-                packages.map((pkg) => (
+            </nav>
+          </SpStack>
+
+          {
+            packages.map((pkg) => (
+              <SpStack as="div">
+                <span>{pkg.label}</span>
+                <nav>
                   <SpStack as="div">
                     <a
                       href={pkg.href}
@@ -145,25 +149,23 @@ const packages = [
                         active(pkg.href) ? sidebarLinkActive : sidebarLink
                       }
                     >
-                      {pkg.label}
+                      Overview
                     </a>
                     <a
                       href={pkg.ref}
-                      class={
-                        active(pkg.ref) ? sidebarSublinkActive : sidebarSublink
-                      }
+                      class={active(pkg.ref) ? sidebarLinkActive : sidebarLink}
                     >
                       Reference
                     </a>
                   </SpStack>
-                ))
-              }
-            </nav>
-          </SpStack>
+                </nav>
+              </SpStack>
+            ))
+          }
         </SpSidebar>
       </SpStack>
 
-      <SpContainer as="div" maxWidth="prose">
+      <SpContainer as="div">
         <SpSection as="main">
           <SpStack as="div">
             <h1>{metaTitle}</h1>
