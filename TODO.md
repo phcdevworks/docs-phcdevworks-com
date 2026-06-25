@@ -48,25 +48,76 @@ alignment.
 
 ### P0: Content Expansion
 
-- [ ] Add implementation guide for Spectre token usage.
-- [ ] Add implementation guide for Spectre UI component usage.
-- [ ] Add implementation guide for docs-site contribution workflow.
-- [ ] Add reference pages for the `@phcdevworks/spectre-tokens` public
-  contract.
-- [ ] Add reference pages for the `@phcdevworks/spectre-ui` component
-  surface.
-- [ ] Keep all published content synchronized with the upstream packages it
-  documents.
+- [x] Add implementation guide for Spectre token usage. —
+  `src/content/docs/guides/token-usage.md`, linked from the sidebar under
+  "Guides".
+- [x] Add implementation guide for Spectre UI component usage. —
+  `src/content/docs/guides/component-usage.md`, linked from the sidebar
+  under "Guides".
+- [x] Add implementation guide for docs-site contribution workflow. —
+  `src/content/docs/guides/contributing-content.md`, linked from the
+  sidebar under "Guides".
+- [x] Add reference pages for the `@phcdevworks/spectre-tokens` public
+  contract. — already existed (`design/tokens-reference.md`); version bumped
+  from stale 2.9.0 to the actually-installed 3.1.0.
+- [x] Add reference pages for the `@phcdevworks/spectre-ui` component
+  surface. — already existed (`design/ui-reference.md`); version bumped from
+  stale 1.9.0 to 2.4.0, and the missing layout recipe family (Container,
+  Stack, Section, Grid, Sidebar, Footer) added to the recipe table and export
+  lists.
+- [x] Keep all published content synchronized with the upstream packages it
+  documents. — corrected stale version callouts in `design/tokens.md`,
+  `design/tokens-reference.md`, `design/ui.md`, `design/ui-reference.md`,
+  `design/ui-astro.md`, `design/ui-astro-reference.md`; added the 6 missing
+  `SpContainer`/`SpStack`/`SpSection`/`SpGrid`/`SpSidebar`/`SpFooter`
+  component sections to `design/ui-astro-reference.md` (component count
+  corrected from a stale 17 to the actual 23); corrected the "no client-side
+  JavaScript" claim in `design/ui-astro.md` now that `SpSidebar` ships an
+  inline toggle script. `design/components*.md` and `design/base*.md` were
+  already accurate and needed no change. `spectre-components` and
+  `spectre-base` have no new releases to document yet — recheck when they
+  ship.
 
 ### P1: Navigation and Discoverability
 
-- [ ] Add a sidebar or top-level navigation structure that scales with
-  content growth.
-  - Do not build this before P0 content is in place.
+- [x] Fix sidebar/hamburger toggle layout in `DocsLayout.astro`. —
+  `align="stretch"` on the outer `SpStack` row was already present (landed in
+  an earlier "Refactor docs sidebar and container width" commit). The
+  remaining real defect: `SpSidebar` always renders its hamburger toggle
+  button, but this layout has no responsive collapse behavior and the
+  sidebar is always visible — so the hamburger was dead, clickable-looking UI
+  with no effect. Suppressed it via `<Fragment slot="toggle-icon" />` passed
+  to `SpSidebar`, which the component already supports for exactly this case
+  (confirmed empty `<button>` in build output). The toggle/backdrop
+  infrastructure stays in the DOM (harmless) for if/when responsive collapse
+  is implemented.
+- [x] Add a sidebar or top-level navigation structure that scales with
+  content growth. — added a "Guides" section to the sidebar in
+  `DocsLayout.astro` for the new P0 implementation guides; existing
+  per-package Overview/Reference pattern reused, no new structure needed yet.
 - [ ] Evaluate search or filter options supported cleanly by Astro or
   Cloudflare.
-- [ ] Keep navigation aligned with the route structure documented in
-  `CLAUDE.md`.
+  - **Recommendation:** [Pagefind](https://pagefind.app/) is the best fit —
+    it's a static-search-index generator built for static-site generators,
+    requires no server/API (works on Cloudflare's static asset hosting as
+    deployed here), indexes the built `dist/` output directly via a
+    post-build step, and has an official Astro integration
+    (`astro-pagefind`). Algolia DocSearch is the other common choice for docs
+    sites but requires an external hosted index and an application process —
+    overkill for current content volume and adds an external dependency this
+    site doesn't otherwise have.
+  - **Recommended trigger to implement, not now:** current page count (15)
+    doesn't yet justify a search UI; revisit once Phase 2 P0 content volume
+    grows enough that browsing the sidebar alone becomes slow (rule of thumb:
+    once any one "Design System" or "Guides" section sidebar list exceeds
+    ~15-20 links, or once search becomes a real user request).
+  - This is an evaluation deliverable, not an implementation task — no code
+    added this pass.
+- [x] Keep navigation aligned with the route structure documented in
+  `CLAUDE.md`. — `CLAUDE.md` documents `src/pages/` generically (route-level
+  Astro pages) rather than enumerating specific routes; the new
+  collection-driven `/guides/*` routes fit that existing description without
+  requiring a `CLAUDE.md` change.
 
 ### P2: Ecosystem Alignment Automation
 

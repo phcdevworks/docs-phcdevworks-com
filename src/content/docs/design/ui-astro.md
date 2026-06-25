@@ -3,18 +3,21 @@ title: Spectre UI Astro
 description: Astro-native components for the Spectre UI design system — SSR-safe, token-driven, and ready to drop into any Astro project.
 ---
 
-`@phcdevworks/spectre-ui-astro` (current version **2.7.0**) provides
+`@phcdevworks/spectre-ui-astro` (current version **3.1.0**) provides
 Astro-native components for [Spectre UI](/design/ui). Drop Spectre components
 into any Astro project — SSR, SSG, or hybrid — without writing CSS, redefining
 tokens, or reimplementing recipe logic.
 
 ## What Astro developers get
 
-- **Seventeen ready-to-use Astro components** — alerts, avatars, badges,
-  buttons, cards, dropdowns, icon boxes, inputs, modals, navs, pricing cards,
-  ratings, spinners, tags, testimonials, toasts, and tooltips
-- **SSR-safe by default** — deterministic markup, no client-side JavaScript,
-  stable accessibility wiring
+- **Twenty-three ready-to-use Astro components** — alerts, avatars, badges,
+  buttons, cards, containers, dropdowns, footers, grids, icon boxes, inputs,
+  modals, navs, pricing cards, ratings, sections, sidebars, spinners, stacks,
+  tags, testimonials, toasts, and tooltips
+- **SSR-safe by default** — deterministic markup and stable accessibility
+  wiring. Every component ships no client-side JavaScript except `SpSidebar`,
+  which owns its own toggle/backdrop interaction via a small scoped inline
+  `<script>`
 - **Thin wrapper pattern** — styling comes entirely from [Spectre
   UI](/design/ui); this package adds Astro slots, typed props, and framework
   ergonomics
@@ -251,6 +254,6 @@ Tokens define meaning. UI defines the styling contract. Components define
 framework-agnostic custom element behavior. This package defines Astro
 delivery and consumes the upstream UI contract directly.
 
-For the full component reference (props, slots, and examples for all 17
+For the full component reference (props, slots, and examples for all 23
 components), package exports, and stability table, see the [Spectre UI Astro
 reference](/design/ui-astro-reference).

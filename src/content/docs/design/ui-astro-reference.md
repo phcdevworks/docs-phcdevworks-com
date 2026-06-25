@@ -1,9 +1,9 @@
 ---
 title: Spectre UI Astro — Component Reference
-description: Props, slots, and examples for all 17 Spectre UI Astro components, plus package exports and component stability.
+description: Props, slots, and examples for all 23 Spectre UI Astro components, plus package exports and component stability.
 ---
 
-Reference for `@phcdevworks/spectre-ui-astro` (current version **2.7.0**). For
+Reference for `@phcdevworks/spectre-ui-astro` (current version **3.1.0**). For
 an introduction, installation, and quick start, see the [Spectre UI Astro
 overview](/design/ui-astro).
 
@@ -547,6 +547,155 @@ slot is used.
 <SpTooltip placement="bottom" visible>Save your changes</SpTooltip>
 ```
 
+## SpContainer
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `maxWidth` | `ContainerMaxWidth` | — | Max-width variant: `"prose"` (omit for the default page max-width) |
+| `as` | `"div" \| "section" \| "main" \| "article" \| "aside"` | `"div"` | Rendered element |
+| `id` | `string` | — | Element ID |
+| `aria-label` | `string` | — | Accessible label |
+| `aria-describedby` | `string` | — | Associates a description element |
+| `class` | `string` | — | Additional CSS classes |
+
+```astro
+<SpContainer>
+  <p>Default page-width container.</p>
+</SpContainer>
+
+<SpContainer maxWidth="prose" as="article">
+  <p>Readable prose-width column.</p>
+</SpContainer>
+```
+
+## SpStack
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `direction` | `StackDirection` | `"vertical"` | Layout direction: `"vertical"` `"horizontal"` |
+| `basis` | `StackBasis` | — | Fixed flex-child width: `"sidebar"` (omit for `flex: 1` auto-sizing) |
+| `align` | `StackAlign` | `"center"` | Cross-axis alignment: `"center"` `"stretch"` |
+| `as` | `"div" \| "section" \| "ul" \| "ol" \| "nav"` | `"div"` | Rendered element |
+| `id` | `string` | — | Element ID |
+| `aria-label` | `string` | — | Accessible label |
+| `aria-describedby` | `string` | — | Associates a description element |
+| `class` | `string` | — | Additional CSS classes |
+
+```astro
+<!-- Vertical stack (default) -->
+<SpStack>
+  <h2>Title</h2>
+  <p>Body content</p>
+</SpStack>
+
+<!-- Horizontal app-shell row: fixed-width sidebar stretched to match main content height -->
+<SpStack direction="horizontal" align="stretch" as="div">
+  <SpStack basis="sidebar" as="div">
+    <SpSidebar>...</SpSidebar>
+  </SpStack>
+  <SpContainer as="main">...</SpContainer>
+</SpStack>
+```
+
+## SpSection
+
+`SpSection` accepts no recipe options — it renders the `sp-section` class with
+no variants.
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `as` | `"section" \| "div" \| "article" \| "aside" \| "main"` | `"section"` | Rendered element |
+| `id` | `string` | — | Element ID |
+| `aria-label` | `string` | — | Accessible label |
+| `aria-describedby` | `string` | — | Associates a description element |
+| `class` | `string` | — | Additional CSS classes |
+
+```astro
+<SpSection as="main">
+  <h1>Page title</h1>
+  <p>Page content.</p>
+</SpSection>
+```
+
+## SpGrid
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `columns` | `1 \| 2 \| 3 \| 4 \| 6 \| 12` | `1` | Target column count at `breakpoints.lg`+ |
+| `gap` | `GridGap` | `"md"` | Gap size: `"sm"` `"md"` `"lg"` |
+| `as` | `"div" \| "section" \| "ul" \| "ol"` | `"div"` | Rendered element |
+| `id` | `string` | — | Element ID |
+| `aria-label` | `string` | — | Accessible label |
+| `aria-describedby` | `string` | — | Associates a description element |
+| `class` | `string` | — | Additional CSS classes |
+
+Column count is responsive by convention: 1 column below `breakpoints.md`,
+half the target count at `md`, full target count at `breakpoints.lg`+.
+
+```astro
+<SpGrid columns={3} gap="lg">
+  <SpCard>Item 1</SpCard>
+  <SpCard>Item 2</SpCard>
+  <SpCard>Item 3</SpCard>
+</SpGrid>
+```
+
+## SpSidebar
+
+`SpSidebar` is the first component in this adapter to own interactive client
+state. It renders a wrapper element carrying `data-sidebar-open` (closed by
+default, SSR-safe with no layout shift on hydration), a hamburger toggle
+button, and a backdrop element. An inline `<script>` binds the toggle click
+handler and backdrop-tap-to-close behavior, scoped per-instance via a
+`data-sidebar-bound` guard — no framework hydration directive is required.
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `bordered` | `boolean` | — | Applies a border |
+| `as` | `"aside" \| "div" \| "nav"` | `"aside"` | Rendered element for the sidebar content |
+| `id` | `string` | — | Element ID |
+| `aria-label` | `string` | — | Accessible label for the sidebar landmark |
+| `toggleLabel` | `string` | `"Toggle sidebar"` | Accessible label for the hamburger toggle button |
+| `class` | `string` | — | Additional CSS classes |
+
+| Slot | Description |
+|---|---|
+| `toggle-icon` | Custom toggle icon markup. Defaults to `&#9776;` (☰). Pass an empty `<Fragment slot="toggle-icon" />` to suppress the icon entirely. |
+| *(default)* | Sidebar content (typically nav links) |
+
+```astro
+<SpStack direction="horizontal" align="stretch" as="div">
+  <SpStack basis="sidebar" as="div">
+    <SpSidebar bordered aria-label="Documentation navigation" toggleLabel="Toggle docs nav">
+      <nav>
+        <a href="/">Introduction</a>
+      </nav>
+    </SpSidebar>
+  </SpStack>
+  <SpContainer as="main">...</SpContainer>
+</SpStack>
+```
+
+Use `getSidebarLinkClasses` (re-exported, see below) for individual nav links
+inside the default slot, with an `active` option for the current route.
+
+## SpFooter
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `bordered` | `boolean` | — | Applies a border |
+| `fullWidth` | `boolean` | — | Stretches to full width |
+| `as` | `"footer" \| "div" \| "section"` | `"footer"` | Rendered element |
+| `id` | `string` | — | Element ID |
+| `aria-label` | `string` | — | Accessible label |
+| `class` | `string` | — | Additional CSS classes |
+
+```astro
+<SpFooter bordered fullWidth>
+  <p>&copy; 2026 PHCDevworks.</p>
+</SpFooter>
+```
+
 ## Recipe helpers reference
 
 The package re-exports class recipe functions from [Spectre UI](/design/ui):
@@ -558,9 +707,12 @@ The package re-exports class recipe functions from [Spectre UI](/design/ui):
 | `getButtonClasses` | Button class generation |
 | `getCardClasses` | Card class generation |
 | `getBadgeClasses` | Badge class generation |
+| `getContainerClasses` | Container class generation |
 | `getDropdownClasses` | Dropdown root classes |
 | `getDropdownMenuClasses` | Dropdown menu container |
 | `getDropdownItemClasses` | Individual dropdown item |
+| `getFooterClasses` | Footer class generation |
+| `getGridClasses` | Grid class generation |
 | `getIconBoxClasses` | Icon box class generation |
 | `getInputClasses` | Input class generation |
 | `getModalClasses` | Modal root classes |
@@ -577,6 +729,12 @@ The package re-exports class recipe functions from [Spectre UI](/design/ui):
 | `getRatingStarsClasses` | Rating star container |
 | `getRatingStarClasses` | Individual star element |
 | `getRatingTextClasses` | Rating text element |
+| `getSectionClasses` | Section class generation |
+| `getSidebarClasses` | Sidebar root classes |
+| `getSidebarLinkClasses` | Individual sidebar link |
+| `getSidebarBackdropClasses` | Sidebar backdrop classes |
+| `getSidebarToggleClasses` | Sidebar toggle button classes |
+| `getStackClasses` | Stack class generation |
 | `getTestimonialClasses` | Testimonial root classes |
 | `getTestimonialQuoteClasses` | Quote wrapper |
 | `getTestimonialAuthorClasses` | Author section wrapper |
@@ -591,12 +749,16 @@ Recipe option and variant types are also re-exported, including
 `AlertRecipeOptions`, `AlertVariant`, `AlertSize`, `AvatarRecipeOptions`,
 `AvatarShape`, `AvatarSize`, `BadgeRecipeOptions`, `BadgeVariant`,
 `BadgeSize`, `ButtonRecipeOptions`, `ButtonVariant`, `ButtonSize`,
-`CardRecipeOptions`, `CardVariant`, `DropdownRecipeOptions`,
+`CardRecipeOptions`, `CardVariant`, `ContainerRecipeOptions`,
+`ContainerMaxWidth`, `DropdownRecipeOptions`,
 `DropdownMenuRecipeOptions`, `DropdownItemRecipeOptions`,
-`DropdownPlacement`, `IconBoxRecipeOptions`, `IconBoxVariant`,
+`DropdownPlacement`, `FooterRecipeOptions`, `GridRecipeOptions`,
+`GridColumns`, `GridGap`, `IconBoxRecipeOptions`, `IconBoxVariant`,
 `IconBoxSize`, `InputRecipeOptions`, `InputState`, `InputSize`,
 `ModalRecipeOptions`, `ModalOverlayRecipeOptions`, `NavRecipeOptions`,
 `NavLinkRecipeOptions`, `PricingCardRecipeOptions`, `RatingRecipeOptions`,
+`SectionRecipeOptions`, `SidebarRecipeOptions`, `SidebarLinkRecipeOptions`,
+`StackRecipeOptions`, `StackDirection`, `StackBasis`, `StackAlign`,
 `TestimonialRecipeOptions`, `ToastRecipeOptions`, `ToastIconRecipeOptions`,
 `ToastVariant`, `TooltipRecipeOptions`, `TooltipPlacement`.
 
@@ -606,8 +768,9 @@ Recipe option and variant types are also re-exported, including
 
 ```ts
 import {
-  SpAlert, SpAvatar, SpBadge, SpButton, SpCard, SpDropdown, SpIconBox,
-  SpInput, SpModal, SpNav, SpPricingCard, SpRating, SpSpinner, SpTag,
+  SpAlert, SpAvatar, SpBadge, SpButton, SpCard, SpContainer, SpDropdown,
+  SpFooter, SpGrid, SpIconBox, SpInput, SpModal, SpNav, SpPricingCard,
+  SpRating, SpSection, SpSidebar, SpSpinner, SpStack, SpTag,
   SpTestimonial, SpToast, SpTooltip,
 } from '@phcdevworks/spectre-ui-astro'
 
@@ -627,14 +790,20 @@ import SpAvatar    from '@phcdevworks/spectre-ui-astro/components/SpAvatar.astro
 import SpBadge     from '@phcdevworks/spectre-ui-astro/components/SpBadge.astro'
 import SpButton    from '@phcdevworks/spectre-ui-astro/components/SpButton.astro'
 import SpCard      from '@phcdevworks/spectre-ui-astro/components/SpCard.astro'
+import SpContainer from '@phcdevworks/spectre-ui-astro/components/SpContainer.astro'
 import SpDropdown  from '@phcdevworks/spectre-ui-astro/components/SpDropdown.astro'
+import SpFooter    from '@phcdevworks/spectre-ui-astro/components/SpFooter.astro'
+import SpGrid      from '@phcdevworks/spectre-ui-astro/components/SpGrid.astro'
 import SpIconBox   from '@phcdevworks/spectre-ui-astro/components/SpIconBox.astro'
 import SpInput     from '@phcdevworks/spectre-ui-astro/components/SpInput.astro'
 import SpModal     from '@phcdevworks/spectre-ui-astro/components/SpModal.astro'
 import SpNav       from '@phcdevworks/spectre-ui-astro/components/SpNav.astro'
 import SpPricingCard  from '@phcdevworks/spectre-ui-astro/components/SpPricingCard.astro'
 import SpRating    from '@phcdevworks/spectre-ui-astro/components/SpRating.astro'
+import SpSection   from '@phcdevworks/spectre-ui-astro/components/SpSection.astro'
+import SpSidebar   from '@phcdevworks/spectre-ui-astro/components/SpSidebar.astro'
 import SpSpinner   from '@phcdevworks/spectre-ui-astro/components/SpSpinner.astro'
+import SpStack     from '@phcdevworks/spectre-ui-astro/components/SpStack.astro'
 import SpTag       from '@phcdevworks/spectre-ui-astro/components/SpTag.astro'
 import SpTestimonial from '@phcdevworks/spectre-ui-astro/components/SpTestimonial.astro'
 import SpToast     from '@phcdevworks/spectre-ui-astro/components/SpToast.astro'
@@ -657,14 +826,20 @@ under `componentFamilies`.
 | badge | **stable** |
 | button | **stable** |
 | card | **stable** |
+| container | **stable** |
 | dropdown | **stable** |
+| footer | **stable** |
+| grid | **stable** |
 | icon-box | **stable** |
 | input | **stable** |
 | modal | **stable** |
 | nav | **stable** |
 | pricing-card | **stable** |
 | rating | **stable** |
+| section | **stable** |
+| sidebar | **stable** |
 | spinner | **stable** |
+| stack | **stable** |
 | tag | **stable** |
 | testimonial | **stable** |
 | toast | **stable** |
@@ -678,4 +853,4 @@ under `componentFamilies`.
 - **not yet supported** — families present in the upstream Spectre UI surface
   that this adapter has not yet bound.
 
-All 17 families in the current release are **stable**.
+All 23 families in the current release are **stable**.

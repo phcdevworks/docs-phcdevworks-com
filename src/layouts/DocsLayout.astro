@@ -116,6 +116,7 @@ const packages = [
     <SpStack direction="horizontal" align="stretch" as="div">
       <SpStack basis="sidebar" as="div">
         <SpSidebar bordered aria-label="Documentation navigation">
+          <Fragment slot="toggle-icon" />
           <SpStack as="div">
             <span>Getting Started</span>
             <nav>
@@ -134,6 +135,44 @@ const packages = [
               >
                 Overview
               </a>
+            </nav>
+          </SpStack>
+
+          <SpStack as="div">
+            <span>Guides</span>
+            <nav>
+              <SpStack as="div">
+                <a
+                  href="/guides/token-usage"
+                  class={
+                    active('/guides/token-usage')
+                      ? sidebarLinkActive
+                      : sidebarLink
+                  }
+                >
+                  Token Usage
+                </a>
+                <a
+                  href="/guides/component-usage"
+                  class={
+                    active('/guides/component-usage')
+                      ? sidebarLinkActive
+                      : sidebarLink
+                  }
+                >
+                  Component Usage
+                </a>
+                <a
+                  href="/guides/contributing-content"
+                  class={
+                    active('/guides/contributing-content')
+                      ? sidebarLinkActive
+                      : sidebarLink
+                  }
+                >
+                  Contributing Content
+                </a>
+              </SpStack>
             </nav>
           </SpStack>
 

@@ -3,7 +3,7 @@ title: Spectre UI — Reference
 description: Recipe catalog, package exports, and contract guarantees for @phcdevworks/spectre-ui.
 ---
 
-Reference for `@phcdevworks/spectre-ui` (current version **1.9.0**). For an
+Reference for `@phcdevworks/spectre-ui` (current version **2.4.0**). For an
 introduction, installation, and quick start, see the [Spectre UI
 overview](/design/ui).
 
@@ -37,6 +37,15 @@ All options are optional and fall back to sensible defaults.
 | Tooltip | `getTooltipClasses` | placement: `top` `bottom` `left` `right` | — | `visible` |
 | Dropdown | `getDropdownClasses` | menu placement: `bottom-start` `bottom-end` `top-start` `top-end` | — | `fullWidth`, item: `active` `disabled` |
 | Modal | `getModalClasses` | — | — | `open` `fullWidth` |
+| Container | `getContainerClasses` | `maxWidth`: `none` `prose` | — | — |
+| Stack | `getStackClasses` | `direction`: `vertical` `horizontal`, `basis`: `none` `sidebar`, `align`: `center` `stretch` | — | — |
+| Section | `getSectionClasses` | — | — | — (no options) |
+| Grid | `getGridClasses` | `columns`: `1` `2` `3` `4` `6` `12` | `gap`: `sm` `md` `lg` | — |
+| Sidebar | `getSidebarClasses` | — | — | `bordered` |
+| Sidebar link | `getSidebarLinkClasses` | — | — | `active` `disabled` `hovered` `focused` |
+| Sidebar backdrop | `getSidebarBackdropClasses` | — | — | — (no options) |
+| Sidebar toggle | `getSidebarToggleClasses` | — | — | — (no options) |
+| Footer | `getFooterClasses` | — | — | `bordered` `fullWidth` |
 
 Each recipe family also exports sub-element helpers for its structural parts
 (labels, wrappers, sub-containers, text elements) — see root recipe helper
@@ -63,14 +72,20 @@ Root recipe functions:
 - `getBadgeClasses`
 - `getButtonClasses`
 - `getCardClasses`
+- `getContainerClasses`
 - `getDropdownClasses`
+- `getFooterClasses`
+- `getGridClasses`
 - `getIconBoxClasses`
 - `getInputClasses`
 - `getModalClasses`
 - `getNavClasses`
 - `getPricingCardClasses`
 - `getRatingClasses`
+- `getSectionClasses`
+- `getSidebarClasses`
 - `getSpinnerClasses`
+- `getStackClasses`
 - `getTagClasses`
 - `getTestimonialClasses`
 - `getToastClasses`
@@ -94,6 +109,9 @@ Root recipe helper functions:
 - `getRatingStarClasses`
 - `getRatingStarsClasses`
 - `getRatingTextClasses`
+- `getSidebarBackdropClasses`
+- `getSidebarLinkClasses`
+- `getSidebarToggleClasses`
 - `getTestimonialAuthorClasses`
 - `getTestimonialAuthorInfoClasses`
 - `getTestimonialAuthorNameClasses`
