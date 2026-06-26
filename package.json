@@ -26,7 +26,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "check": "npm run build && npm run typecheck",
+    "check": "npm run build && npm run typecheck && npm run check:version-sync",
+    "check:version-sync": "node scripts/check-readme-version.mjs",
     "preview": "npm run build && wrangler dev",
     "astro": "astro",
     "typecheck": "astro check",

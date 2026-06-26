@@ -118,6 +118,32 @@ alignment.
   Astro pages) rather than enumerating specific routes; the new
   collection-driven `/guides/*` routes fit that existing description without
   requiring a `CLAUDE.md` change.
+- [ ] Sidebar needs full-height (no gap below a short nav list), visually
+  distinguished section headers (Tokens, UI, Guides, etc. read as plain text
+  today, no different from a link), and proper indentation for parent/child
+  links (e.g. "Overview"/"Reference" under a package name currently sit at
+  the same indent as the package label).
+  - **Blocked on upstream `project-design/spectre-ui`** — no
+    `getSidebarHeaderClasses()` recipe or header CSS exists yet, and
+    `getSidebarLinkClasses` has no indent/`level` option. The `.sp-sidebar`
+    docked-height behavior (`height: auto` instead of stretching) also needs
+    a fix there. Tracked in `spectre-ui/TODO.md` Phase 5 P0 (three new
+    items added after the existing toggle z-index fix).
+  - **Blocked on upstream `project-design/spectre-ui-astro`** — once
+    `spectre-ui` ships the recipe additions, the Astro adapter needs to
+    decide and implement how `SpSidebar` exposes header rendering (prop vs.
+    documented manual recipe call) and thread the `level` option through.
+    Tracked as new Phase 9 in `spectre-ui-astro/TODO.md`.
+  - **This repo's work, once unblocked:** bump
+    `@phcdevworks/spectre-ui`/`@phcdevworks/spectre-ui-astro` dependency
+    ranges, then update the sidebar nav groups in `DocsLayout.astro` (Getting
+    Started, Design System, Guides, and the per-package Tokens/UI/UI
+    Astro/Components/Base sections) to use the new header classes for group
+    labels and `level: 'child'` for the Overview/Reference links nested under
+    each package.
+  - Do not attempt a local-CSS workaround in this repo for any part of this —
+    header/indent styling and full-height sidebar sizing belong in the
+    upstream recipe contract, not here.
 
 ### P2: Ecosystem Alignment Automation
 
