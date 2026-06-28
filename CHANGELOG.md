@@ -9,6 +9,8 @@ practical.
 
 ### Fixed
 
+- Added `@types/node` so `scripts/check-readme-version.ts` typechecks under
+  `astro check` (was failing with 4 `tsc` errors for missing Node globals).
 - Removed prohibited terminology from `src/pages/index.astro` — replaced
   "Arsenal", "8-Layer", and layer-naming language with accurate Spectre design
   system descriptions.

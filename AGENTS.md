@@ -75,11 +75,36 @@ this file for their own scope. Use this file for shared coordination policy.
   in the matching agent file.
 - Update related agent docs together when scripts, validation gates, or
   ownership boundaries change.
+- All `scripts/` tooling is TypeScript (`.ts`), run via
+  `node --experimental-strip-types`; never add a new `.js`/`.mjs` script.
+  Convert `scripts/screenshot.js` to `.ts` if it is touched for unrelated work.
 
 ## Verification
 
 `npm run check` is the standard validation gate — it runs `npm run build` then
 `npm run typecheck`. Run it before any handoff when practical.
+
+## Upstream Requests and Roadmap Self-Expansion
+
+Full directive: project-team [AGENTS.md](../AGENTS.md) "Upstream Requests and
+Roadmap Self-Expansion." Applied to this repo:
+
+- This repo's upstream is `project-design` (`spectre-tokens`, `spectre-ui`,
+  `spectre-ui-astro`). If a docs page needs a token, recipe, or component that
+  doesn't exist upstream, append the request to the owning `project-design`
+  repo's `TODO.md` under `## Requested by Downstream`, dated, with the reason
+  and a link back to this repo's own TODO.md/ROADMAP.md.
+- This repo has no downstream consumer within the workspace. No `##
+  Requested by Downstream` section is expected here, but keep one ready if
+  that ever changes.
+- This repo's own `ROADMAP.md` may be proactively expanded with new or
+  reordered phases by the agent's own analysis — but never mark a phase
+  delivered without `npm run check` (build) passing, and never let a
+  self-expanded phase drift this repo into owning company-wide positioning —
+  that belongs to `www-phcdevworks-com` (see Mission above).
+- Surface any new TODO request or roadmap expansion in the handoff for Bradley
+  Potts in the same change it was made, and reflect cross-repo-relevant
+  changes in the project-team's own ROADMAP.md/TODO.md.
 
 ## Pull Request Creation
 
