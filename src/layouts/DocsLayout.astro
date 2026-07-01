@@ -13,7 +13,8 @@ import {
 import {
   getNavLinksClasses,
   getNavLinkClasses,
-  getSidebarLinkClasses
+  getSidebarLinkClasses,
+  getSidebarHeaderClasses
 } from '@phcdevworks/spectre-ui'
 
 interface Props {
@@ -39,6 +40,7 @@ const navLink = getNavLinkClasses()
 const navLinkActive = getNavLinkClasses({ active: true })
 const sidebarLink = getSidebarLinkClasses()
 const sidebarLinkActive = getSidebarLinkClasses({ active: true })
+const sidebarHeader = getSidebarHeaderClasses()
 
 const packages = [
   { href: '/design/tokens', ref: '/design/tokens-reference', label: 'Tokens' },
@@ -116,9 +118,8 @@ const packages = [
     <SpStack direction="horizontal" align="stretch" as="div">
       <SpStack basis="sidebar" as="div">
         <SpSidebar bordered aria-label="Documentation navigation">
-          <Fragment slot="toggle-icon" />
           <SpStack as="div">
-            <span>Getting Started</span>
+            <span class={sidebarHeader}>Getting Started</span>
             <nav>
               <a href="/" class={active('/') ? sidebarLinkActive : sidebarLink}>
                 Introduction
@@ -127,7 +128,7 @@ const packages = [
           </SpStack>
 
           <SpStack as="div">
-            <span>Design System</span>
+            <span class={sidebarHeader}>Design System</span>
             <nav>
               <a
                 href="/design"
@@ -139,7 +140,7 @@ const packages = [
           </SpStack>
 
           <SpStack as="div">
-            <span>Guides</span>
+            <span class={sidebarHeader}>Guides</span>
             <nav>
               <SpStack as="div">
                 <a
@@ -179,7 +180,7 @@ const packages = [
           {
             packages.map((pkg) => (
               <SpStack as="div">
-                <span>{pkg.label}</span>
+                <span class={sidebarHeader}>{pkg.label}</span>
                 <nav>
                   <SpStack as="div">
                     <a
