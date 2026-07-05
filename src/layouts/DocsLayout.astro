@@ -90,11 +90,15 @@ const generatedPackages = [
     <meta name="description" content={metaDesc} />
     <script is:inline>
       ;(function () {
-        var dark = window.matchMedia('(prefers-color-scheme: dark)').matches
-        document.documentElement.setAttribute(
-          'data-spectre-theme',
-          dark ? 'dark' : 'light'
-        )
+        function applyTheme() {
+          var dark = window.matchMedia('(prefers-color-scheme: dark)').matches
+          document.documentElement.setAttribute(
+            'data-spectre-theme',
+            dark ? 'dark' : 'light'
+          )
+        }
+        applyTheme()
+        document.addEventListener('astro:after-swap', applyTheme)
         window
           .matchMedia('(prefers-color-scheme: dark)')
           .addEventListener('change', function (e) {
