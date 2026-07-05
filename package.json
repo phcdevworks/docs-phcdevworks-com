@@ -24,10 +24,11 @@
     "cloudflare"
   ],
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
+    "dev": "npm run sync:package-docs && astro dev",
+    "build": "npm run sync:package-docs && astro build",
     "check": "npm run build && npm run typecheck && npm run check:version-sync",
     "check:version-sync": "node --experimental-strip-types scripts/check-readme-version.ts",
+    "sync:package-docs": "node --experimental-strip-types scripts/sync-package-docs.ts",
     "preview": "npm run build && wrangler dev",
     "astro": "astro",
     "typecheck": "astro check",

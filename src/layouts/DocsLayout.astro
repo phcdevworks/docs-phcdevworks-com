@@ -57,6 +57,26 @@ const packages = [
   },
   { href: '/design/base', ref: '/design/base-reference', label: 'Base' }
 ] as const
+
+const generatedPackages = [
+  { area: 'project-design', label: 'Design System', repos: [
+    { href: '/packages/spectre-tokens', label: 'Spectre Tokens' },
+    { href: '/packages/spectre-ui', label: 'Spectre UI' },
+    { href: '/packages/spectre-ui-astro', label: 'Spectre UI Astro' },
+    { href: '/packages/spectre-components', label: 'Spectre Components' },
+    { href: '/packages/spectre-base', label: 'Spectre Base' }
+  ] },
+  { area: 'project-shell', label: 'App Shell', repos: [
+    { href: '/packages/spectre-shell', label: 'Spectre Shell' },
+    { href: '/packages/spectre-shell-router', label: 'Spectre Shell Router' },
+    { href: '/packages/spectre-shell-signals', label: 'Spectre Shell Signals' },
+    { href: '/packages/spectre-init', label: 'Spectre Init' },
+    { href: '/packages/spectre-manifest', label: 'Spectre Manifest' }
+  ] },
+  { area: 'project-plugins', label: 'Plugins', repos: [
+    { href: '/packages/spectre-icons', label: 'Spectre Icons' }
+  ] }
+] as const
 ---
 
 <!doctype html>
@@ -197,6 +217,26 @@ const packages = [
                     >
                       Reference
                     </a>
+                  </SpStack>
+                </nav>
+              </SpStack>
+            ))
+          }
+
+          {
+            generatedPackages.map((group) => (
+              <SpStack as="div">
+                <span class={sidebarHeader}>{group.label}</span>
+                <nav>
+                  <SpStack as="div">
+                    {group.repos.map((repo) => (
+                      <a
+                        href={repo.href}
+                        class={active(repo.href) ? sidebarLinkActive : sidebarLink}
+                      >
+                        {repo.label}
+                      </a>
+                    ))}
                   </SpStack>
                 </nav>
               </SpStack>

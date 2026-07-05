@@ -2,6 +2,8 @@
 dist/
 # generated types
 .astro/
+# fetched from source repos on every build, see scripts/sync-package-docs.ts
+src/content/docs/packages/
 
 # dependencies
 node_modules/
