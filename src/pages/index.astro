@@ -1,7 +1,7 @@
 ---
+import { getCollection } from 'astro:content'
 import {
   SpAlert,
-  SpBadge,
   SpButton,
   SpCard,
   SpGrid,
@@ -9,53 +9,17 @@ import {
 } from '@phcdevworks/spectre-ui-astro'
 import DocsLayout from '../layouts/DocsLayout.astro'
 
-const packages = [
-  {
-    version: 'v2.9.0',
-    title: 'Spectre Tokens',
-    description:
-      'Design-token contract — colors, spacing, typography, and semantic roles as CSS variables, JS/TS exports, and a Tailwind preset.',
-    href: '/design/tokens',
-    ref: '/design/tokens-reference',
-    refLabel: 'Reference'
-  },
-  {
-    version: 'v1.9.0',
-    title: 'Spectre UI',
-    description:
-      'Precompiled CSS bundles, Tailwind helpers, and type-safe class recipes for 17 UI patterns — buttons, cards, inputs, badges, and more.',
-    href: '/design/ui',
-    ref: '/design/ui-reference',
-    refLabel: 'Reference'
-  },
-  {
-    version: 'v2.7.0',
-    title: 'Spectre UI Astro',
-    description:
-      '17 SSR-safe Astro components with typed props, named slots, and polymorphic rendering. SpButton, SpCard, SpInput, SpModal, SpNav, and more.',
-    href: '/design/ui-astro',
-    ref: '/design/ui-astro-reference',
-    refLabel: 'Components'
-  },
-  {
-    version: 'v1.5.0',
-    title: 'Spectre Components',
-    description:
-      '18 Lit custom elements — light-DOM, ARIA-forwarding, framework-agnostic. Works in React, Vue, Astro, and plain HTML.',
-    href: '/design/components',
-    ref: '/design/components-reference',
-    refLabel: 'Reference'
-  },
-  {
-    version: 'v1.0.0',
-    title: 'Spectre Base',
-    description:
-      'WordPress theme shell with a Vite + TypeScript build pipeline. Delivers tokens, UI, and web components to WordPress sites.',
-    href: '/design/base',
-    ref: '/design/base-reference',
-    refLabel: 'Reference'
-  }
-] as const
+const packageEntries = await getCollection('docs', (entry) =>
+  entry.id.startsWith('packages/')
+)
+
+const packages = packageEntries
+  .map((entry) => ({
+    title: entry.data.title,
+    description: entry.data.description,
+    href: `/${entry.id}`
+  }))
+  .sort((a, b) => a.title.localeCompare(b.title))
 ---
 
 <DocsLayout
@@ -63,7 +27,7 @@ const packages = [
   description="The official reference for the Spectre design system — tokens, UI, Astro components, web components, and the WordPress theme shell."
 >
   <SpAlert variant="info" size="sm">
-    Early Access — documentation is actively expanding. All five packages are
+    Early Access — documentation is actively expanding. All packages are
     covered.
   </SpAlert>
 
@@ -72,41 +36,14 @@ const packages = [
       packages.map((pkg) => (
         <SpCard variant="elevated" padded fullHeight>
           <SpStack as="div">
-            <SpStack direction="horizontal" as="div">
-              <SpBadge variant="primary" size="sm">
-                {pkg.version}
-              </SpBadge>
-            </SpStack>
             <h3>{pkg.title}</h3>
             <p>{pkg.description}</p>
-            <SpStack direction="horizontal" as="div">
-              <SpButton variant="primary" size="sm" as="a" href={pkg.href}>
-                Overview
-              </SpButton>
-              <SpButton variant="secondary" size="sm" as="a" href={pkg.ref}>
-                {pkg.refLabel}
-              </SpButton>
-            </SpStack>
+            <SpButton variant="primary" size="sm" as="a" href={pkg.href}>
+              Overview
+            </SpButton>
           </SpStack>
         </SpCard>
       ))
     }
-
-    <SpCard
-      variant="outline"
-      padded
-      interactive
-      as="a"
-      href="/design"
-      aria-label="Design system overview"
-    >
-      <SpStack as="div">
-        <h3>Design System Overview</h3>
-        <p>
-          How the five layers fit together — architecture diagram, dependency
-          chain, and where to start.
-        </p>
-      </SpStack>
-    </SpCard>
   </SpGrid>
 </DocsLayout>
