@@ -9,25 +9,14 @@
 | Package/artifact | `docs-phcdevworks-com` |
 | Validation gate | `npm run check` |
 
-## Standard Authority Model
+## Standard Authority Model and Handoff
 
-| Agent | Role | Authority |
-|-------|------|-----------|
-| Claude Code | Lead implementation and validation | [CLAUDE.md](CLAUDE.md) |
-| OpenAI Codex | Documentation, release readiness, stabilization, and repo hygiene | [CODEX.md](CODEX.md) |
-| ChatGPT | Strategy, coordination, prompt design, and external review | Support only |
-| GitHub Copilot | Development assistance | [COPILOT.md](COPILOT.md) |
-| Google Jules | Bounded automated maintenance | [JULES.md](JULES.md) |
-
-Bradley Potts holds final authority for commits, merges, tags, publishing, and
-releases.
-
-## Standard Handoff
-
-Every AI-prepared change should report files changed, validation performed,
-public behavior or contract impact, and unresolved risks. Do not edit generated
-outputs directly. Do not update [CHANGELOG.md](CHANGELOG.md) unless the change
-is release-relevant.
+See the project-team [AGENTS.md](../AGENTS.md) "AI Operating Model" and
+"Handoff Requirements" sections for the full agent roster, authority table,
+and standard handoff format. Bradley Potts holds final authority for commits,
+merges, tags, publishing, and releases. Do not edit generated outputs
+directly. Do not update [CHANGELOG.md](CHANGELOG.md) unless the change is
+release-relevant.
 
 ## Project Identity
 

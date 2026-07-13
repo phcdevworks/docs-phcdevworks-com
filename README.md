@@ -1,5 +1,13 @@
 # Spectre Docs
 
+`docs-phcdevworks-com` is the official documentation site for the Spectre
+design system. It centralizes implementation guides, reference material, and
+supporting documentation for the Spectre ecosystem.
+
+Maintained by [PHCDevworks](https://go.phcdev.co). It documents the Spectre
+design system — tokens, components, and adapters — for engineers and
+designers consuming the published packages.
+
 ## Repository Snapshot
 
 | Field | Value |
