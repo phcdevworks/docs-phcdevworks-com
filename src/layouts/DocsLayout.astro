@@ -5,6 +5,7 @@ import { ClientRouter } from 'astro:transitions'
 import {
   SpNav,
   SpSidebar,
+  SpSidebarToggle,
   SpIconBox,
   SpContainer,
   SpStack,
@@ -121,6 +122,7 @@ const generatedPackages = [
   <body>
     <SpNav bordered sticky fullWidth aria-label="Site navigation">
       <div class={navLinks}>
+        <SpSidebarToggle for="docs-sidebar" label="Toggle documentation menu" />
         <a href="/" aria-label="PHCDevworks Docs home">
           <SpStack direction="horizontal" as="div">
             <SpIconBox variant="primary" size="sm" pill>
@@ -141,7 +143,11 @@ const generatedPackages = [
 
     <SpStack direction="horizontal" align="stretch" as="div">
       <SpStack basis="sidebar" as="div">
-        <SpSidebar bordered aria-label="Documentation navigation">
+        <SpSidebar
+          id="docs-sidebar"
+          hideToggle
+          bordered
+          aria-label="Documentation navigation">
           <SpStack as="div">
             <span class={sidebarHeader}>Getting Started</span>
             <nav>
