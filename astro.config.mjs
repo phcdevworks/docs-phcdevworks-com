@@ -11,4 +11,18 @@ export default defineConfig({
   session: {
     driver: sessionDrivers.lruCache(),
   },
+  vite: {
+    ssr: {
+      // Mid-session re-optimize of these invalidates deps_ssr chunk hashes workerd
+      // already loaded, and workerd has no `process` global to report the error — white screen.
+      optimizeDeps: {
+        exclude: [
+          '@phcdevworks/spectre-tokens',
+          '@phcdevworks/spectre-ui',
+          '@phcdevworks/spectre-ui-astro',
+          '@phcdevworks/spectre-components',
+        ],
+      },
+    },
+  },
 });

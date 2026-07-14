@@ -15,7 +15,8 @@ import {
   getNavLinksClasses,
   getNavLinkClasses,
   getSidebarLinkClasses,
-  getSidebarHeaderClasses
+  getSidebarGroupClasses,
+  getSidebarGroupSummaryClasses
 } from '@phcdevworks/spectre-ui'
 
 interface Props {
@@ -35,13 +36,16 @@ const metaDesc =
 
 const path = Astro.url.pathname.replace(/\/$/, '') || '/'
 const active = (href: string) => (href.replace(/\/$/, '') || '/') === path
+const groupContainsActive = (hrefs: readonly string[]) =>
+  hrefs.some((href) => active(href))
 
 const navLinks = getNavLinksClasses()
 const navLink = getNavLinkClasses()
 const navLinkActive = getNavLinkClasses({ active: true })
 const sidebarLink = getSidebarLinkClasses()
 const sidebarLinkActive = getSidebarLinkClasses({ active: true })
-const sidebarHeader = getSidebarHeaderClasses()
+const sidebarGroup = getSidebarGroupClasses()
+const sidebarGroupSummary = getSidebarGroupSummaryClasses()
 
 const packages = [
   { href: '/design/tokens', ref: '/design/tokens-reference', label: 'Tokens' },
@@ -148,18 +152,42 @@ const generatedPackages = [
           hideToggle
           bordered
           aria-label="Documentation navigation">
-          <SpStack as="div">
-            <span class={sidebarHeader}>Getting Started</span>
-            <nav>
+          <details class={sidebarGroup} open={groupContainsActive(['/'])}>
+            <summary class={sidebarGroupSummary}>
+              Getting Started
+              <svg
+                class="sp-sidebar__group-icon"
+                viewBox="0 0 20 20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path d="M7 4l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </summary>
+            <nav class="sp-sidebar__group-content">
               <a href="/" class={active('/') ? sidebarLinkActive : sidebarLink}>
                 Introduction
               </a>
             </nav>
-          </SpStack>
+          </details>
 
-          <SpStack as="div">
-            <span class={sidebarHeader}>Design System</span>
-            <nav>
+          <details class={sidebarGroup} open={groupContainsActive(['/design'])}>
+            <summary class={sidebarGroupSummary}>
+              Design System
+              <svg
+                class="sp-sidebar__group-icon"
+                viewBox="0 0 20 20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path d="M7 4l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </summary>
+            <nav class="sp-sidebar__group-content">
               <a
                 href="/design"
                 class={active('/design') ? sidebarLinkActive : sidebarLink}
@@ -167,11 +195,30 @@ const generatedPackages = [
                 Overview
               </a>
             </nav>
-          </SpStack>
+          </details>
 
-          <SpStack as="div">
-            <span class={sidebarHeader}>Guides</span>
-            <nav>
+          <details
+            class={sidebarGroup}
+            open={groupContainsActive([
+              '/guides/token-usage',
+              '/guides/component-usage',
+              '/guides/contributing-content'
+            ])}
+          >
+            <summary class={sidebarGroupSummary}>
+              Guides
+              <svg
+                class="sp-sidebar__group-icon"
+                viewBox="0 0 20 20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path d="M7 4l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </summary>
+            <nav class="sp-sidebar__group-content">
               <SpStack as="div">
                 <a
                   href="/guides/token-usage"
@@ -205,13 +252,25 @@ const generatedPackages = [
                 </a>
               </SpStack>
             </nav>
-          </SpStack>
+          </details>
 
           {
             packages.map((pkg) => (
-              <SpStack as="div">
-                <span class={sidebarHeader}>{pkg.label}</span>
-                <nav>
+              <details class={sidebarGroup} open={groupContainsActive([pkg.href, pkg.ref])}>
+                <summary class={sidebarGroupSummary}>
+                  {pkg.label}
+                  <svg
+                    class="sp-sidebar__group-icon"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    aria-hidden="true"
+                  >
+                    <path d="M7 4l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </summary>
+                <nav class="sp-sidebar__group-content">
                   <SpStack as="div">
                     <a
                       href={pkg.href}
@@ -229,15 +288,30 @@ const generatedPackages = [
                     </a>
                   </SpStack>
                 </nav>
-              </SpStack>
+              </details>
             ))
           }
 
           {
             generatedPackages.map((group) => (
-              <SpStack as="div">
-                <span class={sidebarHeader}>{group.label}</span>
-                <nav>
+              <details
+                class={sidebarGroup}
+                open={groupContainsActive(group.repos.map((repo) => repo.href))}
+              >
+                <summary class={sidebarGroupSummary}>
+                  {group.label}
+                  <svg
+                    class="sp-sidebar__group-icon"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    aria-hidden="true"
+                  >
+                    <path d="M7 4l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </summary>
+                <nav class="sp-sidebar__group-content">
                   <SpStack as="div">
                     {group.repos.map((repo) => (
                       <a
@@ -249,7 +323,7 @@ const generatedPackages = [
                     ))}
                   </SpStack>
                 </nav>
-              </SpStack>
+              </details>
             ))
           }
         </SpSidebar>
