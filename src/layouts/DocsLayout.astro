@@ -6,7 +6,6 @@ import {
   SpNav,
   SpSidebar,
   SpSidebarToggle,
-  SpIconBox,
   SpContainer,
   SpStack,
   SpSection
@@ -128,16 +127,7 @@ const generatedPackages = [
       <div class={navLinks}>
         <SpSidebarToggle for="docs-sidebar" label="Toggle documentation menu" />
         <a href="/" aria-label="PHCDevworks Docs home">
-          <SpStack direction="horizontal" as="div">
-            <SpIconBox variant="primary" size="sm" pill>
-              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path
-                  d="M4 18V4a2 2 0 0 1 2-2h9l3 3v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Zm7-11V2.5L17.5 9H11Z"
-                ></path>
-              </svg>
-            </SpIconBox>
-            <span>Spectre Docs</span>
-          </SpStack>
+          <img src="/phcdevworks-logo.svg" alt="PHCDevworks" height="24" />
         </a>
         <a href="/design" class={active('/design') ? navLinkActive : navLink}
           >Design System</a
