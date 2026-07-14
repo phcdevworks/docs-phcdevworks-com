@@ -12,7 +12,6 @@ import {
 } from '@phcdevworks/spectre-ui-astro'
 import {
   getNavLinksClasses,
-  getNavLinkClasses,
   getSidebarLinkClasses,
   getSidebarGroupClasses,
   getSidebarGroupSummaryClasses
@@ -39,8 +38,6 @@ const groupContainsActive = (hrefs: readonly string[]) =>
   hrefs.some((href) => active(href))
 
 const navLinks = getNavLinksClasses()
-const navLink = getNavLinkClasses()
-const navLinkActive = getNavLinkClasses({ active: true })
 const sidebarLink = getSidebarLinkClasses()
 const sidebarLinkActive = getSidebarLinkClasses({ active: true })
 const sidebarGroup = getSidebarGroupClasses()
@@ -129,9 +126,6 @@ const generatedPackages = [
         <a href="/" aria-label="PHCDevworks Docs home">
           <img src="/phcdevworks-logo.svg" alt="PHCDevworks" height="24" />
         </a>
-        <a href="/design" class={active('/design') ? navLinkActive : navLink}
-          >Design System</a
-        >
       </div>
     </SpNav>
 
