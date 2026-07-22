@@ -123,17 +123,18 @@ alignment.
   today, no different from a link), and proper indentation for parent/child
   links (e.g. "Overview"/"Reference" under a package name currently sit at
   the same indent as the package label).
-  - **Blocked on upstream `project-design/spectre-ui`** — no
-    `getSidebarHeaderClasses()` recipe or header CSS exists yet, and
-    `getSidebarLinkClasses` has no indent/`level` option. The `.sp-sidebar`
-    docked-height behavior (`height: auto` instead of stretching) also needs
-    a fix there. Tracked in `spectre-ui/TODO.md` Phase 5 P0 (three new
-    items added after the existing toggle z-index fix).
-  - **Blocked on upstream `project-design/spectre-ui-astro`** — once
-    `spectre-ui` ships the recipe additions, the Astro adapter needs to
-    decide and implement how `SpSidebar` exposes header rendering (prop vs.
-    documented manual recipe call) and thread the `level` option through.
-    Tracked as new Phase 9 in `spectre-ui-astro/TODO.md`.
+  - **Unblocked on `project-design/spectre-ui`** (as of `spectre-ui` 2.10.0,
+    installed here) — `getSidebarHeaderClasses()` now exists and
+    `getSidebarLinkClasses` has a `level` option (`SidebarLinkLevel` type
+    exported), confirmed in the installed package's `dist/index.d.ts`. Still
+    unclear whether the `.sp-sidebar` docked-height fix landed alongside it —
+    verify against `spectre-ui/CHANGELOG.md` before relying on it.
+  - **Still blocked on upstream `project-design/spectre-ui-astro`** — even at
+    3.7.0 (installed here), `SpSidebar.astro` does not call
+    `getSidebarHeaderClasses()` or accept/thread a `level` prop (confirmed by
+    reading the installed component source). `spectre-ui-astro/ROADMAP.md`
+    currently claims "no next implementation phase scoped," so this gap needs
+    to be flagged upstream (reopen or add a new phase) before it can close.
   - **This repo's work, once unblocked:** bump
     `@phcdevworks/spectre-ui`/`@phcdevworks/spectre-ui-astro` dependency
     ranges, then update the sidebar nav groups in `DocsLayout.astro` (Getting
