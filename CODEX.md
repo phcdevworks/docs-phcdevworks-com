@@ -114,7 +114,7 @@ After editing, report:
 
 ## Release Agent Responsibilities
 
-Before any release, Codex must verify:
+Before cutting a release, Codex must verify:
 
 - `README.md` is accurate
 - `CHANGELOG.md` or release notes are updated where applicable
@@ -125,8 +125,32 @@ Before any release, Codex must verify:
 - tests or checks pass when available
 - no generated files are stale
 - no unrelated files were changed
-- version bump is appropriate when this repository is being versioned
 - breaking changes are clearly marked
+
+### Release Mechanics
+
+Once `CHANGELOG.md [Unreleased]` is release-ready, Codex cuts the release —
+no per-release request from Bradley required:
+
+1. Bump `package.json` to the intended release version.
+2. Move `[Unreleased]` notes into a new versioned entry:
+   `## [<version>] - <YYYY-MM-DD>`, with a release title line in the format
+   `**Release Title:** <Roadmap priority> - <short title>`, where `<Roadmap
+   priority>` is the active priority label from this repo's own
+   `ROADMAP.md` and `<short title>` is a concise summary of what shipped.
+   If the release spans no single roadmap item, state that explicitly
+   instead of inventing one.
+3. Run `npm run check` (or this repo's equivalent build/typecheck gate) —
+   must pass clean on the release-ready state.
+4. Stage and commit the version bump and changelog update.
+5. Create the git tag: `git tag v<version>` (matching `package.json`
+   exactly), then push the commit and tag.
+6. Publish the GitHub Release from that tag: `gh release create v<version>
+   --title "v<version>: <Roadmap priority> - <short title>" --notes-file`
+   (extract the new version's changelog section, or `--notes` inline for a
+   short release).
+7. `npm run deploy` (Cloudflare) is **not** run by Codex — deployment stays
+   a separate, manual step owned by Bradley Potts.
 
 ## Documentation Responsibilities
 

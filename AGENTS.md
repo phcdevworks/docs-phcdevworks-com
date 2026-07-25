@@ -13,10 +13,11 @@
 
 See the project-team [AGENTS.md](../AGENTS.md) "AI Operating Model" and
 "Handoff Requirements" sections for the full agent roster, authority table,
-commit-policy grant, and standard handoff format. Bradley Potts holds final
-authority for merges, publishing, and releases. Do not edit generated outputs
-directly. Do not update [CHANGELOG.md](CHANGELOG.md) unless the change is
-release-relevant.
+commit-policy and release-authority grant, and standard handoff format.
+Codex cuts releases (version bump, tag, GitHub Release) autonomously per
+that grant; deployment (`npm run deploy`) and merges stay with Bradley
+Potts. Do not edit generated outputs directly. Do not update
+[CHANGELOG.md](CHANGELOG.md) unless the change is release-relevant.
 
 ## Project Identity
 
