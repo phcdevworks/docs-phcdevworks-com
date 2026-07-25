@@ -12,23 +12,17 @@ stabilization, repo-wide AI governance, or automated maintenance workflows.
 
 ## Authority Boundaries
 
-- Bradley Potts holds final authority for all commits, merges, tags, and
-  production releases. No AI agent may commit or release without his review.
-- Claude Code is the lead implementation owner (`CLAUDE.md`).
-- Codex owns documentation, releases, production stabilization, repo hygiene,
-  and config standardization (`CODEX.md`).
-- ChatGPT provides strategy and external review — it does not implement or
-  release.
-- Jules owns bounded automated maintenance (`JULES.md`).
-- Shared coordination policy lives in `AGENTS.md`.
+Full roster and authority table: [AGENTS.md](AGENTS.md). Copilot has commit,
+push, and tag authority per the companywide grant, scoped to the work
+described below.
 
 ## Practical Guardrails
 
-- Keep edits focused and pattern-aligned.
+- Keep edits — and any resulting commits — focused and pattern-aligned.
 - Match Spectre and PHCDevworks naming.
 - Keep docs and `package.json` scripts synchronized.
 - Preserve shared project settings and avoid personal editor preferences.
-- Do not create commits, pushes, tags, releases, or deploys.
+- Do not publish packages, merge PRs, cut releases, or deploy.
 
 ## Package Boundaries
 

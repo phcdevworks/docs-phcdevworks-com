@@ -13,8 +13,8 @@
 
 See the project-team [AGENTS.md](../AGENTS.md) "AI Operating Model" and
 "Handoff Requirements" sections for the full agent roster, authority table,
-and standard handoff format. Bradley Potts holds final authority for commits,
-merges, tags, publishing, and releases. Do not edit generated outputs
+commit-policy grant, and standard handoff format. Bradley Potts holds final
+authority for merges, publishing, and releases. Do not edit generated outputs
 directly. Do not update [CHANGELOG.md](CHANGELOG.md) unless the change is
 release-relevant.
 
@@ -42,32 +42,13 @@ still governs what changes make sense there (design-token authority, layer
 boundaries, etc.) — being able to open and edit a file is not the same as it
 being this repo's job to change it.
 
-**Cross-repo changelog sync.** When a change in this repo has direct
-downstream or upstream impact on another present repo (e.g. a breaking token
-rename, an API contract change), an agent may append a `CHANGELOG.md
-[Unreleased]` entry directly into that other repo's own changelog — not just
-leave a note asking its owner to add it. Rules:
-
-1. Only append new `[Unreleased]` entries — never edit, reorder, or remove
-   another repo's existing changelog entries, version headers, or release
-   history.
-2. Every cross-repo entry must be self-contained and attributed: which repo
-   caused it and why, what changed from the affected repo's perspective, and
-   the date added.
-3. Add it in the same change that produced the impact, not a later session.
-4. This never grants release authority — cutting a release, bumping a version
-   header, or publishing a package stays gated by that repo's own release
-   process and the human owner's final sign-off.
-
-**TODO/roadmap requests.** When work here surfaces a need that belongs to
-another repo, an agent may append the request directly to that repo's own
-`TODO.md` under a clearly labeled "Requested by Downstream" section (create
-it if absent), stating which repo is requesting it, why, the date, and a
-link back if the other repo's `TODO.md`/`ROADMAP.md` is reachable.
-
-No AI agent creates commits, tags, publishes packages, or merges changes in
-this repo or any other unless that repo's own agent guide explicitly grants
-that authority or the human owner has explicitly requested the action.
+**Cross-repo changelog and TODO/roadmap requests.** Full rules: company root
+[AGENTS.md](../../AGENTS.md) § "Cross-Repo Changelog Sync" and § "Upstream
+Requests and Roadmap Self-Expansion." Applied here without exception — this
+repo may append `[Unreleased]` changelog entries and downstream TODO requests
+to other present repos per those rules, and no AI agent creates commits, tags,
+publishes packages, or merges changes in this repo or any other unless that
+repo's own agent guide explicitly grants that authority.
 
 ## Mission
 
@@ -80,22 +61,10 @@ Spectre ecosystem. It does not own company-wide positioning — that belongs to
 
 ## Agent Boundaries
 
-- **Bradley Potts** holds final authority for all commits, merges, tags, and
-  production deployments. No AI agent may commit, push, or release.
-- **Claude Code** owns lead implementation and project direction.
-- **OpenAI Codex** owns release readiness, production stabilization,
-  documentation standardization, repo hygiene, and config standardization. Codex
-  does not override Claude Code's implementation decisions.
-- **ChatGPT** provides strategy guidance and external review. ChatGPT does not
-  own implementation, releases, governance, or autonomous execution.
-- **GitHub Copilot** is a development support assistant and does not own
-  implementation direction, architecture, releases, production stabilization,
-  repository governance, or automated maintenance.
-- **Google Jules** owns automated micro-maintenance only. Jules does not own
-  architecture, releases, documentation governance, or implementation decisions.
-
-When instructions appear to conflict, agent-specific guides take precedence over
-this file for their own scope. Use this file for shared coordination policy.
+Full roster and authority table: project-team [AGENTS.md](../AGENTS.md).
+When instructions appear to conflict, agent-specific guides take precedence
+over this file for their own scope. Use this file for shared coordination
+policy.
 
 ## Working Principles
 

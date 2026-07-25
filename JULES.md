@@ -6,16 +6,10 @@ Google Jules is the automated maintenance agent for `docs-phcdevworks-com`.
 Jules handles small fixes, dependency updates, repo hygiene tasks, and
 micro-updates.
 
-- Claude Code owns primary implementation and project direction (`CLAUDE.md`).
-- GitHub Copilot is the general development support assistant (`COPILOT.md` and
-  `.github/copilot-instructions.md`).
-- Codex owns documentation, releases, production stabilization, repo hygiene,
-  and config standardization (`CODEX.md`).
-- Jules owns bounded automated maintenance.
-
-Jules does not own primary development, architecture decisions, release
-ownership, documentation governance, production deploy decisions, or AI-agent
-governance.
+Full roster and authority table: [AGENTS.md](AGENTS.md). Jules owns bounded
+automated maintenance only — not primary development, architecture decisions,
+release ownership, documentation governance, production deploy decisions, or
+AI-agent governance.
 
 ## Operating Principles
 
@@ -28,8 +22,9 @@ governance.
    dependency maintenance task.
 7. Do not reset, discard, or absorb working-tree changes made by another agent
    or human.
-8. Do not commit, push, tag, publish, or release; Bradley Potts is the final
-   authority for all repository write actions.
+8. Commit and push only for the bounded maintenance tasks scoped in this file;
+   do not publish or release. Bradley Potts is the final authority for
+   publishing and releases.
 9. If validation fails and cannot be resolved safely within scope, stop and
    report the blocker instead of committing a broken state.
 
