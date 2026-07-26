@@ -15,7 +15,8 @@ maintenance workflows.
 
 ## Team Boundaries
 
-Full roster and authority table: [AGENTS.md](../AGENTS.md).
+Copilot has commit, push, and tag authority per the companywide grant. Full
+roster and authority table: [AGENTS.md](../AGENTS.md).
 
 ## Repository Conventions
 
