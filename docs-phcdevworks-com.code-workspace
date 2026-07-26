@@ -5,6 +5,132 @@
     }
   ],
   "settings": {
-    "workbench.startupEditor": "none"
+    "workbench.colorTheme": "Solarized Dark",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.startupEditor": "none",
+    "workbench.editor.enablePreview": false,
+    "breadcrumbs.enabled": true,
+    "editor.fontFamily": "'Fira Code', 'Cascadia Code', 'JetBrains Mono', Consolas, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 14,
+    "editor.lineHeight": 1.6,
+    "editor.cursorBlinking": "smooth",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.smoothScrolling": true,
+    "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "boundary",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": "active",
+    "editor.inlineSuggest.enabled": true,
+    "editor.linkedEditing": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": false,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": true,
+    "editor.trimAutoWhitespace": true,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.eol": "\n",
+    "files.exclude": {
+      "**/.astro": true,
+      "**/.git": true,
+      "**/.DS_Store": true,
+      "**/.wrangler": true,
+      "**/dist": true,
+      "**/node_modules": true,
+      "**/src/content/docs/packages": true
+    },
+    "files.watcherExclude": {
+      "**/.astro/**": true,
+      "**/.wrangler/**": true,
+      "**/dist/**": true,
+      "**/node_modules/**": true
+    },
+    "search.smartCase": true,
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "npm.packageManager": "npm",
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    "scm.defaultViewMode": "tree",
+    "[typescript]": {
+      "editor.defaultFormatter": "vscode.typescript-language-features",
+      "editor.wordWrap": "off"
+    },
+    "[astro]": {
+      "editor.defaultFormatter": "astro-build.astro-vscode"
+    },
+    "[markdown]": {
+      "editor.wordWrap": "on",
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.quickSuggestions": {
+        "comments": "off",
+        "strings": "off",
+        "other": "off"
+      }
+    }
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Dev Server",
+        "type": "node-terminal",
+        "request": "launch",
+        "command": "npm run dev"
+      }
+    ]
+  },
+  "extensions": {
+    "recommendations": [
+      "astro-build.astro-vscode",
+      "editorconfig.editorconfig",
+      "esbenp.prettier-vscode",
+      "ms-vscode-remote.remote-wsl",
+      "pkief.material-icon-theme",
+      "yzhang.markdown-all-in-one"
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "dev",
+        "command": "npm run dev",
+        "type": "shell",
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        }
+      },
+      {
+        "label": "build",
+        "command": "npm run build",
+        "type": "shell"
+      },
+      {
+        "label": "typecheck",
+        "command": "npm run typecheck",
+        "type": "shell"
+      },
+      {
+        "label": "check",
+        "command": "npm run check",
+        "type": "shell"
+      },
+      {
+        "label": "preview",
+        "command": "npm run preview",
+        "type": "shell"
+      },
+      {
+        "label": "sync:package-docs",
+        "command": "npm run sync:package-docs",
+        "type": "shell"
+      }
+    ]
   }
 }
