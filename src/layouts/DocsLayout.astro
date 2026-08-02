@@ -38,8 +38,8 @@ const groupContainsActive = (hrefs: readonly string[]) =>
   hrefs.some((href) => active(href))
 
 const navLinks = getNavLinksClasses()
-const sidebarLink = getSidebarLinkClasses()
-const sidebarLinkActive = getSidebarLinkClasses({ active: true })
+const sidebarLink = getSidebarLinkClasses({ level: 'child' })
+const sidebarLinkActive = getSidebarLinkClasses({ level: 'child', active: true })
 const sidebarGroup = getSidebarGroupClasses()
 const sidebarGroupSummary = getSidebarGroupSummaryClasses()
 

@@ -118,33 +118,34 @@ alignment.
   Astro pages) rather than enumerating specific routes; the new
   collection-driven `/guides/*` routes fit that existing description without
   requiring a `CLAUDE.md` change.
-- [ ] Sidebar needs full-height (no gap below a short nav list), visually
-  distinguished section headers (Tokens, UI, Guides, etc. read as plain text
-  today, no different from a link), and proper indentation for parent/child
-  links (e.g. "Overview"/"Reference" under a package name currently sit at
-  the same indent as the package label).
-  - **Unblocked on `project-design/spectre-ui`** (as of `spectre-ui` 2.10.0,
-    installed here) — `getSidebarHeaderClasses()` now exists and
-    `getSidebarLinkClasses` has a `level` option (`SidebarLinkLevel` type
-    exported), confirmed in the installed package's `dist/index.d.ts`. Still
-    unclear whether the `.sp-sidebar` docked-height fix landed alongside it —
-    verify against `spectre-ui/CHANGELOG.md` before relying on it.
-  - **Still blocked on upstream `project-design/spectre-ui-astro`** — even at
-    3.7.0 (installed here), `SpSidebar.astro` does not call
-    `getSidebarHeaderClasses()` or accept/thread a `level` prop (confirmed by
-    reading the installed component source). `spectre-ui-astro/ROADMAP.md`
-    currently claims "no next implementation phase scoped," so this gap needs
-    to be flagged upstream (reopen or add a new phase) before it can close.
-  - **This repo's work, once unblocked:** bump
-    `@phcdevworks/spectre-ui`/`@phcdevworks/spectre-ui-astro` dependency
-    ranges, then update the sidebar nav groups in `DocsLayout.astro` (Getting
-    Started, Design System, Guides, and the per-package Tokens/UI/UI
-    Astro/Components/Base sections) to use the new header classes for group
-    labels and `level: 'child'` for the Overview/Reference links nested under
-    each package.
-  - Do not attempt a local-CSS workaround in this repo for any part of this —
-    header/indent styling and full-height sidebar sizing belong in the
-    upstream recipe contract, not here.
+- [x] Proper indentation for parent/child sidebar links (e.g.
+  "Overview"/"Reference" under a package name, and the links inside every
+  collapsible group) — closed 2026-08-02. Bumped
+  `@phcdevworks/spectre-ui`/`@phcdevworks/spectre-ui-astro` ranges to
+  `^3.1.0`/`^4.2.0` and applied `getSidebarLinkClasses({ level: 'child' })`
+  in `DocsLayout.astro`.
+  - **Correction on the earlier "blocked on `spectre-ui-astro`" note**: this
+    layout builds its sidebar content by hand with directly-imported
+    `@phcdevworks/spectre-ui` recipe functions (`getSidebarLinkClasses`,
+    `getSidebarGroupClasses`, `getSidebarGroupSummaryClasses`) rather than
+    through any `SpSidebar`-family sub-component. `SpSidebar.astro` only
+    wraps the outer sidebar shell (toggle/backdrop/`bordered`) — it was never
+    the blocker. No `spectre-ui-astro` change was needed.
+  - **`getSidebarHeaderClasses()` does not apply to this layout.** It styles
+    a static, non-interactive section label. This sidebar uses collapsible
+    `<details>/<summary>` groups throughout, and
+    `getSidebarGroupSummaryClasses()` (already in use) renders visually
+    equivalent muted/uppercase/`--sp-font-xs-*` styling on the `<summary>`
+    itself — confirmed by reading `spectre-ui/src/styles/components.css`.
+    There is no plain-text label in this layout that `getSidebarHeaderClasses`
+    would improve.
+- [ ] Sidebar still needs full-height sizing (no gap below a short nav list)
+  in the docked (desktop) layout. Not addressed by the `level`/header work
+  above — `.sp-sidebar` in `spectre-ui` is `height: 100%` with fixed
+  positioning for the off-canvas/mobile case; the docked case inside
+  `SpStack basis="sidebar"` is a separate layout question. Do not attempt a
+  local-CSS workaround in this repo — raise with `project-design/spectre-ui`
+  if this is still visually wrong.
 
 ### P2: Ecosystem Alignment Automation
 

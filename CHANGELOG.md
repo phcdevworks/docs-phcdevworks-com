@@ -7,6 +7,16 @@ practical.
 
 ## Unreleased
 
+### Changed
+
+- Bumped `@phcdevworks/spectre-tokens` to `^4.0.0`, `@phcdevworks/spectre-ui`
+  to `^3.1.0`, and `@phcdevworks/spectre-ui-astro` to `^4.2.0`, closing the
+  version lag behind `project-design`'s latest releases.
+- Applied `level: 'child'` to sidebar links nested under a group in
+  `DocsLayout.astro` via `getSidebarLinkClasses`, so they render with the
+  upstream indent styling instead of sitting flush with their parent group
+  label.
+
 ### Fixed
 
 - Added `@types/node` so `scripts/check-readme-version.ts` typechecks under
