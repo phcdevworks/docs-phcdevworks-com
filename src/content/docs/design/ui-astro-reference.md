@@ -3,7 +3,7 @@ title: Spectre UI Astro — Component Reference
 description: Props, slots, and examples for all 23 Spectre UI Astro components, plus package exports and component stability.
 ---
 
-Reference for `@phcdevworks/spectre-ui-astro` (current version **3.1.0**). For
+Reference for `@phcdevworks/spectre-ui-astro` (current version **4.4.0**). For
 an introduction, installation, and quick start, see the [Spectre UI Astro
 overview](/design/ui-astro).
 

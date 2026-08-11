@@ -3,7 +3,7 @@ title: Spectre UI — Reference
 description: Recipe catalog, package exports, and contract guarantees for @phcdevworks/spectre-ui.
 ---
 
-Reference for `@phcdevworks/spectre-ui` (current version **2.4.0**). For an
+Reference for `@phcdevworks/spectre-ui` (current version **4.0.0**). For an
 introduction, installation, and quick start, see the [Spectre UI
 overview](/design/ui).
 

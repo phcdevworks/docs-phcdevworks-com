@@ -3,7 +3,7 @@ title: Spectre UI
 description: Token-backed CSS bundles, Tailwind helpers, and class recipes — Layer 2 of the Spectre design system.
 ---
 
-`@phcdevworks/spectre-ui` (current version **2.4.0**) is **Layer 2 of the
+`@phcdevworks/spectre-ui` (current version **4.0.0**) is **Layer 2 of the
 Spectre design suite**. It turns [Spectre Tokens](/design/tokens) into reusable
 CSS bundles, Tailwind tooling, and type-safe class recipes for downstream
 adapters and apps.

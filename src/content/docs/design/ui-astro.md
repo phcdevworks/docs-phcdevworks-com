@@ -3,7 +3,7 @@ title: Spectre UI Astro
 description: Astro-native components for the Spectre UI design system — SSR-safe, token-driven, and ready to drop into any Astro project.
 ---
 
-`@phcdevworks/spectre-ui-astro` (current version **3.1.0**) provides
+`@phcdevworks/spectre-ui-astro` (current version **4.4.0**) provides
 Astro-native components for [Spectre UI](/design/ui). Drop Spectre components
 into any Astro project — SSR, SSG, or hybrid — without writing CSS, redefining
 tokens, or reimplementing recipe logic.

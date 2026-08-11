@@ -14,9 +14,9 @@ upstream UI components.
 
 All foundation work is complete. The site is deployed and maintained.
 
-Current Spectre dependency versions: `@phcdevworks/spectre-tokens ^4.0.0`,
-`@phcdevworks/spectre-ui ^3.1.0`, `@phcdevworks/spectre-ui-astro ^4.2.0` —
-bumped 2026-08-02 to close the version lag behind `project-design`'s latest
+Current Spectre dependency versions: `@phcdevworks/spectre-tokens ^4.3.0`,
+`@phcdevworks/spectre-ui ^4.0.0`, `@phcdevworks/spectre-ui-astro ^4.4.0` —
+bumped 2026-08-11 to close the version lag behind `project-design`'s latest
 releases. This closed the sidebar parent/child indentation gap tracked in
 `TODO.md` (`getSidebarLinkClasses({ level: 'child' })`).
 

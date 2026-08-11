@@ -3,7 +3,7 @@ title: Spectre Tokens
 description: The Spectre design-token contract — colors, spacing, typography, and semantic UI roles, generated as JS/TS, CSS variables, and a Tailwind preset.
 ---
 
-`@phcdevworks/spectre-tokens` (current version **3.1.0**) is the design-token
+`@phcdevworks/spectre-tokens` (current version **4.3.0**) is the design-token
 package of the Spectre system. It is the only source of design values across
 the whole Spectre ecosystem — no downstream package or app should define raw
 hex, px, or rem values when a Spectre token already covers the same concept.

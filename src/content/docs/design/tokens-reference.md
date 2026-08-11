@@ -3,7 +3,7 @@ title: Spectre Tokens — Reference
 description: Full token model, public contract guarantees, protected token families, and package exports for @phcdevworks/spectre-tokens.
 ---
 
-Reference for `@phcdevworks/spectre-tokens` (current version **3.1.0**). For an
+Reference for `@phcdevworks/spectre-tokens` (current version **4.3.0**). For an
 introduction, installation, and quick start, see the [Spectre Tokens
 overview](/design/tokens).
 
