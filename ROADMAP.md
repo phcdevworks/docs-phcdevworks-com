@@ -49,62 +49,40 @@ releases. This closed the sidebar parent/child indentation gap tracked in
 
 ---
 
-## 2. Roadmap — Mature Operations
+## 2. Delivered Phases
 
-The foundation is stable. The next phase expands content coverage, hardens
-navigation, and keeps the site aligned as the Spectre ecosystem matures.
+| Phase | Summary | Status |
+| --- | --- | --- |
+| 1 | Foundation — Astro + Cloudflare adapter, `npm run check` gate, agent docs, PR/issue templates, phased roadmap/todo | Delivered |
+| 2 P0 | Content expansion — token/component/contribution guides, `spectre-tokens`/`spectre-ui` reference pages, ongoing sync with upstream releases | Delivered |
+| 2 P1 (partial) | Navigation — Guides sidebar section, sidebar hamburger dead-toggle fix, parent/child link indentation | Delivered |
 
----
-
-### P0: Content Expansion
-
-**Objective** Build out implementation guides and reference material so the
-site is a useful resource for Spectre consumers and contributors.
-
-**Why it matters** The current site has the correct structure and deployment
-but limited published content. Without guides and reference pages, the docs
-site does not serve its primary purpose.
-
-**Deliverables**
-
-- Add implementation guides for Spectre token usage, Spectre UI component
-  usage, and docs-site contribution workflow.
-- Add reference pages for the `@phcdevworks/spectre-tokens` public contract
-  and `@phcdevworks/spectre-ui` component surface.
-- Keep all published content synchronized with the upstream packages it
-  documents.
-
-**Risk if skipped**
-
-- The docs site exists structurally but does not serve consumers or
-  contributors.
+See [CHANGELOG.md](CHANGELOG.md) for release-by-release detail on the above.
 
 ---
 
-### P1: Navigation and Discoverability
+## 3. What's Next
 
-**Objective** Make the docs site easy to navigate as content grows.
+The remainder of Phase 2 is open. See [TODO.md](TODO.md) for the active
+item-level checklist.
 
-**Why it matters** A flat structure works for a small site. As guides and
-reference pages are added, navigation without structure creates friction for
-readers and contributors.
+---
+
+### P1: Navigation and Discoverability (remaining)
+
+**Objective** Finish making the docs site easy to navigate as content grows.
 
 **Deliverables**
 
-- Add a sidebar or top-level navigation structure that scales with content.
-- Add a search or filter surface if the Astro or Cloudflare toolchain
-  supports it cleanly.
-- Keep navigation aligned with the documented route structure in `CLAUDE.md`.
-
-**Dependency notes**
-
-- Depends on P0 content being in place first. Do not build navigation
-  structure before there is content to navigate.
+- Full-height sidebar sizing for the docked (desktop) layout — likely
+  requires an upstream `spectre-ui` change; do not work around locally.
+- Search or filter surface, once content volume justifies it (Pagefind is
+  the recommended choice — see `TODO.md`).
 
 **Risk if skipped**
 
 - A growing docs site becomes harder to use without structure, reducing the
-  value of content added in P0.
+  value of content already added in P0.
 
 ---
 
@@ -136,7 +114,7 @@ scale but breaks down as the ecosystem matures.
 
 ---
 
-## 3. Explicitly Out of Scope
+## 4. Explicitly Out of Scope
 
 - Token contract definitions — those live in `spectre-tokens`.
 - Upstream UI component implementation — that lives in `spectre-ui`.
@@ -146,11 +124,9 @@ scale but breaks down as the ecosystem matures.
 
 ---
 
-## 4. Recommended Execution Order
+## 5. Recommended Execution Order
 
-1. **P0 — Content expansion** — highest priority; the site's primary purpose
-   depends on it.
-2. **P1 — Navigation** — implement once enough content is in place to need
-   structure.
-3. **P2 — Ecosystem alignment automation** — implement once content exists and
-   upstream packages are releasing regularly.
+1. **P1 remaining — Navigation** — sidebar sizing and search evaluation;
+   content (P0) is already in place.
+2. **P2 — Ecosystem alignment automation** — implement once upstream packages
+   are releasing regularly (they are).
