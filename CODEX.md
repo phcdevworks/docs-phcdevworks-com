@@ -35,6 +35,11 @@ Codex is responsible for:
 
 Codex is not the primary feature-building agent unless explicitly assigned.
 
+Codex is also responsible for executing git operations
+(`git add`/`commit`/`push`/`tag`) in this repo on behalf of Claude Code's
+validated, handed-off work — Claude Code has no git access here — in
+addition to Codex's own documentation, release, and hygiene commits.
+
 ## Working Relationship
 
 Claude Code leads:

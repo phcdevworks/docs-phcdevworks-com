@@ -19,6 +19,10 @@ that grant; deployment (`npm run deploy`) and merges stay with Bradley
 Potts. Do not edit generated outputs directly. Do not update
 [CHANGELOG.md](CHANGELOG.md) unless the change is release-relevant.
 
+**Claude Code has no git access in this repo**, per the project-team
+[AGENTS.md](../AGENTS.md) grant — it implements, validates, and hands off;
+Codex executes git operations here on its behalf.
+
 **Commit authorship is human-only.** No agent adds itself (or any other AI)
 as a commit author or co-author — no `Co-Authored-By: Claude`/`Codex`/
 `Copilot`/`Jules` trailer, no author-field changes. When an AI agent drafts

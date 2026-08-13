@@ -86,6 +86,21 @@ This repository does not own:
 - framework adapter internals outside the docs site
 - company-wide website positioning for `www-phcdevworks-com`
 
+## Git Access — Denied
+
+**Claude Code has zero git access in this repo, as part of a companywide
+policy.** Claude Code must not run `git commit`, `git push`, `git tag`, or
+any other git command — read-only or mutating — here. This supersedes any
+prior commit/push/tag grant described in this repo's `AGENTS.md`. OpenAI
+Codex now executes all git operations for this repo; see `AGENTS.md` and
+`CODEX.md`.
+
+When work is ready, Claude Code stops short of any git command and hands off
+to Codex (or Bradley Potts) with a summary of files changed and validation
+performed (`npm run build` when practical). This sharpens the existing
+handoff chain below — Claude Code was never the one committing here, and now
+that boundary is explicit and absolute.
+
 ## Handoff Expectations
 
 Before handing work to Codex or Bradley:
