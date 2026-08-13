@@ -140,20 +140,17 @@ no per-release request from Bradley required:
 1. Bump `package.json` to the intended release version.
 2. Move `[Unreleased]` notes into a new versioned entry:
    `## [<version>] - <YYYY-MM-DD>`, with a release title line in the format
-   `**Release Title:** <Roadmap priority> - <short title>`, where `<Roadmap
-   priority>` is the active priority label from this repo's own
-   `ROADMAP.md` and `<short title>` is a concise summary of what shipped.
-   If the release spans no single roadmap item, state that explicitly
-   instead of inventing one.
+   `**Release Title:** <short title>`, where `<short title>` is a concise
+   summary of what shipped without a roadmap priority or version prefix.
 3. Run `npm run check` (or this repo's equivalent build/typecheck gate) —
    must pass clean on the release-ready state.
 4. Stage and commit the version bump and changelog update.
 5. Create the git tag: `git tag v<version>` (matching `package.json`
    exactly), then push the commit and tag.
 6. Publish the GitHub Release from that tag: `gh release create v<version>
-   --title "v<version>: <Roadmap priority> - <short title>" --notes-file`
-   (extract the new version's changelog section, or `--notes` inline for a
-   short release).
+   --title "<short title>" --notes-file` (extract the new version's changelog
+   section, or `--notes` inline for a short release). The GitHub Release title
+   must match the changelog release title exactly.
 7. `npm run deploy` (Cloudflare) is **not** run by Codex — deployment stays
    a separate, manual step owned by Bradley Potts.
 
