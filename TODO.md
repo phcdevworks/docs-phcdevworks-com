@@ -26,6 +26,18 @@ tracks what's still open.
     or "Guides" sidebar section exceeds ~15-20 links, or once search becomes
     a real user request. Current page count doesn't yet justify it.
 
+## Gap: No CI Enforcement of Token/Utility-Only Rule
+
+Confirmed via companywide CSS audit (2026-08-16). This repo's own pattern is
+already good — `DocsLayout.astro` composes `spectre-ui` recipe functions
+(`getNavLinksClasses`, `getSidebarLinkClasses`, `getSidebarGroupClasses`)
+rather than hand-rolling CSS. But `.github/workflows/ci.yml` only runs build +
+typecheck, so nothing would actually catch a future regression into raw CSS.
+
+- [ ] Once `project-design/spectre-ui` publishes a raw-CSS/token lint step
+      (see that repo's TODO "Gap: No Downstream Enforcement of the Token/
+      Utility-Only Rule"), wire it into this repo's `npm run check`/CI.
+
 ## Phase 2 P2: Ecosystem Alignment Automation
 
 Not started. Requires P0 content to exist first (it does) before this phase
