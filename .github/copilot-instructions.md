@@ -29,13 +29,31 @@ roster and authority table: [AGENTS.md](../AGENTS.md).
 - Follow existing code patterns and package boundaries.
 - Use Spectre tokens or Spectre UI recipes where relevant instead of local visual primitives.
 
+## Spectre-First Building
+
+Before choosing, importing, or adding any `@phcdevworks` package, read
+`node_modules/@phcdevworks/spectre-manifest/spectre.manifest.json` and import
+only the exports listed there. Then work through this order before adding
+markup structure, a wrapper component, or CSS:
+
+1. Semantic HTML and Astro output appropriate to the content.
+2. An existing `spectre-ui-astro` component and its public props, slots, and
+   variants.
+3. Shipped `sp-*` classes and `spectre-ui` recipe functions.
+4. An existing layout, component, or pattern in this repo.
+5. Otherwise, stop and flag the gap for an upstream request — do not build a
+   local substitute.
+
+Default to zero new site-authored CSS. Full rules: "Spectre-First Building" and
+"Strict Spectre UI Astro Guardrails" in [AGENTS.md](../AGENTS.md).
+
 ## Code And Build Expectations
 
 - Follow TypeScript strict configuration in `tsconfig.json`.
 - Avoid `any` unless explicitly approved (`@typescript-eslint/no-explicit-any`: error).
 - Use `_` prefix for intentionally unused parameters.
 - Keep formatting consistent with existing repo style (2 spaces, LF line endings).
-- Run `npm run build` for meaningful documentation or configuration changes when practical.
+- Run `npm run check` (production build plus manifest validation) before committing meaningful documentation or configuration changes.
 - Update docs and tests when public behavior changes.
 
 ## Scope Reminders

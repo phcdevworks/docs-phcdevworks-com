@@ -21,9 +21,9 @@
       "command": "npm run preview"
     },
     {
-      "label": "generate-types",
+      "label": "check",
       "type": "shell",
-      "command": "npm run generate-types"
+      "command": "npm run check"
     }
   ]
 }

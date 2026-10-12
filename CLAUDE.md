@@ -26,18 +26,21 @@ This file is the primary working guide for Claude Code in this repository. Read
 `AGENTS.md` first for the shared agent roster, authority map, and coordination
 policy, then use this file for implementation direction.
 
+The site was scaffolded from the `@phcdevworks/spectre-init` `astro` template
+and carries an app-level [spectre.manifest.json](spectre.manifest.json)
+validated by `@phcdevworks/spectre-manifest`.
+
 ## Project Structure
 
-| Path                 | Responsibility                                      |
-| -------------------- | --------------------------------------------------- |
-| `src/pages/`         | Route-level Astro pages for the docs experience     |
-| `src/layouts/`       | Page layout components                              |
-| `public/`            | Static assets served as-is                          |
-| `astro.config.mjs`   | Astro + Cloudflare adapter configuration            |
-| `wrangler.jsonc`     | Cloudflare Workers deployment configuration         |
-| `eslint.config.ts`   | TypeScript-ESLint rules — no `npm run lint` script  |
-| `tsconfig.json`      | Extends `astro/tsconfigs/strict`                    |
-| `.codex/`            | Codex release and change-watch playbooks            |
+| Path                    | Responsibility                                             |
+| ----------------------- | ---------------------------------------------------------- |
+| `src/pages/`            | Route-level Astro pages for the docs experience            |
+| `src/layouts/`          | Page layouts; `BaseLayout.astro` imports `spectre-ui` CSS  |
+| `astro.config.ts`       | Astro configuration (starter default, no adapter yet)      |
+| `spectre.manifest.json` | App manifest describing this site's Spectre dependencies   |
+| `eslint.config.ts`      | TypeScript-ESLint rules — ESLint is not installed yet      |
+| `tsconfig.json`         | Extends `astro/tsconfigs/strict`                           |
+| `.codex/`               | Codex release and change-watch playbooks                   |
 
 ## Development Workflow
 
@@ -48,8 +51,30 @@ npm run build
 ```
 
 Use `npm run check` as the standard validation gate before handoff — it runs
-the production build and `astro check` typecheck together. Use `npm run preview`
-only when Cloudflare runtime behavior needs to be checked.
+the production build and then `spectre-manifest-validate` against
+`spectre.manifest.json`. `npm run preview` serves the built site locally.
+
+## Standard Procedure
+
+1. Confirm the task does not cross a human approval boundary in
+   [AGENTS.md](AGENTS.md).
+2. Read the installed Spectre manifest
+   (`node_modules/@phcdevworks/spectre-manifest/spectre.manifest.json`) and the
+   relevant `spectre-ui-astro` component contract before writing markup.
+3. Inspect the relevant page or layout fully before editing.
+4. Follow the Spectre-First Building order in [AGENTS.md](AGENTS.md); prefer
+   component APIs and shipped classes, and remove any local code they
+   supersede.
+5. Implement the smallest correct change.
+6. Run `npm run check`.
+7. State whether a rendered-page review is still needed for the touched pages.
+8. Hand off files changed, validation results, and remaining risk.
+
+## The One Rule That Overrides Everything
+
+The site owns the docs content; Spectre owns the system. If a change needs a
+token, recipe, or component that the published packages do not provide, stop
+and request it upstream instead of solving it here.
 
 ## Working Rules
 
@@ -60,7 +85,9 @@ only when Cloudflare runtime behavior needs to be checked.
 - Do not introduce broad rewrites for small documentation tasks.
 - Do not add dependencies unless the docs site genuinely needs them.
 - Preserve shared editor and workspace settings; avoid personal preferences.
-- Keep Cloudflare and Astro configuration changes explicit and scoped.
+- Keep Astro and deployment configuration changes explicit and scoped.
+- Keep `spectre.manifest.json` in sync with `package.json` whenever an
+  `@phcdevworks/*` dependency is added, removed, or bumped.
 
 ## Content Standards
 
@@ -78,8 +105,10 @@ TypeScript uses `astro/tsconfigs/strict`. ESLint is configured in
 - `@typescript-eslint/no-unused-vars` — warn; prefix intentionally unused
   parameters with `_`
 
-There is no `npm run lint` script. Run ESLint manually or through the IDE when
-working in `.ts`, `.tsx`, `.astro` files.
+There is no `npm run lint` script, and ESLint and `typescript-eslint` are not
+installed in the current starter, so `eslint.config.ts` is not enforced yet.
+`astro check` is also not in the gate: `@astrojs/check` does not yet support
+the starter's TypeScript 7. Both are tracked in [TODO.md](TODO.md).
 
 ## Documentation Ownership
 
@@ -108,7 +137,7 @@ Codex now executes all git operations for this repo; see `AGENTS.md` and
 
 When work is ready, Claude Code stops short of any git command and hands off
 to Codex (or Bradley Potts) with a summary of files changed and validation
-performed (`npm run build` when practical). This sharpens the existing
+performed (`npm run check` when practical). This sharpens the existing
 handoff chain below — Claude Code was never the one committing here, and now
 that boundary is explicit and absolute.
 
@@ -117,14 +146,15 @@ that boundary is explicit and absolute.
 Before handing work to Codex or Bradley:
 
 - summarize what changed
-- run `npm run build` when practical
+- run `npm run check` when practical
 - call out broken links, skipped checks, or unresolved risks
 - update `CHANGELOG.md` for release-relevant documentation or configuration
   changes
 - keep any release-candidate tracking in `.codex/change-watch.md` when Codex is
   involved
 
-Handoff chain: Claude Code → Codex review → Bradley Potts commits.
+Handoff chain: Claude Code → Codex review, commit, and push → Bradley Potts
+retains final authority.
 
 ## Coordination Rules
 

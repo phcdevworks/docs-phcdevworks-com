@@ -35,7 +35,7 @@ AI-agent governance.
 Fix one small documentation issue per task.
 
 - Scope: one topic, one broken link, one stale command, or one naming mismatch.
-- Validation: run `npm run build` when practical.
+- Validation: run `npm run check` when practical.
 - Check changed Markdown and MDX for broken internal links.
 
 ### Repo Hygiene
@@ -45,7 +45,7 @@ task is explicit and tightly scoped.
 
 - Scope: `.editorconfig`, `.gitattributes`, `.gitignore`, `.vscode/`, workspace
   settings, or repository docs directly tied to those settings.
-- Validation: run `npm run build` when practical.
+- Validation: run `npm run check` when practical.
 - Avoid personal editor preferences.
 
 ### Dependency Maintenance
@@ -53,33 +53,38 @@ task is explicit and tightly scoped.
 Apply small dependency or lockfile updates only when requested.
 
 - Scope: `package.json` and `package-lock.json`.
-- Validation: run `npm install` when needed, then `npm run build`.
+- Validation: run `npm install` when needed, then `npm run check`.
 - Do not combine dependency updates with unrelated documentation rewrites.
 
-### Generated Type Sync
+### Manifest Sync
 
-Refresh Wrangler type output only when requested or when configuration changes
-make it necessary.
+Keep `spectre.manifest.json` aligned with `package.json` after a dependency
+maintenance task adds, removes, or bumps an `@phcdevworks/*` package.
 
-- Scope: generated Wrangler type files if present.
-- Validation: run `npm run generate-types`, then `npm run build`.
+- Scope: the `docs-phcdevworks-com` package entry's `dependencies` list in
+  `spectre.manifest.json`.
+- Validation: run `npm run check`.
 
 ## Commit Authority
 
 Jules must not:
 
 - force-push or rewrite history
-- commit, push, tag, publish, or release
+- tag, publish, or release
 - commit unrelated working-tree changes
 - commit a state with failing validation
 - make release, deploy, or architecture decisions without human approval
+
+For work within the bounded maintenance scope above, Jules commits directly to
+`main` and pushes immediately, using the configured human identity and no AI
+authorship trailer.
 
 ## Commit Message Format
 
 - Documentation fix: `docs(docs-phcdevworks-com): <description>`
 - Repo hygiene: `chore(docs-phcdevworks-com): <description>`
 - Dependency update: `chore(deps): update <package or scope>`
-- Type sync: `chore(docs-phcdevworks-com): sync wrangler types`
+- Manifest sync: `chore(docs-phcdevworks-com): sync spectre manifest`
 
 ## Handoff
 

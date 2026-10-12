@@ -7,6 +7,21 @@ Phase 1 (Foundation) and Phase 2 P0 (Content Expansion) are complete — see
 [CHANGELOG.md](CHANGELOG.md) for release-by-release detail. This file only
 tracks what's still open.
 
+## Starter Rebuild Follow-Ups
+
+The site was rebuilt on the `@phcdevworks/spectre-init` `astro` starter
+(2026-10-12). These gaps against the previous setup remain open.
+
+- [ ] Restore deployment: choose and add a hosting adapter and deploy script
+  (previously Cloudflare via `wrangler.jsonc`), then document it. Deployment
+  stays Bradley Potts's call.
+- [ ] Restore a typecheck step in `npm run check` once `@astrojs/check`
+  supports TypeScript 7 (currently peers on `^5 || ^6`).
+- [ ] Install ESLint and `typescript-eslint` so `eslint.config.ts` is
+  enforced, or remove the config.
+- [ ] Rebuild the docs content (DocsLayout, sidebar, guides, reference pages)
+  on the starter using `spectre-ui-astro` components only.
+
 ## Phase 2 P1: Navigation and Discoverability
 
 - [ ] Sidebar still needs full-height sizing (no gap below a short nav list)
@@ -54,7 +69,6 @@ is meaningful to open.
 - Do not define token contracts here.
 - Do not implement upstream UI components here.
 - Do not add company-wide website positioning here.
-- Do not expand content speculatively without proven consumer demand.
 
 ## Requested by Downstream
 

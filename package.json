@@ -1,0 +1,23 @@
+{
+  "name": "docs-phcdevworks-com",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "manifest:validate": "spectre-manifest-validate spectre.manifest.json",
+    "check": "npm run build && npm run manifest:validate"
+  },
+  "dependencies": {
+    "@phcdevworks/spectre-tokens": "^4.13.0",
+    "@phcdevworks/spectre-ui": "^5.5.0",
+    "@phcdevworks/spectre-ui-astro": "^4.12.0",
+    "astro": "^7.3.8"
+  },
+  "devDependencies": {
+    "@phcdevworks/spectre-manifest": "^2.0.0",
+    "typescript": "^7.0.2"
+  }
+}

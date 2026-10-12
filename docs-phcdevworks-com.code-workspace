@@ -112,8 +112,8 @@
         "type": "shell"
       },
       {
-        "label": "typecheck",
-        "command": "npm run typecheck",
+        "label": "manifest:validate",
+        "command": "npm run manifest:validate",
         "type": "shell"
       },
       {
@@ -124,11 +124,6 @@
       {
         "label": "preview",
         "command": "npm run preview",
-        "type": "shell"
-      },
-      {
-        "label": "sync:package-docs",
-        "command": "npm run sync:package-docs",
         "type": "shell"
       }
     ]

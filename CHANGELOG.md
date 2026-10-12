@@ -9,6 +9,22 @@ practical.
 
 ### Changed
 
+- Rebuilt the site on the `@phcdevworks/spectre-init` 1.5.0 `astro` starter:
+  `astro.config.ts`, `tsconfig.json`, `src/layouts/BaseLayout.astro`, and
+  `src/pages/index.astro`, consuming `@phcdevworks/spectre-tokens` `^4.13.0`,
+  `@phcdevworks/spectre-ui` `^5.5.0`, and `@phcdevworks/spectre-ui-astro`
+  `^4.12.0` on Astro 7 and TypeScript 7.
+- Added `spectre.manifest.json` and `@phcdevworks/spectre-manifest` `^2.0.0`
+  as a dev dependency, with a `manifest:validate` script.
+- `npm run check` now runs `npm run build` then `npm run manifest:validate`.
+- Added Spectre-first guidance (Spectre Packages, Spectre-First Building,
+  Source of Truth, Standard Handoff) to `AGENTS.md` and carried it through
+  `CLAUDE.md`, `CODEX.md`, `COPILOT.md`, `GROK.md`, `JULES.md`,
+  `.github/copilot-instructions.md`, `README.md`, `CONTRIBUTING.md`, and
+  `.codex/release-readiness.md`.
+- Removed documentation for scripts and config the starter does not ship:
+  `typecheck`, `generate-types`, `deploy`, `screenshot`,
+  `sync:package-docs`, `astro.config.mjs`, and `wrangler.jsonc`.
 - Bumped `@phcdevworks/spectre-tokens` to `^4.3.0`, `@phcdevworks/spectre-ui`
   to `^4.0.0`, and `@phcdevworks/spectre-ui-astro` to `^4.4.0`, closing the
   version lag behind `project-design`'s latest releases.

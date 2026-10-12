@@ -126,7 +126,8 @@ Before cutting a release, Codex must verify:
 - `package.json` metadata and scripts are correct
 - documented behavior matches the docs site implementation
 - build output can be regenerated
-- Wrangler types are generated when expected
+- `spectre.manifest.json` matches the `@phcdevworks/*` dependencies in
+  `package.json` and passes `npm run manifest:validate`
 - tests or checks pass when available
 - no generated files are stale
 - no unrelated files were changed
@@ -134,15 +135,16 @@ Before cutting a release, Codex must verify:
 
 ### Release Mechanics
 
-Once `CHANGELOG.md [Unreleased]` is release-ready, Codex cuts the release —
-no per-release request from Bradley required:
+Codex cuts a release only when Bradley Potts explicitly asks to get the
+repository ready for release. Once requested and `CHANGELOG.md [Unreleased]`
+is release-ready:
 
 1. Bump `package.json` to the intended release version.
 2. Move `[Unreleased]` notes into a new versioned entry:
    `## [<version>] - <YYYY-MM-DD>`, with a release title line in the format
    `**Release Title:** <short title>`, where `<short title>` is a concise
    summary of what shipped without a roadmap priority or version prefix.
-3. Run `npm run check` (or this repo's equivalent build/typecheck gate) —
+3. Run `npm run check` (build plus manifest validation) —
    must pass clean on the release-ready state.
 4. Stage and commit the version bump and changelog update.
 5. Create the git tag: `git tag v<version>` (matching `package.json`
@@ -155,8 +157,9 @@ no per-release request from Bradley required:
    add to, or omit the remaining changelog content — `--notes` inline
    freeform text is never used, even for a short release. The GitHub Release
    title must match the changelog release title exactly.
-7. `npm run deploy` (Cloudflare) is **not** run by Codex — deployment stays
-   a separate, manual step owned by Bradley Potts.
+7. Deployment is **not** run by Codex — it stays a separate, manual step
+   owned by Bradley Potts. The current starter has no deploy script or
+   hosting adapter; restoring one is tracked in `TODO.md`.
 
 ## Documentation Responsibilities
 
@@ -198,8 +201,8 @@ Prefer TypeScript config files where the toolchain supports them cleanly:
 - `playwright.config.ts`
 
 Keep JavaScript or CommonJS config files only when required by the ecosystem or
-toolchain. This repository currently uses `astro.config.mjs`; keep it unless an
-Astro-supported TypeScript migration is intentionally scoped and validated.
+toolchain. This repository uses `astro.config.ts` from the
+`@phcdevworks/spectre-init` `astro` template.
 
 Do not create duplicate config files.
 
@@ -209,11 +212,15 @@ When config changes, review:
 - `.gitattributes`
 - `.gitignore`
 - `.vscode/`
-- `astro.config.mjs`
-- `wrangler.jsonc`
+- `astro.config.ts`
 - `tsconfig.json`
 - `eslint.config.ts`
 - `package.json`
+- `spectre.manifest.json`
+
+`npx @phcdevworks/spectre-init update --dry-run` previews starter refreshes.
+It overwrites `.gitignore` and `AGENTS.md` with template copies when applied,
+so restore this repo's versions of both before committing.
 
 ## Validation
 
@@ -225,17 +232,15 @@ Preferred command across Spectre repositories:
 npm run check
 ```
 
-`npm run check` runs `npm run build` then `npm run typecheck` (`astro check`).
-Both gates must pass before handoff.
+`npm run check` runs `npm run build` then `npm run manifest:validate`
+(`spectre-manifest-validate spectre.manifest.json`). Both steps must pass
+before handoff.
 
 Use these commands only when their scope is relevant:
 
 ```bash
-npm run typecheck
+npm run manifest:validate
 npm run preview
-npm run deploy
-npm run generate-types
-npm run screenshot
 ```
 
 When a validation gate fails, Codex must:
@@ -251,7 +256,11 @@ When a validation gate fails, Codex must:
 When Claude Code or a human makes changes, Codex reviews for:
 
 - documentation drift between files and actual scripts
-- stale setup, build, preview, deploy, or type-generation instructions
+- stale setup, build, preview, or deploy instructions
+- `spectre.manifest.json` drift from `package.json` `@phcdevworks/*`
+  dependencies
+- local markup or CSS that duplicates a published Spectre component, recipe,
+  or token (see "Spectre-First Building" in `AGENTS.md`)
 - missing release-note or changelog coverage
 - package metadata drift in `package.json`
 - unnecessary config churn
@@ -271,7 +280,7 @@ Before recommending or making a refactor, answer:
 2. Does the repository already have a pattern that solves this?
 3. Can the improvement stay narrow and easy to review?
 4. Does the change affect public docs-site behavior or deployment behavior?
-5. Can `npm run build` validate the result?
+5. Can `npm run check` validate the result?
 
 Codex does not refactor:
 
@@ -279,7 +288,7 @@ Codex does not refactor:
 - architecture direction owned by Claude Code
 - unrelated docs or configuration
 - package scope or repository purpose
-- Jules, Copilot, or Claude Code responsibilities
+- Jules, Copilot, Grok, or Claude Code responsibilities
 
 ## Documentation Audit Procedure
 
@@ -289,8 +298,8 @@ Run this when documentation may have drifted:
    `CLAUDE.md`, `CODEX.md`, and `.codex/release-readiness.md`.
 2. Check changed Markdown and MDX for local links and stale file paths.
 3. Confirm all agent files preserve the required role model:
-   Claude Code leads, Codex stabilizes and prepares releases, Copilot assists,
-   and Jules handles small automated maintenance.
+   Claude Code leads, Codex stabilizes and prepares releases, Copilot and Grok
+   assist, and Jules handles small automated maintenance.
 4. Confirm `CHANGELOG.md [Unreleased]` includes release-relevant documentation
    or configuration changes.
 5. Confirm package metadata still matches repository identity.

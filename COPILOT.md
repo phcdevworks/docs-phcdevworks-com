@@ -29,8 +29,13 @@ described below.
 - Keep this repository focused on docs-site implementation and repository docs.
 - Do not move token logic into this repository.
 - Do not patch upstream design-system gaps locally in docs content or config.
-- Use Spectre tokens or Spectre UI recipes where relevant; avoid ad hoc visual
-  primitives.
+- Spectre-first: reach for a `spectre-ui-astro` component, then shipped `sp-*`
+  classes and `spectre-ui` recipes, before writing any local markup or CSS.
+  Follow the full order in "Spectre-First Building" in [AGENTS.md](AGENTS.md).
+- Read `node_modules/@phcdevworks/spectre-manifest/spectre.manifest.json`
+  before suggesting an `@phcdevworks` import; import only exports listed there.
+- Keep `spectre.manifest.json` in sync with `package.json` `@phcdevworks/*`
+  dependencies.
 
 ## Allowed Work
 
@@ -50,8 +55,8 @@ described below.
 
 ## Validation
 
-- Use `npm run build` as the standard validation gate for meaningful docs,
-  Astro, or configuration changes.
+- Use `npm run check` (build plus manifest validation) as the standard
+  validation gate for meaningful docs, Astro, or configuration changes.
 - Run narrower checks only when they are explicitly available in `package.json`
   or the IDE.
 

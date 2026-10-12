@@ -12,23 +12,29 @@ upstream UI components.
 
 ## 1. Foundation Status — Delivered
 
-All foundation work is complete. The site is deployed and maintained.
+**Starter rebuild (2026-10-12):** the previous implementation was removed and
+the site was re-scaffolded from the `@phcdevworks/spectre-init` 1.5.0 `astro`
+template, with an app-level `spectre.manifest.json` validated by
+`@phcdevworks/spectre-manifest` 2.0.0. The rebuilt site is a single starter
+page; deployment, the typecheck step, and the docs content from the phases
+below must be restored on the new base (see "Starter Rebuild Follow-Ups" in
+`TODO.md`).
 
-Current Spectre dependency versions: `@phcdevworks/spectre-tokens ^4.3.0`,
-`@phcdevworks/spectre-ui ^4.0.0`, `@phcdevworks/spectre-ui-astro ^4.4.0` —
-bumped 2026-08-11 to close the version lag behind `project-design`'s latest
-releases. This closed the sidebar parent/child indentation gap tracked in
-`TODO.md` (`getSidebarLinkClasses({ level: 'child' })`).
+Current Spectre dependency versions: `@phcdevworks/spectre-tokens ^4.13.0`,
+`@phcdevworks/spectre-ui ^5.5.0`, `@phcdevworks/spectre-ui-astro ^4.12.0` —
+matching `project-design`'s latest published releases.
 
 ### What is in place
 
-- Astro + Cloudflare adapter setup with a working local dev and production
-  build path.
-- Full validation gate: `npm run check` runs the production build before
-  any handoff.
-- Multi-agent team (Claude Code, Codex, Copilot, Jules) with documented
+- Astro 7 starter from `@phcdevworks/spectre-init` with a working local dev
+  and production build path (no hosting adapter yet).
+- Full validation gate: `npm run check` runs the production build and
+  `spectre.manifest.json` validation before any handoff.
+- Spectre-first agent guidance and the installed Spectre manifest as the
+  package reference for AI agents.
+- Multi-agent team (Claude Code, Codex, Copilot, Jules, Grok) with documented
   authority boundaries in `AGENTS.md`, `CLAUDE.md`, `CODEX.md`, `COPILOT.md`,
-  and `JULES.md`.
+  `JULES.md`, and `GROK.md`.
 - PR template and GitHub issue templates that align with the Spectre AI
   factory model.
 - `.codex/` playbooks for change-watch and release-readiness tracking.
@@ -63,7 +69,9 @@ See [CHANGELOG.md](CHANGELOG.md) for release-by-release detail on the above.
 
 ## 3. What's Next
 
-The remainder of Phase 2 is open. See [TODO.md](TODO.md) for the active
+First restore the docs content, deployment, and typecheck gate on the new
+starter ("Starter Rebuild Follow-Ups" in [TODO.md](TODO.md)). The remainder
+of Phase 2 is open after that. See [TODO.md](TODO.md) for the active
 item-level checklist.
 
 ---
@@ -120,7 +128,6 @@ scale but breaks down as the ecosystem matures.
 - Upstream UI component implementation — that lives in `spectre-ui`.
 - Company-wide website positioning — that lives in `www-phcdevworks-com`.
 - Framework adapter internals outside the docs site.
-- Speculative content expansion without proven consumer demand.
 
 ---
 

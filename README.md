@@ -35,6 +35,7 @@ designers consuming the published packages.
 | Codex | [CODEX.md](CODEX.md) |
 | Copilot | [COPILOT.md](COPILOT.md) |
 | Jules | [JULES.md](JULES.md) |
+| Grok  | [GROK.md](GROK.md)   |
 | Roadmap | [ROADMAP.md](ROADMAP.md) |
 | Todo | [TODO.md](TODO.md) |
 | Changelog | [CHANGELOG.md](CHANGELOG.md) |
@@ -52,7 +53,7 @@ supporting documentation for the Spectre ecosystem.
 [CHANGELOG.md](CHANGELOG.md) | [ROADMAP.md](ROADMAP.md) |
 [SECURITY.md](SECURITY.md) | [AGENTS.md](AGENTS.md) | [CLAUDE.md](CLAUDE.md) |
 [CODEX.md](CODEX.md) | [JULES.md](JULES.md) | [COPILOT.md](COPILOT.md) |
-[LICENSE](LICENSE)
+[GROK.md](GROK.md) | [LICENSE](LICENSE)
 
 ## Overview
 
@@ -62,9 +63,20 @@ contributors and external readers.
 
 ## Where It Fits
 
-This site is the documentation home for Spectre. It depends on
-`@phcdevworks/spectre-ui-astro` for Spectre-aligned presentation, but it does
-not define upstream design tokens or UI package internals.
+This site is the documentation home for Spectre. It was scaffolded from the
+`@phcdevworks/spectre-init` `astro` template and depends on
+`@phcdevworks/spectre-tokens`, `@phcdevworks/spectre-ui`, and
+`@phcdevworks/spectre-ui-astro` for Spectre-aligned presentation. It does not
+define upstream design tokens or UI package internals.
+
+The site owns the docs content; Spectre owns the system. Pages are built from
+published `spectre-ui-astro` components and shipped `sp-*` classes, with no
+site-authored design system. See "Spectre-First Building" in
+[AGENTS.md](AGENTS.md).
+
+[spectre.manifest.json](spectre.manifest.json) describes the site's Spectre
+dependencies for tooling and AI agents, and is validated by
+`@phcdevworks/spectre-manifest` as part of `npm run check`.
 
 ## When To Use This Repository
 
@@ -82,10 +94,11 @@ not define upstream design tokens or UI package internals.
 
 ## Stack
 
-- Astro
-- TypeScript
-- Cloudflare adapter
-- `@phcdevworks/spectre-ui-astro`
+- Astro 7 (static output; no hosting adapter configured yet)
+- TypeScript 7
+- `@phcdevworks/spectre-tokens`, `@phcdevworks/spectre-ui`,
+  `@phcdevworks/spectre-ui-astro`
+- `@phcdevworks/spectre-manifest` (dev) for manifest validation
 
 ## Getting Started
 
@@ -111,12 +124,10 @@ npm run dev
 | Script | What it does |
 | --- | --- |
 | `npm run dev` | Start the local Astro development server |
-| `npm run build` | Create the production build |
-| `npm run typecheck` | Run the Astro TypeScript checker (`astro check`) |
-| `npm run check` | Full validation gate — runs `npm run build` then `npm run typecheck` |
-| `npm run preview` | Build and start a local Cloudflare Workers preview |
-| `npm run generate-types` | Refresh Wrangler type output |
-| `npm run deploy` | Build and deploy to Cloudflare |
+| `npm run build` | Create the production build in `dist/` |
+| `npm run preview` | Serve the production build locally |
+| `npm run manifest:validate` | Validate `spectre.manifest.json` with `spectre-manifest-validate` |
+| `npm run check` | Full validation gate — runs `npm run build` then `npm run manifest:validate` |
 
 ## Validation
 
@@ -124,30 +135,26 @@ npm run dev
 npm run check
 ```
 
-`npm run check` runs the production build then the Astro typecheck. Use it
-before any handoff. `npm run preview` builds and starts a local Cloudflare
-Workers preview — use this only when you need to verify Cloudflare runtime
-behavior specifically.
+`npm run check` runs the production build then validates
+`spectre.manifest.json`. Use it before any handoff.
 
 ## Troubleshooting
 
 **Build fails with missing module errors** — run `npm install` first; `dist/`
 is not committed and must be rebuilt locally.
 
-**`npm run preview` or `npm run deploy` fails** — these require Wrangler
-authentication. Run `wrangler login` and confirm you have Cloudflare access for
-this project before using them.
-
-**`npm run generate-types` produces nothing** — run `npm run build` first;
-Wrangler type generation requires a compiled output to inspect.
+**Manifest validation fails** — confirm the `docs-phcdevworks-com` package
+entry's `dependencies` in `spectre.manifest.json` still matches the
+`@phcdevworks/*` dependencies in `package.json`.
 
 ## Project Structure
 
 | Path | Responsibility |
 | --- | --- |
 | `src/pages/` | Route-level pages for the documentation experience |
-| `src/layouts/` | Page layout components |
-| `public/` | Static assets served as-is |
+| `src/layouts/` | Page layout components; `BaseLayout.astro` loads `spectre-ui` CSS |
+| `astro.config.ts` | Astro configuration |
+| `spectre.manifest.json` | App manifest describing this site's Spectre dependencies |
 
 ## AI And Automation Boundaries
 
@@ -158,10 +165,11 @@ Wrangler type generation requires a compiled output to inspect.
   [COPILOT.md](COPILOT.md) and
   [.github/copilot-instructions.md](.github/copilot-instructions.md).
 - Google Jules handles small automated maintenance. See [JULES.md](JULES.md).
+- xAI Grok (and Grok Bot) assists with development and commits its own work. See [GROK.md](GROK.md).
 
-All AI agents with repository access (Claude Code, Codex, Copilot, Jules)
-have commit, push, and tag authority in this repository. Site deployment
-(`npm run deploy`) remains Bradley Potts's sole authority. See
+Claude Code has no git access in this repository; Codex executes git
+operations for its handed-off work. Site deployment remains Bradley Potts's
+sole authority. See
 [AGENTS.md](AGENTS.md) for the full commit-policy and release-authority
 grant.
 
@@ -185,6 +193,8 @@ See [LICENSE](LICENSE).
 - [spectre-tokens](https://github.com/phcdevworks/spectre-tokens)
 - [spectre-ui](https://github.com/phcdevworks/spectre-ui)
 - [spectre-ui-astro](https://github.com/phcdevworks/spectre-ui-astro)
+- [spectre-init](https://github.com/phcdevworks/spectre-init)
+- [spectre-manifest](https://github.com/phcdevworks/spectre-manifest)
 - [docs-phcdevworks-com](https://github.com/phcdevworks/docs-phcdevworks-com)
 - [www-phcdevworks-com](https://github.com/phcdevworks/www-phcdevworks-com)
 
