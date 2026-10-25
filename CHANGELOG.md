@@ -9,6 +9,9 @@ practical.
 
 ### Changed
 
+- Updated the runtime stack to `@phcdevworks/spectre-tokens` `^4.15.0`,
+  `@phcdevworks/spectre-ui` `^5.8.0`, `@phcdevworks/spectre-ui-astro`
+  `^4.14.0`, and Astro `^7.4.2`.
 - Rebuilt the site on the `@phcdevworks/spectre-init` 1.5.0 `astro` starter:
   `astro.config.ts`, `tsconfig.json`, `src/layouts/BaseLayout.astro`, and
   `src/pages/index.astro`, consuming `@phcdevworks/spectre-tokens` `^4.13.0`,

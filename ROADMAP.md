@@ -20,8 +20,8 @@ page; deployment, the typecheck step, and the docs content from the phases
 below must be restored on the new base (see "Starter Rebuild Follow-Ups" in
 `TODO.md`).
 
-Current Spectre dependency versions: `@phcdevworks/spectre-tokens ^4.13.0`,
-`@phcdevworks/spectre-ui ^5.5.0`, `@phcdevworks/spectre-ui-astro ^4.12.0` —
+Current Spectre dependency versions: `@phcdevworks/spectre-tokens ^4.15.0`,
+`@phcdevworks/spectre-ui ^5.8.0`, `@phcdevworks/spectre-ui-astro ^4.14.0` —
 matching `project-design`'s latest published releases.
 
 ### What is in place
